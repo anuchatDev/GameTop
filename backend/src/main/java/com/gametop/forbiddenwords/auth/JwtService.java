@@ -34,26 +34,27 @@ public class JwtService {
         this.clock = clock;
     }
 
-    public String issue(AuthUser user) {
+    public String issue(Long userId) {
         Instant now = clock.instant();
         return Jwts.builder()
-                .subject(user.id().toString())
-                .claim("username", user.username())
+                .subject(userId.toString())
                 .issuedAt(Date.from(now))
                 .expiration(Date.from(now.plus(expiry)))
                 .signWith(key)
                 .compact();
     }
 
-    public Optional<AuthUser> verify(String token) {
+    /** คืน userId ถ้า token ถูกต้องและยังไม่หมดอายุ */
+    public Optional<Long> verify(String token) {
         try {
-            var claims = Jwts.parser()
+            String subject = Jwts.parser()
                     .verifyWith(key)
                     .clock(() -> Date.from(clock.instant()))
                     .build()
                     .parseSignedClaims(token)
-                    .getPayload();
-            return Optional.of(new AuthUser(Long.valueOf(claims.getSubject()), claims.get("username", String.class)));
+                    .getPayload()
+                    .getSubject();
+            return Optional.of(Long.valueOf(subject));
         } catch (JwtException | IllegalArgumentException e) {
             return Optional.empty();
         }

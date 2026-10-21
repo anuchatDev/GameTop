@@ -1,4 +1,4 @@
-import { AuthSession, Profile, RoomView } from '../types';
+import { AdminStats, AdminUser, AdminWord, AuthSession, Profile, Role, RoomView, WordInput } from '../types';
 
 const BASE_URL = (process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:8080').replace(/\/$/, '');
 
@@ -32,7 +32,7 @@ async function request<T>(path: string, options: { method?: string; auth?: AuthS
     throw new ApiError('เชื่อมต่อเซิร์ฟเวอร์ไม่ได้', 0);
   }
 
-  const data = await res.json().catch(() => null);
+  const data = res.status === 204 ? null : await res.json().catch(() => null);
   if (!res.ok) {
     if (res.status === 401 && options.auth) {
       onUnauthorized?.();
@@ -70,4 +70,37 @@ export const api = {
     request<RoomView>(roomPath(code, '/guess'), { method: 'POST', auth, body: { guess } }),
 
   endRound: (auth: AuthSession, code: string) => request<RoomView>(roomPath(code, '/end'), { method: 'POST', auth }),
+};
+
+function query(params: Record<string, string | undefined>) {
+  const entries = Object.entries(params).filter(([, v]) => v);
+  return entries.length ? '?' + entries.map(([k, v]) => `${k}=${encodeURIComponent(v!)}`).join('&') : '';
+}
+
+/** ระบบผู้ดูแล — backend อนุญาตเฉพาะบัญชีที่มีสิทธิ์ ADMIN */
+export const adminApi = {
+  stats: (auth: AuthSession) => request<AdminStats>('/api/admin/stats', { auth }),
+
+  users: (auth: AuthSession, q?: string) => request<AdminUser[]>(`/api/admin/users${query({ q })}`, { auth }),
+
+  setBanned: (auth: AuthSession, id: number, banned: boolean) =>
+    request<AdminUser>(`/api/admin/users/${id}/ban`, { method: 'POST', auth, body: { banned } }),
+
+  setRole: (auth: AuthSession, id: number, role: Role) =>
+    request<AdminUser>(`/api/admin/users/${id}/role`, { method: 'POST', auth, body: { role } }),
+
+  deleteUser: (auth: AuthSession, id: number) =>
+    request<null>(`/api/admin/users/${id}`, { method: 'DELETE', auth }),
+
+  words: (auth: AuthSession, q?: string, pack?: string) =>
+    request<AdminWord[]>(`/api/admin/words${query({ q, pack })}`, { auth }),
+
+  createWord: (auth: AuthSession, input: WordInput) =>
+    request<AdminWord>('/api/admin/words', { method: 'POST', auth, body: input }),
+
+  updateWord: (auth: AuthSession, id: number, input: WordInput) =>
+    request<AdminWord>(`/api/admin/words/${id}`, { method: 'PUT', auth, body: input }),
+
+  deleteWord: (auth: AuthSession, id: number) =>
+    request<null>(`/api/admin/words/${id}`, { method: 'DELETE', auth }),
 };

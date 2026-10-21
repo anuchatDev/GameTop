@@ -62,7 +62,15 @@ Supabase ใช้ได้เหมือนกัน: Project Settings → Dat
 > ⚠️ ถ้าเปิดเว็บแล้วโดนเด้งไปหน้าล็อกอิน Netlify (HTTP 401) แปลว่าเปิด Site protection อยู่ —
 > ไปที่ **Site configuration → Access & security** แล้วตั้งเป็น **No protection / Public** เพื่อให้คนทั่วไปเข้าเล่นได้
 
-## 4. ปิด CORS ให้เหลือเฉพาะเว็บของเรา
+## 4. ตั้งผู้ดูแลระบบ (Admin) คนแรก
+
+1. สมัครสมาชิกบนเว็บตามปกติ
+2. Render → Environment → เพิ่ม `ADMIN_USERNAMES` = ชื่อผู้ใช้ที่เพิ่งสมัคร (หลายคนคั่นด้วย comma) → Save
+3. Render จะ redeploy ให้ — เปิดเว็บใหม่จะเห็นปุ่ม **🛠️ ระบบผู้ดูแล** ในหน้าแรก
+
+หลังจากนั้นตั้ง/ถอด Admin คนอื่นได้จากหน้า Admin เลย ไม่ต้องแก้ env อีก
+
+## 5. ปิด CORS ให้เหลือเฉพาะเว็บของเรา
 
 กลับไปที่ Render → Environment → แก้ `CORS_ORIGINS` เป็น URL frontend จริง เช่น
 `https://forbidden-words.netlify.app` (หลายค่าคั่นด้วย comma) → Save (Render จะ redeploy ให้)
@@ -77,6 +85,7 @@ Supabase ใช้ได้เหมือนกัน: Project Settings → Dat
 | `DATABASE_PASSWORD` | backend | ✅ | |
 | `JWT_SECRET` | backend | ✅ | สุ่ม ≥ 32 ตัวอักษร — ถ้าเปลี่ยน ทุกคนต้องล็อกอินใหม่ |
 | `CORS_ORIGINS` | backend | ✅ | URL ของ frontend คั่นด้วย comma |
+| `ADMIN_USERNAMES` | backend | – | ชื่อผู้ใช้ที่ได้สิทธิ์ Admin คั่นด้วย comma |
 | `PORT` | backend | – | แพลตฟอร์มตั้งให้เอง (ค่าเริ่มต้น 8080) |
 | `EXPO_PUBLIC_API_URL` | frontend | ✅ | URL ของ backend |
 

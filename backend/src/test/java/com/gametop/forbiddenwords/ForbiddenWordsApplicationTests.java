@@ -15,14 +15,14 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.gametop.forbiddenwords.word.WordDeck;
+import com.gametop.forbiddenwords.word.WordRepository;
 
 @SpringBootTest
 @AutoConfigureMockMvc
 class ForbiddenWordsApplicationTests {
 
     @Autowired
-    private WordDeck deck;
+    private WordRepository words;
 
     @Autowired
     private MockMvc mvc;
@@ -31,9 +31,8 @@ class ForbiddenWordsApplicationTests {
     private ObjectMapper json;
 
     @Test
-    void loadsBasePackWithHundredWords() {
-        assertThat(deck.packNames()).containsKey("base");
-        assertThat(deck.all().stream().filter(c -> c.pack().equals("base"))).hasSize(100);
+    void seedsBasePackWithHundredWords() {
+        assertThat(words.findByActiveTrue().stream().filter(w -> w.getPack().equals("base"))).hasSize(100);
     }
 
     @Test

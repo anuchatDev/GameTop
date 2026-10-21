@@ -30,12 +30,15 @@ export interface RoomView {
   players: PlayerView[];
 }
 
+export type Role = 'PLAYER' | 'ADMIN';
+
 export interface AuthUser {
   id: number;
   username: string;
+  role: Role;
 }
 
-/** ผลการล็อกอิน — เก็บไว้ในหน่วยความจำเท่านั้น (ปิด/รีเฟรชหน้าต้องล็อกอินใหม่) */
+/** ผลการล็อกอิน — จำไว้ใน localStorage (เว็บ) เพื่อไม่ต้องล็อกอินใหม่ทุกครั้งที่รีเฟรช */
 export interface AuthSession {
   token: string;
   user: AuthUser;
@@ -57,8 +60,43 @@ export interface Profile {
   id: number;
   username: string;
   email: string;
+  role: Role;
   totalScore: number;
   roundsPlayed: number;
   roundsWon: number;
   history: RoundHistory[];
+}
+
+export interface AdminStats {
+  users: number;
+  words: number;
+  activeWords: number;
+  activeRooms: number;
+}
+
+export interface AdminUser {
+  id: number;
+  username: string;
+  email: string;
+  role: Role;
+  banned: boolean;
+  totalScore: number;
+  roundsPlayed: number;
+  roundsWon: number;
+  createdAt: string;
+}
+
+export interface AdminWord {
+  id: number;
+  text: string;
+  category: string;
+  pack: string;
+  active: boolean;
+}
+
+export interface WordInput {
+  text: string;
+  category: string;
+  pack: string;
+  active: boolean;
 }

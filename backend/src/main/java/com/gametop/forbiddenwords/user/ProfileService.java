@@ -34,9 +34,13 @@ public class ProfileService implements RoundFinishedListener {
         Instant now = clock.instant();
         for (Player p : room.getPlayers()) {
             boolean won = room.isWinner(p);
-            users.findById(p.getUserId()).ifPresent(u -> u.recordRound(p.getRoundScore(), won));
-            results.save(new RoundResult(p.getUserId(), room.getCode(), room.getRoundNumber(), p.getWord().text(),
-                    p.isAlive(), p.getKills(), p.getGuessCorrect(), p.getRoundScore(), won, now));
+            // บัญชีที่ถูกลบระหว่างเล่น (ยังค้างอยู่ในห้อง) ไม่ต้องบันทึก
+            users.findById(p.getUserId()).ifPresent(u -> {
+                u.recordRound(p.getRoundScore(), won);
+                results.save(new RoundResult(p.getUserId(), room.getCode(), room.getRoundNumber(),
+                        p.getWord().text(), p.isAlive(), p.getKills(), p.getGuessCorrect(), p.getRoundScore(), won,
+                        now));
+            });
         }
     }
 
@@ -47,11 +51,11 @@ public class ProfileService implements RoundFinishedListener {
                 .map(r -> new Profile.History(r.getRoomCode(), r.getRoundNumber(), r.getWord(), r.isSurvived(),
                         r.getKills(), r.getGuessCorrect(), r.getScore(), r.isWon(), r.getPlayedAt()))
                 .toList();
-        return new Profile(u.getId(), u.getUsername(), u.getEmail(), u.getTotalScore(), u.getRoundsPlayed(),
-                u.getRoundsWon(), history);
+        return new Profile(u.getId(), u.getUsername(), u.getEmail(), u.getRole(), u.getTotalScore(),
+                u.getRoundsPlayed(), u.getRoundsWon(), history);
     }
 
-    public record Profile(Long id, String username, String email, double totalScore, int roundsPlayed,
+    public record Profile(Long id, String username, String email, Role role, double totalScore, int roundsPlayed,
                           int roundsWon, List<History> history) {
 
         public record History(String roomCode, int roundNumber, String word, boolean survived, int kills,

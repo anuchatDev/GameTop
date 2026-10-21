@@ -4,6 +4,8 @@ import java.time.Instant;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,6 +40,13 @@ public class UserAccount {
     @Column(nullable = false)
     private Instant createdAt;
 
+    // nullable เพื่อให้ ddl-auto เพิ่มคอลัมน์ในตารางที่มีข้อมูลอยู่แล้วได้ (null = PLAYER / ไม่ถูกระงับ)
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10)
+    private Role role;
+
+    private Boolean banned;
+
     protected UserAccount() {
     }
 
@@ -46,6 +55,8 @@ public class UserAccount {
         this.email = email;
         this.passwordHash = passwordHash;
         this.createdAt = createdAt;
+        this.role = Role.PLAYER;
+        this.banned = false;
     }
 
     void recordRound(double score, boolean won) {
@@ -86,5 +97,21 @@ public class UserAccount {
 
     public Instant getCreatedAt() {
         return createdAt;
+    }
+
+    public Role getRole() {
+        return role == null ? Role.PLAYER : role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public boolean isBanned() {
+        return Boolean.TRUE.equals(banned);
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
     }
 }

@@ -20,16 +20,17 @@ import com.gametop.forbiddenwords.common.ApiException;
 import com.gametop.forbiddenwords.config.GameProperties;
 import com.gametop.forbiddenwords.room.dto.RoomView;
 import com.gametop.forbiddenwords.room.dto.RoomView.PlayerView;
+import com.gametop.forbiddenwords.user.Role;
+import com.gametop.forbiddenwords.word.WordCard;
 import com.gametop.forbiddenwords.word.WordDeck;
-import com.gametop.forbiddenwords.word.WordPack;
 
 class RoomServiceTest {
 
     private static final GameProperties PROPS = new GameProperties(300, 2, 6, 1.0, 0.5, 1.0, 6);
 
-    private static final AuthUser A = new AuthUser(1L, "เอ");
-    private static final AuthUser B = new AuthUser(2L, "บี");
-    private static final AuthUser C = new AuthUser(3L, "ซี");
+    private static final AuthUser A = new AuthUser(1L, "เอ", Role.PLAYER);
+    private static final AuthUser B = new AuthUser(2L, "บี", Role.PLAYER);
+    private static final AuthUser C = new AuthUser(3L, "ซี", Role.PLAYER);
 
     private MutableClock clock;
     private RoomService service;
@@ -37,10 +38,10 @@ class RoomServiceTest {
 
     @BeforeEach
     void setUp() {
-        List<WordPack.Entry> entries = IntStream.rangeClosed(1, 10)
-                .mapToObj(i -> new WordPack.Entry("t-" + i, "คำ" + i, "ทดสอบ"))
+        List<WordCard> cards = IntStream.rangeClosed(1, 10)
+                .mapToObj(i -> new WordCard("t-" + i, "คำ" + i, "ทดสอบ", "test"))
                 .toList();
-        WordDeck deck = new WordDeck(List.of(new WordPack("test", "ทดสอบ", entries)));
+        WordDeck deck = (count, exclude) -> cards.subList(0, count);
         clock = new MutableClock(Instant.parse("2026-01-01T00:00:00Z"));
         service = new RoomService(deck, new ScoreCalculator(PROPS), PROPS, clock,
                 room -> recordedRounds.add(room.getRoundNumber()));
@@ -131,9 +132,9 @@ class RoomServiceTest {
                 .isInstanceOf(ApiException.class);
 
         for (long i = 3; i <= 6; i++) {
-            service.join(code, new AuthUser(i, "ผู้เล่น" + i));
+            service.join(code, new AuthUser(i, "ผู้เล่น" + i, Role.PLAYER));
         }
-        assertThatThrownBy(() -> service.join(code, new AuthUser(7L, "คนที่เจ็ด")))
+        assertThatThrownBy(() -> service.join(code, new AuthUser(7L, "คนที่เจ็ด", Role.PLAYER)))
                 .isInstanceOf(ApiException.class);
     }
 
@@ -165,7 +166,7 @@ class RoomServiceTest {
 
         service.removeIdleRooms();
 
-        assertThat(service.roomCount()).isZero();
+        assertThat(service.activeRoomCount()).isZero();
     }
 
     private String threePlayerRoom() {

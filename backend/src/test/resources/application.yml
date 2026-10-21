@@ -13,3 +13,4 @@ app:
     secret: test-secret-test-secret-test-secret-0123
     expiry-hours: 1
   cors-origins: "*"
+  admin-usernames: adminuser

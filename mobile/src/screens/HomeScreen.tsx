@@ -10,12 +10,14 @@ export function HomeScreen({
   auth,
   onEnterRoom,
   onOpenProfile,
+  onOpenAdmin,
   onOpenTimer,
   onLogout,
 }: {
   auth: AuthSession;
   onEnterRoom: (code: string) => void;
   onOpenProfile: () => void;
+  onOpenAdmin: () => void;
   onOpenTimer: () => void;
   onLogout: () => void;
 }) {
@@ -71,6 +73,7 @@ export function HomeScreen({
       <ErrorText message={error} />
 
       <Button title="🏆 โปรไฟล์ & คะแนนสะสม" variant="success" onPress={onOpenProfile} />
+      {auth.user.role === 'ADMIN' && <Button title="🛠️ ระบบผู้ดูแล (Admin)" variant="secondary" onPress={onOpenAdmin} />}
       <Button title="⏳ ใช้เป็นนาฬิกาจับเวลาอย่างเดียว" variant="ghost" onPress={onOpenTimer} />
 
       <Card>
@@ -81,9 +84,6 @@ export function HomeScreen({
         <Text style={styles.rule}>• รอดครบ 5 นาที = 0.5 คะแนน</Text>
         <Text style={styles.rule}>• รอด + ทายคำบนหัวตัวเองถูก = 1 คะแนน 🏆</Text>
       </Card>
-      <Muted style={{ textAlign: 'center' }}>
-        หากรีเฟรชหน้าเว็บ ให้ล็อกอินแล้วกรอกรหัสห้องเดิมเพื่อกลับเข้าที่นั่งเดิม
-      </Muted>
     </Screen>
   );
 }

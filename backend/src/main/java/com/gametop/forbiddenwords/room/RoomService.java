@@ -208,7 +208,7 @@ public class RoomService {
         });
     }
 
-    int roomCount() {
+    public int activeRoomCount() {
         return rooms.size();
     }
 

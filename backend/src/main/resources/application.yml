@@ -18,6 +18,8 @@ app:
     expiry-hours: 72
   # origin ของหน้าเว็บที่อนุญาตให้เรียก API คั่นด้วย comma
   cors-origins: ${CORS_ORIGINS:*}
+  # ชื่อผู้ใช้ที่ได้สิทธิ์ Admin อัตโนมัติ คั่นด้วย comma (ระบบจะให้สิทธิ์ตอน start และตอนสมัคร)
+  admin-usernames: ${ADMIN_USERNAMES:}
 
 game:
   # เวลาต่อรอบ (วินาที) — ตามกติกา 5 นาที

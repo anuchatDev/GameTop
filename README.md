@@ -1,6 +1,7 @@
 # คำต้องห้าม (Forbidden Words) — Web Edition
 
 เว็บเกมปาร์ตี้ "คำต้องห้าม" เล่นออนไลน์กับเพื่อน 2-6 คน: สมัคร/ล็อกอิน → สร้างห้อง → แจกคำ → หลอกล่อให้เพื่อนหลุดปาก → สรุปคะแนนลงโปรไฟล์
+พร้อมระบบผู้ดูแล (Admin) สำหรับจัดการผู้ใช้และคลังคำต้องห้าม
 
 - 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md)
 - 🚀 วิธี deploy ออนไลน์: [docs/DEPLOY.md](docs/DEPLOY.md)
@@ -65,19 +66,31 @@ npm run web
 | GET | `/api/words`, `/api/words/packs` | – | ดูชุดคำ |
 | GET | `/api/health` | – | health check สำหรับ deploy |
 
+**Admin** (ต้องเป็นผู้ใช้ role `ADMIN` — ตั้งคนแรกผ่าน env `ADMIN_USERNAMES`)
+
+| Method | Path | Body | คำอธิบาย |
+|---|---|---|---|
+| GET | `/api/admin/stats` | – | จำนวนผู้ใช้ / คำ / ห้องที่เปิดอยู่ |
+| GET | `/api/admin/users?q=` | – | รายชื่อผู้ใช้ (ค้นหาได้) |
+| POST | `/api/admin/users/{id}/ban` | `{banned}` | ระงับ / ยกเลิกระงับบัญชี |
+| POST | `/api/admin/users/{id}/role` | `{role}` | `PLAYER` หรือ `ADMIN` |
+| GET | `/api/admin/words?q=&pack=` | – | คลังคำทั้งหมด (รวมคำที่ปิดใช้งาน) |
+| POST | `/api/admin/words` | `{text, category, pack, active}` | เพิ่มคำ |
+| PUT | `/api/admin/words/{id}` | `{text, category, pack, active}` | แก้ไข / เปิด-ปิดใช้งาน |
+| DELETE | `/api/admin/words/{id}` | – | ลบคำ |
+
 สถานะห้อง: `LOBBY → PLAYING (5 นาที) → GUESSING → FINISHED → PLAYING ...`
 
-## เพิ่มแพ็กเสริม (Expansion Pack)
+## ระบบผู้ดูแล (Admin) และแพ็กเสริม
 
-สร้างไฟล์ JSON ใหม่ใน [backend/src/main/resources/words/](backend/src/main/resources/words/) รูปแบบเดียวกับ `base.json` (id ห้ามซ้ำ) แล้วรีสตาร์ต backend
-
-```json
-{ "pack": "exp1", "name": "แพ็กเสริม 1", "words": [ { "id": "exp1-001", "text": "...", "category": "..." } ] }
-```
+- ตั้ง Admin คนแรก: ใส่ชื่อผู้ใช้ใน env `ADMIN_USERNAMES` (dev: `$env:ADMIN_USERNAMES="ชื่อ"; .mvnw spring-boot:run`)
+- หน้า Admin (ปุ่ม 🛠️ ในหน้าแรก): ดูภาพรวม, ระงับ/ตั้งสิทธิ์ผู้ใช้, เพิ่ม/แก้/ลบ/ปิดใช้งานคำ
+- **แพ็กเสริม:** เพิ่มคำในหน้า Admin แล้วใส่ชื่อแพ็กใหม่ (เช่น `exp1`) — ไม่ต้อง deploy ใหม่
+- คลังคำเก็บในฐานข้อมูล — ไฟล์ [base.json](backend/src/main/resources/words/base.json) ใช้นำเข้า 100 คำแรกอัตโนมัติเมื่อฐานข้อมูลยังว่างเท่านั้น
 
 ## ข้อจำกัดของเวอร์ชัน MVP (ตาม BRD)
 
 - ห้องเกมเก็บในหน่วยความจำ — รีสตาร์ต backend แล้วห้องหาย, ห้องที่ไม่เคลื่อนไหว 6 ชม. ถูกลบ (ผู้ใช้และคะแนนอยู่ใน DB ไม่หาย) — ถ้าจะ scale หลายเครื่องต้องย้ายห้องไป Redis
 - หน้าเว็บอัปเดตด้วยการ poll ทุก 1.5 วินาที (ยังไม่ใช้ WebSocket)
-- ไม่เก็บ token ลงเครื่อง — รีเฟรชหน้าต้องล็อกอินใหม่ แล้วกรอกรหัสห้องเดิมเพื่อกลับที่นั่งเดิม
+- จำการล็อกอินและห้องล่าสุดใน localStorage ของเบราว์เซอร์ — รีเฟรชหน้าแล้วกลับเข้าห้องเดิมได้ แต่ถ้า backend รีสตาร์ต ห้องจะหาย
 - ตารางฐานข้อมูลสร้างด้วย `ddl-auto: update` — ถ้าระบบโตขึ้นควรเปลี่ยนไปใช้ Flyway
