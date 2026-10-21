@@ -25,6 +25,7 @@ export interface RoomView {
   roundSeconds: number;
   remainingMs: number;
   minPlayers: number;
+  /** 0 = ไม่จำกัด */
   maxPlayers: number;
   youId: string;
   players: PlayerView[];

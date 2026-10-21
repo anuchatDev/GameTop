@@ -14,7 +14,7 @@ public record RoomView(
         int roundSeconds,
         long remainingMs,
         int minPlayers,
-        int maxPlayers,
+        int maxPlayers, // 0 = ไม่จำกัด
         String youId,
         List<PlayerView> players
 ) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { Button, Card, Muted } from '../../components/ui';
-import { colors, playerColors } from '../../theme';
+import { colors, playerColor } from '../../theme';
 import { RoomViewProps } from '../RoomScreen';
 
 export function LobbyView({ room, isHost, busy, actions, onLeave }: RoomViewProps) {
@@ -16,11 +16,12 @@ export function LobbyView({ room, isHost, busy, actions, onLeave }: RoomViewProp
       </Card>
 
       <Text style={styles.section}>
-        ผู้เล่น {room.players.length}/{room.maxPlayers}
+        ผู้เล่น {room.players.length}
+        {room.maxPlayers > 0 ? `/${room.maxPlayers}` : ' คน'}
       </Text>
       <View style={styles.list}>
         {room.players.map((p, i) => (
-          <View key={p.id} style={[styles.chip, { backgroundColor: playerColors[i % playerColors.length] }]}>
+          <View key={p.id} style={[styles.chip, { backgroundColor: playerColor(i) }]}>
             <Text style={styles.chipText}>
               {p.host ? '👑 ' : ''}
               {p.name}

@@ -6,7 +6,7 @@ import { KillModal } from '../../components/KillModal';
 import { Button, Muted } from '../../components/ui';
 import { WordCard } from '../../components/WordCard';
 import { useCountdown } from '../../hooks/useCountdown';
-import { colors, formatTime, playerColors } from '../../theme';
+import { colors, formatTime, playerColor } from '../../theme';
 import { PlayerView } from '../../types';
 import { RoomViewProps } from '../RoomScreen';
 
@@ -43,7 +43,7 @@ export function PlayView({ room, isHost, busy, receivedAt, actions }: RoomViewPr
             key={p.id}
             player={p}
             isYou={p.id === room.youId}
-            color={playerColors[i % playerColors.length]}
+            color={playerColor(i)}
             onPress={p.alive ? () => setVictim(p) : undefined}
           />
         ))}

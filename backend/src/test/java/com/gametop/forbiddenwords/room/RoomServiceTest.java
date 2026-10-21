@@ -139,6 +139,26 @@ class RoomServiceTest {
     }
 
     @Test
+    void zeroMaxPlayersMeansUnlimited() {
+        GameProperties unlimited = new GameProperties(300, 2, 0, 1.0, 0.5, 1.0, 6);
+        List<WordCard> cards = IntStream.rangeClosed(1, 20)
+                .mapToObj(i -> new WordCard("u-" + i, "คำ" + i, "ทดสอบ", "test"))
+                .toList();
+        RoomService open = new RoomService((count, exclude) -> cards.subList(0, count), new ScoreCalculator(unlimited),
+                unlimited, clock, room -> { });
+
+        String code = open.createRoom(A).code();
+        for (long i = 2; i <= 12; i++) {
+            open.join(code, new AuthUser(i, "ผู้เล่น" + i, Role.PLAYER));
+        }
+        RoomView view = open.startRound(code, A);
+
+        assertThat(view.players()).hasSize(12);
+        assertThat(view.maxPlayers()).isZero();
+        assertThat(view.players().stream().filter(p -> p.word() != null)).hasSize(11);
+    }
+
+    @Test
     void cannotJoinDuringRoundButCanRejoinOwnSeat() {
         String code = service.createRoom(A).code();
         service.join(code, B);

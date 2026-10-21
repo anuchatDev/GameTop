@@ -145,8 +145,8 @@ public class AdminService {
 
     /** ต้องเหลือคำที่เปิดใช้งานพอสำหรับห้องที่มีผู้เล่นเต็ม ไม่อย่างนั้นเริ่มเกมไม่ได้ */
     private void requireEnoughActiveWordsAfterRemovingOne() {
-        if (words.countByActiveTrue() - 1 < gameProps.maxPlayers()) {
-            throw ApiException.conflict("ต้องเหลือคำที่เปิดใช้งานอย่างน้อย " + gameProps.maxPlayers() + " คำ");
+        if (words.countByActiveTrue() - 1 < gameProps.minActiveWords()) {
+            throw ApiException.conflict("ต้องเหลือคำที่เปิดใช้งานอย่างน้อย " + gameProps.minActiveWords() + " คำ");
         }
     }
 

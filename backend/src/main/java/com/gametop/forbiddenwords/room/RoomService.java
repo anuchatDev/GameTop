@@ -71,7 +71,7 @@ public class RoomService {
             if (room.getStatus() == RoomStatus.PLAYING || room.getStatus() == RoomStatus.GUESSING) {
                 throw ApiException.conflict("รอบนี้กำลังเล่นอยู่ รอจบรอบก่อนนะ");
             }
-            if (room.getPlayers().size() >= props.maxPlayers()) {
+            if (props.hasPlayerLimit() && room.getPlayers().size() >= props.maxPlayers()) {
                 throw ApiException.conflict("ห้องเต็มแล้ว (สูงสุด " + props.maxPlayers() + " คน)");
             }
             return toView(room, addPlayer(room, user, false));
