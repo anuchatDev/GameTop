@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { api } from '../../api/client';
 import { Button, Card, Muted } from '../../components/ui';
 import { colors, playerColors } from '../../theme';
 import { RoomViewProps } from '../RoomScreen';
 
-export function LobbyView({ room, isHost, busy, run, onLeave }: RoomViewProps) {
+export function LobbyView({ room, isHost, busy, actions, onLeave }: RoomViewProps) {
   const enough = room.players.length >= room.minPlayers;
 
   return (
@@ -37,7 +36,7 @@ export function LobbyView({ room, isHost, busy, run, onLeave }: RoomViewProps) {
           variant="success"
           disabled={!enough}
           loading={busy}
-          onPress={() => run(api.startRound)}
+          onPress={actions.start}
         />
       ) : (
         <Muted style={{ textAlign: 'center' }}>รอเจ้าของห้องกดเริ่มเกม...</Muted>

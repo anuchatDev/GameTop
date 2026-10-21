@@ -1,5 +1,23 @@
 server:
-  port: 8080
+  port: ${PORT:8080}
+
+spring:
+  datasource:
+    # dev: H2 เก็บเป็นไฟล์ใน ./data — prod ตั้งค่าผ่าน env (ดู application-prod.yml)
+    url: jdbc:h2:file:./data/forbidden-words;MODE=PostgreSQL;AUTO_SERVER=TRUE
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:dev-only-secret-please-change-me-0123456789}
+    expiry-hours: 72
+  # origin ของหน้าเว็บที่อนุญาตให้เรียก API คั่นด้วย comma
+  cors-origins: ${CORS_ORIGINS:*}
 
 game:
   # เวลาต่อรอบ (วินาที) — ตามกติกา 5 นาที

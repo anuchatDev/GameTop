@@ -32,7 +32,8 @@ public record RoomView(
             String guess,
             Boolean guessCorrect,
             double roundScore,
-            double totalScore
+            double totalScore,
+            boolean winner
     ) {
     }
 }

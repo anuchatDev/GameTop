@@ -2,7 +2,6 @@ import { useKeepAwake } from 'expo-keep-awake';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { api } from '../../api/client';
 import { KillModal } from '../../components/KillModal';
 import { Button, Muted } from '../../components/ui';
 import { WordCard } from '../../components/WordCard';
@@ -11,7 +10,7 @@ import { colors, formatTime, playerColors } from '../../theme';
 import { PlayerView } from '../../types';
 import { RoomViewProps } from '../RoomScreen';
 
-export function PlayView({ room, isHost, busy, receivedAt, run }: RoomViewProps) {
+export function PlayView({ room, isHost, busy, receivedAt, actions }: RoomViewProps) {
   useKeepAwake();
   const remaining = useCountdown(room.remainingMs, receivedAt);
   const [victim, setVictim] = useState<PlayerView | null>(null);
@@ -21,7 +20,7 @@ export function PlayView({ room, isHost, busy, receivedAt, run }: RoomViewProps)
 
   async function confirmKill(killerId: string | null) {
     if (!victim) return;
-    if (await run((s) => api.reportKill(s, victim.id, killerId))) {
+    if (await actions.kill(victim.id, killerId)) {
       setVictim(null);
     }
   }
@@ -51,7 +50,7 @@ export function PlayView({ room, isHost, busy, receivedAt, run }: RoomViewProps)
       </View>
 
       {me?.alive && <Button title="😱 ฉันเผลอพูดคำต้องห้าม" variant="danger" onPress={() => setVictim(me)} />}
-      {isHost && <Button title="จบช่วงเล่นก่อนเวลา" variant="ghost" loading={busy} onPress={() => run(api.endRound)} />}
+      {isHost && <Button title="จบช่วงเล่นก่อนเวลา" variant="ghost" loading={busy} onPress={actions.end} />}
 
       <KillModal
         victim={victim}

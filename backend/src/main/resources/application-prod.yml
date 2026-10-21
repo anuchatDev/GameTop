@@ -1,0 +1,15 @@
+# เปิดใช้ด้วย SPRING_PROFILES_ACTIVE=prod — ทุกค่าต้องมาจาก environment variable
+spring:
+  datasource:
+    # รูปแบบ JDBC เช่น jdbc:postgresql://ep-xxx.neon.tech/neondb?sslmode=require
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+    hikari:
+      maximum-pool-size: 5
+
+app:
+  jwt:
+    # ไม่มีค่า default — ถ้าไม่ตั้ง JWT_SECRET แอปจะไม่ยอม start
+    secret: ${JWT_SECRET}
+  cors-origins: ${CORS_ORIGINS}

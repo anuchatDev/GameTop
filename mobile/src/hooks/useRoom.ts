@@ -1,14 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { api } from '../api/client';
-import { RoomView, Session } from '../types';
+import { AuthSession, RoomView } from '../types';
 
 const POLL_MS = 1500;
 
 /**
  * ดึงสถานะห้องจาก backend ทุก 1.5 วินาที และใช้ส่งคำสั่ง (เริ่มรอบ, รายงาน kill, ทายคำ)
  */
-export function useRoom(session: Session) {
+export function useRoom(auth: AuthSession, code: string) {
   const [room, setRoom] = useState<RoomView | null>(null);
   const [receivedAt, setReceivedAt] = useState(Date.now());
   const [error, setError] = useState<string | null>(null);
@@ -26,12 +26,12 @@ export function useRoom(session: Session) {
   const refresh = useCallback(async () => {
     const requestSeq = seq.current + 1;
     try {
-      apply(await api.getRoom(session), requestSeq);
+      apply(await api.getRoom(auth, code), requestSeq);
       setError(null);
     } catch (e) {
       setError((e as Error).message);
     }
-  }, [session, apply]);
+  }, [auth, code, apply]);
 
   useEffect(() => {
     refresh();
@@ -40,11 +40,11 @@ export function useRoom(session: Session) {
   }, [refresh]);
 
   const run = useCallback(
-    async (action: (s: Session) => Promise<RoomView>): Promise<boolean> => {
+    async (action: () => Promise<RoomView>): Promise<boolean> => {
       const requestSeq = ++seq.current;
       setBusy(true);
       try {
-        apply(await action(session), requestSeq);
+        apply(await action(), requestSeq);
         setError(null);
         return true;
       } catch (e) {
@@ -54,8 +54,20 @@ export function useRoom(session: Session) {
         setBusy(false);
       }
     },
-    [session, apply],
+    [apply],
   );
 
-  return { room, receivedAt, error, busy, run };
+  const actions = useMemo(
+    () => ({
+      start: () => run(() => api.startRound(auth, code)),
+      kill: (victimId: string, killerId: string | null) => run(() => api.reportKill(auth, code, victimId, killerId)),
+      guess: (guess: string) => run(() => api.submitGuess(auth, code, guess)),
+      end: () => run(() => api.endRound(auth, code)),
+    }),
+    [auth, code, run],
+  );
+
+  return { room, receivedAt, error, busy, actions };
 }
+
+export type RoomActions = ReturnType<typeof useRoom>['actions'];

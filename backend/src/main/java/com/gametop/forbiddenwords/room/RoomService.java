@@ -9,12 +9,14 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import com.gametop.forbiddenwords.auth.AuthUser;
 import com.gametop.forbiddenwords.common.ApiException;
 import com.gametop.forbiddenwords.config.GameProperties;
-import com.gametop.forbiddenwords.room.dto.JoinResponse;
 import com.gametop.forbiddenwords.room.dto.RoomView;
 import com.gametop.forbiddenwords.word.WordCard;
 import com.gametop.forbiddenwords.word.WordDeck;
@@ -22,6 +24,7 @@ import com.gametop.forbiddenwords.word.WordDeck;
 @Service
 public class RoomService {
 
+    private static final Logger log = LoggerFactory.getLogger(RoomService.class);
     private static final String CODE_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ";
     private static final int CODE_LENGTH = 4;
 
@@ -31,15 +34,18 @@ public class RoomService {
     private final ScoreCalculator scoreCalculator;
     private final GameProperties props;
     private final Clock clock;
+    private final RoundFinishedListener roundFinishedListener;
 
-    public RoomService(WordDeck deck, ScoreCalculator scoreCalculator, GameProperties props, Clock clock) {
+    public RoomService(WordDeck deck, ScoreCalculator scoreCalculator, GameProperties props, Clock clock,
+                       RoundFinishedListener roundFinishedListener) {
         this.deck = deck;
         this.scoreCalculator = scoreCalculator;
         this.props = props;
         this.clock = clock;
+        this.roundFinishedListener = roundFinishedListener;
     }
 
-    public JoinResponse createRoom(String hostName) {
+    public RoomView createRoom(AuthUser user) {
         Instant now = clock.instant();
         Room room;
         do {
@@ -47,44 +53,44 @@ public class RoomService {
         } while (rooms.putIfAbsent(room.getCode(), room) != null);
 
         synchronized (room) {
-            Player host = addPlayer(room, hostName, true);
-            return new JoinResponse(room.getCode(), host.getId(), host.getToken());
+            return toView(room, addPlayer(room, user, true));
         }
     }
 
-    public JoinResponse join(String code, String name) {
+    /**
+     * เข้าห้องด้วยรหัส — ถ้าเคยอยู่ในห้องนี้แล้ว (เช่น รีเฟรชหน้า) จะกลับเข้าที่นั่งเดิม
+     */
+    public RoomView join(String code, AuthUser user) {
         Room room = getRoom(code);
         synchronized (room) {
             refresh(room);
+            var existing = room.findByUserId(user.id());
+            if (existing.isPresent()) {
+                return toView(room, existing.get());
+            }
             if (room.getStatus() == RoomStatus.PLAYING || room.getStatus() == RoomStatus.GUESSING) {
                 throw ApiException.conflict("รอบนี้กำลังเล่นอยู่ รอจบรอบก่อนนะ");
             }
             if (room.getPlayers().size() >= props.maxPlayers()) {
                 throw ApiException.conflict("ห้องเต็มแล้ว (สูงสุด " + props.maxPlayers() + " คน)");
             }
-            String trimmed = name.trim();
-            boolean duplicate = room.getPlayers().stream().anyMatch(p -> p.getName().equalsIgnoreCase(trimmed));
-            if (duplicate) {
-                throw ApiException.conflict("มีคนใช้ชื่อนี้แล้ว");
-            }
-            Player player = addPlayer(room, trimmed, false);
-            return new JoinResponse(room.getCode(), player.getId(), player.getToken());
+            return toView(room, addPlayer(room, user, false));
         }
     }
 
-    public RoomView view(String code, String token) {
+    public RoomView view(String code, AuthUser user) {
         Room room = getRoom(code);
         synchronized (room) {
-            Player viewer = requirePlayer(room, token);
+            Player viewer = requirePlayer(room, user);
             refresh(room);
             return toView(room, viewer);
         }
     }
 
-    public RoomView startRound(String code, String token) {
+    public RoomView startRound(String code, AuthUser user) {
         Room room = getRoom(code);
         synchronized (room) {
-            Player viewer = requirePlayer(room, token);
+            Player viewer = requirePlayer(room, user);
             requireHost(viewer);
             refresh(room);
             if (room.getStatus() == RoomStatus.PLAYING || room.getStatus() == RoomStatus.GUESSING) {
@@ -114,10 +120,10 @@ public class RoomService {
     /**
      * รายงานว่ามีคนพูดคำต้องห้ามบนหัวตัวเอง — ผู้เล่นคนไหนในห้องก็กดรายงานได้
      */
-    public RoomView reportKill(String code, String token, String victimId, String killerId) {
+    public RoomView reportKill(String code, AuthUser user, String victimId, String killerId) {
         Room room = getRoom(code);
         synchronized (room) {
-            Player viewer = requirePlayer(room, token);
+            Player viewer = requirePlayer(room, user);
             refresh(room);
             if (room.getStatus() != RoomStatus.PLAYING) {
                 throw ApiException.conflict("ไม่ได้อยู่ในช่วงเล่น");
@@ -149,10 +155,10 @@ public class RoomService {
         }
     }
 
-    public RoomView submitGuess(String code, String token, String guess) {
+    public RoomView submitGuess(String code, AuthUser user, String guess) {
         Room room = getRoom(code);
         synchronized (room) {
-            Player viewer = requirePlayer(room, token);
+            Player viewer = requirePlayer(room, user);
             refresh(room);
             if (room.getStatus() != RoomStatus.GUESSING) {
                 throw ApiException.conflict("ยังไม่ถึงเวลาทายคำ");
@@ -176,10 +182,10 @@ public class RoomService {
     /**
      * Host บังคับข้ามขั้น: ช่วงเล่น → ช่วงทายคำ, ช่วงทายคำ → สรุปคะแนน (คนที่ยังไม่ทายถือว่าทายผิด)
      */
-    public RoomView endRound(String code, String token) {
+    public RoomView endRound(String code, AuthUser user) {
         Room room = getRoom(code);
         synchronized (room) {
-            Player viewer = requirePlayer(room, token);
+            Player viewer = requirePlayer(room, user);
             requireHost(viewer);
             refresh(room);
             switch (room.getStatus()) {
@@ -225,10 +231,16 @@ public class RoomService {
             p.finishRound(scoreCalculator.roundScore(p));
         }
         room.setStatus(RoomStatus.FINISHED);
+        try {
+            roundFinishedListener.onRoundFinished(room);
+        } catch (RuntimeException e) {
+            // บันทึกโปรไฟล์ไม่สำเร็จไม่ควรทำให้เกมในห้องค้าง
+            log.error("Failed to record round {} of room {}", room.getRoundNumber(), room.getCode(), e);
+        }
     }
 
-    private Player addPlayer(Room room, String name, boolean host) {
-        Player player = new Player(UUID.randomUUID().toString(), UUID.randomUUID().toString(), name.trim(), host);
+    private Player addPlayer(Room room, AuthUser user, boolean host) {
+        Player player = new Player(UUID.randomUUID().toString(), user.id(), user.username(), host);
         room.getPlayers().add(player);
         room.touch(clock.instant());
         return player;
@@ -242,8 +254,8 @@ public class RoomService {
         return room;
     }
 
-    private Player requirePlayer(Room room, String token) {
-        return room.findByToken(token).orElseThrow(() -> ApiException.forbidden("คุณไม่ได้อยู่ในห้องนี้"));
+    private Player requirePlayer(Room room, AuthUser user) {
+        return room.findByUserId(user.id()).orElseThrow(() -> ApiException.forbidden("คุณไม่ได้อยู่ในห้องนี้"));
     }
 
     private void requireHost(Player player) {
@@ -285,7 +297,8 @@ public class RoomService {
                     (self || revealed) ? p.getGuess() : null,
                     revealed ? p.getGuessCorrect() : null,
                     p.getRoundScore(),
-                    p.getTotalScore());
+                    p.getTotalScore(),
+                    room.isWinner(p));
         }).toList();
 
         return new RoomView(room.getCode(), status, room.getRoundNumber(), props.roundSeconds(), remainingMs,

@@ -2,10 +2,9 @@ package com.gametop.forbiddenwords.common;
 
 import java.util.Map;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.MissingRequestHeaderException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -19,11 +18,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidation(MethodArgumentNotValidException e) {
-        return ResponseEntity.badRequest().body(Map.of("error", "ข้อมูลไม่ถูกต้อง"));
+        String message = e.getBindingResult().getFieldErrors().stream()
+                .map(f -> f.getDefaultMessage())
+                .filter(m -> m != null && !m.isBlank() && !m.startsWith("must"))
+                .findFirst()
+                .orElse("ข้อมูลไม่ถูกต้อง");
+        return ResponseEntity.badRequest().body(Map.of("error", message));
     }
 
-    @ExceptionHandler(MissingRequestHeaderException.class)
-    public ResponseEntity<Map<String, String>> handleMissingToken(MissingRequestHeaderException e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Map.of("error", "ไม่พบข้อมูลผู้เล่น"));
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<Map<String, String>> handleUnreadable(HttpMessageNotReadableException e) {
+        return ResponseEntity.badRequest().body(Map.of("error", "ข้อมูลไม่ถูกต้อง"));
     }
 }

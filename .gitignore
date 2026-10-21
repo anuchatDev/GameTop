@@ -15,3 +15,6 @@ mobile/.env
 *.iml
 .DS_Store
 Thumbs.db
+
+# local database (dev)
+backend/data/

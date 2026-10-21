@@ -2,9 +2,9 @@ import React from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { Button, ErrorText, Screen } from '../components/ui';
-import { useRoom } from '../hooks/useRoom';
+import { RoomActions, useRoom } from '../hooks/useRoom';
 import { colors } from '../theme';
-import { RoomView, Session } from '../types';
+import { AuthSession, RoomView } from '../types';
 import { GuessView } from './room/GuessView';
 import { LobbyView } from './room/LobbyView';
 import { PlayView } from './room/PlayView';
@@ -12,17 +12,16 @@ import { ResultView } from './room/ResultView';
 
 export interface RoomViewProps {
   room: RoomView;
-  session: Session;
   isHost: boolean;
   busy: boolean;
   receivedAt: number;
-  run: ReturnType<typeof useRoom>['run'];
+  actions: RoomActions;
   onLeave: () => void;
 }
 
 /** สลับหน้าจอตามสถานะห้องที่ได้จาก backend */
-export function RoomScreen({ session, onLeave }: { session: Session; onLeave: () => void }) {
-  const { room, receivedAt, error, busy, run } = useRoom(session);
+export function RoomScreen({ auth, code, onLeave }: { auth: AuthSession; code: string; onLeave: () => void }) {
+  const { room, receivedAt, error, busy, actions } = useRoom(auth, code);
 
   if (!room) {
     return (
@@ -36,7 +35,7 @@ export function RoomScreen({ session, onLeave }: { session: Session; onLeave: ()
   }
 
   const me = room.players.find((p) => p.id === room.youId);
-  const props: RoomViewProps = { room, session, isHost: !!me?.host, busy, receivedAt, run, onLeave };
+  const props: RoomViewProps = { room, isHost: !!me?.host, busy, receivedAt, actions, onLeave };
 
   return (
     <Screen>

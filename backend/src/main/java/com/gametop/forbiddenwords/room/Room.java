@@ -71,11 +71,20 @@ public class Room {
         return players.stream().filter(p -> p.getId().equals(playerId)).findFirst();
     }
 
-    public Optional<Player> findByToken(String token) {
-        return players.stream().filter(p -> p.getToken().equals(token)).findFirst();
+    public Optional<Player> findByUserId(Long userId) {
+        return players.stream().filter(p -> p.getUserId().equals(userId)).findFirst();
     }
 
     public List<Player> alivePlayers() {
         return players.stream().filter(Player::isAlive).toList();
+    }
+
+    /** ผู้ชนะของรอบที่จบแล้ว = คนที่ได้คะแนนรอบสูงสุด (เสมอกันชนะร่วม, 0 คะแนนไม่นับเป็นผู้ชนะ) */
+    public boolean isWinner(Player player) {
+        if (status != RoomStatus.FINISHED) {
+            return false;
+        }
+        double best = players.stream().mapToDouble(Player::getRoundScore).max().orElse(0);
+        return best > 0 && player.getRoundScore() == best;
     }
 }

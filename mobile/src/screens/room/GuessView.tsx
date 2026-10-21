@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { api } from '../../api/client';
 import { Button, Card, Input, Muted, Title } from '../../components/ui';
 import { colors } from '../../theme';
 import { RoomViewProps } from '../RoomScreen';
 
-export function GuessView({ room, isHost, busy, run }: RoomViewProps) {
+export function GuessView({ room, isHost, busy, actions }: RoomViewProps) {
   const [guess, setGuess] = useState('');
   const me = room.players.find((p) => p.id === room.youId);
   const survivors = room.players.filter((p) => p.alive);
@@ -26,7 +25,7 @@ export function GuessView({ room, isHost, busy, run }: RoomViewProps) {
             variant="success"
             loading={busy}
             disabled={!guess.trim()}
-            onPress={() => run((s) => api.submitGuess(s, guess.trim()))}
+            onPress={() => actions.guess(guess.trim())}
           />
         </Card>
       ) : (
@@ -45,7 +44,7 @@ export function GuessView({ room, isHost, busy, run }: RoomViewProps) {
         </View>
       ))}
 
-      {isHost && <Button title="สรุปผลเลย" variant="ghost" loading={busy} onPress={() => run(api.endRound)} />}
+      {isHost && <Button title="สรุปผลเลย" variant="ghost" loading={busy} onPress={actions.end} />}
     </>
   );
 }

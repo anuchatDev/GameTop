@@ -5,7 +5,7 @@ import com.gametop.forbiddenwords.word.WordCard;
 public class Player {
 
     private final String id;
-    private final String token;
+    private final Long userId;
     private final String name;
     private final boolean host;
     private double totalScore;
@@ -19,9 +19,9 @@ public class Player {
     private Boolean guessCorrect;
     private double roundScore;
 
-    public Player(String id, String token, String name, boolean host) {
+    public Player(String id, Long userId, String name, boolean host) {
         this.id = id;
-        this.token = token;
+        this.userId = userId;
         this.name = name;
         this.host = host;
     }
@@ -59,8 +59,8 @@ public class Player {
         return id;
     }
 
-    public String getToken() {
-        return token;
+    public Long getUserId() {
+        return userId;
     }
 
     public String getName() {

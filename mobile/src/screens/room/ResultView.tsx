@@ -1,19 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { api } from '../../api/client';
 import { Button, Card, Muted, Title } from '../../components/ui';
 import { colors, formatScore } from '../../theme';
 import { PlayerView } from '../../types';
 import { RoomViewProps } from '../RoomScreen';
 
-export function ResultView({ room, isHost, busy, run, onLeave }: RoomViewProps) {
+export function ResultView({ room, isHost, busy, actions, onLeave }: RoomViewProps) {
   const nameOf = (id: string | null) => room.players.find((p) => p.id === id)?.name;
   const leaderboard = [...room.players].sort((a, b) => b.totalScore - a.totalScore);
+  const winners = room.players.filter((p) => p.winner);
 
   return (
     <>
       <Title>🏁 สรุปรอบที่ {room.roundNumber}</Title>
+
+      <View style={styles.winnerBanner}>
+        <Text style={styles.winnerLabel}>ผู้ชนะรอบนี้</Text>
+        <Text style={styles.winnerName}>
+          {winners.length > 0 ? `👑 ${winners.map((w) => w.name).join(', ')}` : 'ไม่มีผู้ชนะ 😅'}
+        </Text>
+      </View>
+      <Muted style={{ textAlign: 'center' }}>คะแนนรอบนี้ถูกบันทึกลงโปรไฟล์ของทุกคนแล้ว</Muted>
 
       {room.players.map((p) => (
         <Card key={p.id} style={styles.result}>
@@ -37,7 +45,7 @@ export function ResultView({ room, isHost, busy, run, onLeave }: RoomViewProps) 
       ))}
 
       {isHost ? (
-        <Button title="เล่นรอบต่อไป" variant="success" loading={busy} onPress={() => run(api.startRound)} />
+        <Button title="เล่นรอบต่อไป" variant="success" loading={busy} onPress={actions.start} />
       ) : (
         <Muted style={{ textAlign: 'center' }}>รอเจ้าของห้องเริ่มรอบใหม่...</Muted>
       )}
@@ -61,6 +69,16 @@ function describe(p: PlayerView, nameOf: (id: string | null) => string | undefin
 }
 
 const styles = StyleSheet.create({
+  winnerBanner: {
+    backgroundColor: colors.accent,
+    borderRadius: 20,
+    borderWidth: 3,
+    borderColor: colors.text,
+    padding: 16,
+    alignItems: 'center',
+  },
+  winnerLabel: { fontSize: 15, fontWeight: '700', color: colors.text },
+  winnerName: { fontSize: 26, fontWeight: '900', color: colors.text, textAlign: 'center' },
   result: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   name: { fontSize: 18, fontWeight: '900', color: colors.text },
   word: { fontSize: 16, fontWeight: '700', color: colors.primary },

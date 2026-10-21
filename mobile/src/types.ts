@@ -15,6 +15,7 @@ export interface PlayerView {
   guessCorrect: boolean | null;
   roundScore: number;
   totalScore: number;
+  winner: boolean;
 }
 
 export interface RoomView {
@@ -29,8 +30,35 @@ export interface RoomView {
   players: PlayerView[];
 }
 
-export interface Session {
-  roomCode: string;
-  playerId: string;
+export interface AuthUser {
+  id: number;
+  username: string;
+}
+
+/** ผลการล็อกอิน — เก็บไว้ในหน่วยความจำเท่านั้น (ปิด/รีเฟรชหน้าต้องล็อกอินใหม่) */
+export interface AuthSession {
   token: string;
+  user: AuthUser;
+}
+
+export interface RoundHistory {
+  roomCode: string;
+  roundNumber: number;
+  word: string;
+  survived: boolean;
+  kills: number;
+  guessCorrect: boolean | null;
+  score: number;
+  won: boolean;
+  playedAt: string;
+}
+
+export interface Profile {
+  id: number;
+  username: string;
+  email: string;
+  totalScore: number;
+  roundsPlayed: number;
+  roundsWon: number;
+  history: RoundHistory[];
 }

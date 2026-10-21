@@ -1,0 +1,13 @@
+# Netlify: Base directory = mobile
+# ตั้ง EXPO_PUBLIC_API_URL ใน Site settings > Environment variables (ค่าจะถูกฝังตอน build)
+[build]
+  command = "npm run build:web"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

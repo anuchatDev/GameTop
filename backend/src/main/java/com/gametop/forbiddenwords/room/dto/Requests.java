@@ -8,9 +8,6 @@ public final class Requests {
     private Requests() {
     }
 
-    public record NameRequest(@NotBlank @Size(max = 20) String name) {
-    }
-
     /** victimId = คนที่พูดคำต้องห้าม, killerId = คนที่หลอกล่อ (null ถ้าพูดเองโดยไม่มีใครหลอก) */
     public record KillRequest(@NotBlank String victimId, String killerId) {
     }

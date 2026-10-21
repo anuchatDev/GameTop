@@ -1,4 +1,4 @@
-import { RoomView, Session } from '../types';
+import { AuthSession, Profile, RoomView } from '../types';
 
 const BASE_URL = (process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:8080').replace(/\/$/, '');
 
@@ -8,16 +8,17 @@ export class ApiError extends Error {
   }
 }
 
-interface JoinResponse {
-  roomCode: string;
-  playerId: string;
-  token: string;
+let onUnauthorized: (() => void) | null = null;
+
+/** เรียกเมื่อ token หมดอายุ/ไม่ถูกต้อง เพื่อพากลับไปหน้าล็อกอิน */
+export function setUnauthorizedHandler(handler: (() => void) | null) {
+  onUnauthorized = handler;
 }
 
-async function request<T>(path: string, options: { method?: string; token?: string; body?: unknown } = {}): Promise<T> {
+async function request<T>(path: string, options: { method?: string; auth?: AuthSession; body?: unknown } = {}): Promise<T> {
   const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-  if (options.token) {
-    headers['X-Player-Token'] = options.token;
+  if (options.auth) {
+    headers.Authorization = `Bearer ${options.auth.token}`;
   }
 
   let res: Response;
@@ -33,33 +34,40 @@ async function request<T>(path: string, options: { method?: string; token?: stri
 
   const data = await res.json().catch(() => null);
   if (!res.ok) {
+    if (res.status === 401 && options.auth) {
+      onUnauthorized?.();
+    }
     throw new ApiError(data?.error ?? `เกิดข้อผิดพลาด (${res.status})`, res.status);
   }
   return data as T;
 }
 
-function roomPath(session: Session, suffix = '') {
-  return `/api/rooms/${encodeURIComponent(session.roomCode)}${suffix}`;
+function roomPath(code: string, suffix = '') {
+  return `/api/rooms/${encodeURIComponent(code.trim().toUpperCase())}${suffix}`;
 }
 
 export const api = {
-  createRoom: (name: string) => request<JoinResponse>('/api/rooms', { method: 'POST', body: { name } }),
+  register: (username: string, email: string, password: string) =>
+    request<AuthSession>('/api/auth/register', { method: 'POST', body: { username, email, password } }),
 
-  joinRoom: (code: string, name: string) =>
-    request<JoinResponse>(`/api/rooms/${encodeURIComponent(code.trim().toUpperCase())}/players`, {
-      method: 'POST',
-      body: { name },
-    }),
+  login: (login: string, password: string) =>
+    request<AuthSession>('/api/auth/login', { method: 'POST', body: { login, password } }),
 
-  getRoom: (s: Session) => request<RoomView>(roomPath(s), { token: s.token }),
+  me: (auth: AuthSession) => request<Profile>('/api/me', { auth }),
 
-  startRound: (s: Session) => request<RoomView>(roomPath(s, '/start'), { method: 'POST', token: s.token }),
+  createRoom: (auth: AuthSession) => request<RoomView>('/api/rooms', { method: 'POST', auth }),
 
-  reportKill: (s: Session, victimId: string, killerId: string | null) =>
-    request<RoomView>(roomPath(s, '/kills'), { method: 'POST', token: s.token, body: { victimId, killerId } }),
+  joinRoom: (auth: AuthSession, code: string) => request<RoomView>(roomPath(code, '/players'), { method: 'POST', auth }),
 
-  submitGuess: (s: Session, guess: string) =>
-    request<RoomView>(roomPath(s, '/guess'), { method: 'POST', token: s.token, body: { guess } }),
+  getRoom: (auth: AuthSession, code: string) => request<RoomView>(roomPath(code), { auth }),
 
-  endRound: (s: Session) => request<RoomView>(roomPath(s, '/end'), { method: 'POST', token: s.token }),
+  startRound: (auth: AuthSession, code: string) => request<RoomView>(roomPath(code, '/start'), { method: 'POST', auth }),
+
+  reportKill: (auth: AuthSession, code: string, victimId: string, killerId: string | null) =>
+    request<RoomView>(roomPath(code, '/kills'), { method: 'POST', auth, body: { victimId, killerId } }),
+
+  submitGuess: (auth: AuthSession, code: string, guess: string) =>
+    request<RoomView>(roomPath(code, '/guess'), { method: 'POST', auth, body: { guess } }),
+
+  endRound: (auth: AuthSession, code: string) => request<RoomView>(roomPath(code, '/end'), { method: 'POST', auth }),
 };

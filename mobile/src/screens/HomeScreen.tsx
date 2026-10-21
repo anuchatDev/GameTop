@@ -4,26 +4,31 @@ import { StyleSheet, Text, View } from 'react-native';
 import { api } from '../api/client';
 import { Button, Card, ErrorText, Input, Muted, Screen } from '../components/ui';
 import { colors } from '../theme';
-import { Session } from '../types';
+import { AuthSession } from '../types';
 
-export function HomeScreen({ onJoined, onOpenTimer }: { onJoined: (s: Session) => void; onOpenTimer: () => void }) {
-  const [name, setName] = useState('');
+export function HomeScreen({
+  auth,
+  onEnterRoom,
+  onOpenProfile,
+  onOpenTimer,
+  onLogout,
+}: {
+  auth: AuthSession;
+  onEnterRoom: (code: string) => void;
+  onOpenProfile: () => void;
+  onOpenTimer: () => void;
+  onLogout: () => void;
+}) {
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState<'create' | 'join' | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const trimmedName = name.trim();
-
   async function handle(kind: 'create' | 'join') {
-    if (!trimmedName) {
-      setError('กรอกชื่อก่อนนะ');
-      return;
-    }
     setBusy(kind);
     setError(null);
     try {
-      const res = kind === 'create' ? await api.createRoom(trimmedName) : await api.joinRoom(code, trimmedName);
-      onJoined(res);
+      const room = kind === 'create' ? await api.createRoom(auth) : await api.joinRoom(auth, code);
+      onEnterRoom(room.code);
     } catch (e) {
       setError((e as Error).message);
     } finally {
@@ -33,13 +38,16 @@ export function HomeScreen({ onJoined, onOpenTimer }: { onJoined: (s: Session) =
 
   return (
     <Screen>
+      <View style={styles.topBar}>
+        <Text style={styles.hello}>สวัสดี, {auth.user.username} 👋</Text>
+        <Button title="ออกจากระบบ" variant="ghost" onPress={onLogout} style={styles.smallButton} />
+      </View>
+
       <View style={styles.hero}>
         <Text style={styles.logo}>🤐</Text>
         <Text style={styles.brand}>คำต้องห้าม</Text>
-        <Muted>เกมปาร์ตี้ บลัฟ หลอกล่อ ให้เพื่อนหลุดปาก!</Muted>
       </View>
 
-      <Input placeholder="ชื่อของคุณ" value={name} onChangeText={setName} maxLength={20} />
       <Button title="สร้างห้องใหม่" onPress={() => handle('create')} loading={busy === 'create'} disabled={busy !== null} />
 
       <View style={styles.row}>
@@ -48,7 +56,7 @@ export function HomeScreen({ onJoined, onOpenTimer }: { onJoined: (s: Session) =
           value={code}
           onChangeText={(t) => setCode(t.toUpperCase())}
           autoCapitalize="characters"
-          maxLength={4}
+          maxLength={6}
           style={{ flex: 1, letterSpacing: 4, fontWeight: '800' }}
         />
         <Button
@@ -56,12 +64,13 @@ export function HomeScreen({ onJoined, onOpenTimer }: { onJoined: (s: Session) =
           variant="secondary"
           onPress={() => handle('join')}
           loading={busy === 'join'}
-          disabled={busy !== null || code.trim().length !== 4}
+          disabled={busy !== null || code.trim().length < 4}
         />
       </View>
 
       <ErrorText message={error} />
 
+      <Button title="🏆 โปรไฟล์ & คะแนนสะสม" variant="success" onPress={onOpenProfile} />
       <Button title="⏳ ใช้เป็นนาฬิกาจับเวลาอย่างเดียว" variant="ghost" onPress={onOpenTimer} />
 
       <Card>
@@ -72,13 +81,19 @@ export function HomeScreen({ onJoined, onOpenTimer }: { onJoined: (s: Session) =
         <Text style={styles.rule}>• รอดครบ 5 นาที = 0.5 คะแนน</Text>
         <Text style={styles.rule}>• รอด + ทายคำบนหัวตัวเองถูก = 1 คะแนน 🏆</Text>
       </Card>
+      <Muted style={{ textAlign: 'center' }}>
+        หากรีเฟรชหน้าเว็บ ให้ล็อกอินแล้วกรอกรหัสห้องเดิมเพื่อกลับเข้าที่นั่งเดิม
+      </Muted>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
+  topBar: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 8 },
+  hello: { fontSize: 18, fontWeight: '800', color: colors.text, flexShrink: 1 },
+  smallButton: { paddingVertical: 8, paddingHorizontal: 12 },
   hero: { alignItems: 'center', gap: 4, marginBottom: 8 },
-  logo: { fontSize: 72 },
+  logo: { fontSize: 64 },
   brand: { fontSize: 40, fontWeight: '900', color: colors.primary },
   row: { flexDirection: 'row', gap: 10, alignItems: 'center' },
   rulesTitle: { fontSize: 18, fontWeight: '900', color: colors.text, marginBottom: 6 },
