@@ -1,0 +1,506 @@
+{
+  "pack": "base",
+  "name": "ชุดหลัก",
+  "words": [
+    {
+      "id": "base-001",
+      "text": "ใช่",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-002",
+      "text": "ไม่",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-003",
+      "text": "จริง",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-004",
+      "text": "เดี๋ยว",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-005",
+      "text": "อะไร",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-006",
+      "text": "ทำไม",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-007",
+      "text": "โอเค",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-008",
+      "text": "แน่นอน",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-009",
+      "text": "เหรอ",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-010",
+      "text": "เลย",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-011",
+      "text": "มาก",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-012",
+      "text": "ก็ได้",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-013",
+      "text": "ขอบคุณ",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-014",
+      "text": "ขอโทษ",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-015",
+      "text": "สวัสดี",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-016",
+      "text": "เพื่อน",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-017",
+      "text": "ครับ",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-018",
+      "text": "เออ",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-019",
+      "text": "ไม่รู้",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-020",
+      "text": "รู้",
+      "category": "คำติดปาก"
+    },
+    {
+      "id": "base-021",
+      "text": "ข้าว",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-022",
+      "text": "น้ำ",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-023",
+      "text": "กาแฟ",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-024",
+      "text": "ชาเย็น",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-025",
+      "text": "ส้มตำ",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-026",
+      "text": "หมูกระทะ",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-027",
+      "text": "ไก่ทอด",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-028",
+      "text": "ขนม",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-029",
+      "text": "เบียร์",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-030",
+      "text": "ไอศกรีม",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-031",
+      "text": "ก๋วยเตี๋ยว",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-032",
+      "text": "ผัดกะเพรา",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-033",
+      "text": "ไข่",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-034",
+      "text": "พิซซ่า",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-035",
+      "text": "ชาบู",
+      "category": "อาหาร"
+    },
+    {
+      "id": "base-036",
+      "text": "กิน",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-037",
+      "text": "นอน",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-038",
+      "text": "ไป",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-039",
+      "text": "มา",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-040",
+      "text": "เล่น",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-041",
+      "text": "ดู",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-042",
+      "text": "พูด",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-043",
+      "text": "ซื้อ",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-044",
+      "text": "เดิน",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-045",
+      "text": "หัวเราะ",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-046",
+      "text": "ร้องเพลง",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-047",
+      "text": "ทำงาน",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-048",
+      "text": "อาบน้ำ",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-049",
+      "text": "เที่ยว",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-050",
+      "text": "รอ",
+      "category": "กิจกรรม"
+    },
+    {
+      "id": "base-051",
+      "text": "บ้าน",
+      "category": "สถานที่"
+    },
+    {
+      "id": "base-052",
+      "text": "โรงเรียน",
+      "category": "สถานที่"
+    },
+    {
+      "id": "base-053",
+      "text": "ห้าง",
+      "category": "สถานที่"
+    },
+    {
+      "id": "base-054",
+      "text": "ทะเล",
+      "category": "สถานที่"
+    },
+    {
+      "id": "base-055",
+      "text": "ผับ",
+      "category": "สถานที่"
+    },
+    {
+      "id": "base-056",
+      "text": "เซเว่น",
+      "category": "สถานที่"
+    },
+    {
+      "id": "base-057",
+      "text": "ตลาด",
+      "category": "สถานที่"
+    },
+    {
+      "id": "base-058",
+      "text": "ห้องน้ำ",
+      "category": "สถานที่"
+    },
+    {
+      "id": "base-059",
+      "text": "ออฟฟิศ",
+      "category": "สถานที่"
+    },
+    {
+      "id": "base-060",
+      "text": "โรงพยาบาล",
+      "category": "สถานที่"
+    },
+    {
+      "id": "base-061",
+      "text": "มือถือ",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-062",
+      "text": "เงิน",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-063",
+      "text": "รถ",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-064",
+      "text": "กระเป๋า",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-065",
+      "text": "แว่นตา",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-066",
+      "text": "ทีวี",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-067",
+      "text": "เน็ต",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-068",
+      "text": "ไลน์",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-069",
+      "text": "เฟซบุ๊ก",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-070",
+      "text": "ยูทูบ",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-071",
+      "text": "เกม",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-072",
+      "text": "รูป",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-073",
+      "text": "กุญแจ",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-074",
+      "text": "นาฬิกา",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-075",
+      "text": "ร่ม",
+      "category": "สิ่งของ"
+    },
+    {
+      "id": "base-076",
+      "text": "แม่",
+      "category": "ผู้คน"
+    },
+    {
+      "id": "base-077",
+      "text": "พ่อ",
+      "category": "ผู้คน"
+    },
+    {
+      "id": "base-078",
+      "text": "แฟน",
+      "category": "ผู้คน"
+    },
+    {
+      "id": "base-079",
+      "text": "พี่",
+      "category": "ผู้คน"
+    },
+    {
+      "id": "base-080",
+      "text": "น้อง",
+      "category": "ผู้คน"
+    },
+    {
+      "id": "base-081",
+      "text": "ครู",
+      "category": "ผู้คน"
+    },
+    {
+      "id": "base-082",
+      "text": "หมอ",
+      "category": "ผู้คน"
+    },
+    {
+      "id": "base-083",
+      "text": "เจ้านาย",
+      "category": "ผู้คน"
+    },
+    {
+      "id": "base-084",
+      "text": "ลูก",
+      "category": "ผู้คน"
+    },
+    {
+      "id": "base-085",
+      "text": "ตำรวจ",
+      "category": "ผู้คน"
+    },
+    {
+      "id": "base-086",
+      "text": "วันนี้",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-087",
+      "text": "พรุ่งนี้",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-088",
+      "text": "เมื่อวาน",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-089",
+      "text": "ตอนนี้",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-090",
+      "text": "เช้า",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-091",
+      "text": "กลางคืน",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-092",
+      "text": "เวลา",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-093",
+      "text": "ร้อน",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-094",
+      "text": "หนาว",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-095",
+      "text": "ฝน",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-096",
+      "text": "หิว",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-097",
+      "text": "ง่วง",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-098",
+      "text": "เหนื่อย",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-099",
+      "text": "สนุก",
+      "category": "ทั่วไป"
+    },
+    {
+      "id": "base-100",
+      "text": "สวย",
+      "category": "ทั่วไป"
+    }
+  ]
+}
