@@ -5,10 +5,19 @@
 ## 1. Database — Neon (PostgreSQL ฟรี)
 
 1. สมัครที่ https://neon.tech → Create project (เลือก region Singapore)
-2. หน้า Dashboard → **Connection Details** เลือกแบบ *Java / JDBC* จะได้ข้อมูล 3 ค่า:
-   - `DATABASE_URL` = `jdbc:postgresql://ep-xxxx.ap-southeast-1.aws.neon.tech/neondb?sslmode=require`
-   - `DATABASE_USERNAME` = `neondb_owner`
-   - `DATABASE_PASSWORD` = รหัสผ่านที่ Neon ให้มา
+2. ในหน้าโปรเจกต์ กดปุ่ม **Connect** (มุมขวาบน) แล้วคัดลอก connection string หน้าตาแบบนี้:
+
+   ```
+   postgresql://neondb_owner:AbC123xyz@ep-cool-name-123456.ap-southeast-1.aws.neon.tech/neondb?sslmode=require
+   ```
+
+3. แยกออกเป็น 3 ค่า:
+
+   | ตัวแปร | เอาจาก | ตัวอย่าง |
+   |---|---|---|
+   | `DATABASE_URL` | `jdbc:postgresql://` + ส่วน **หลัง `@`** จนจบ | `jdbc:postgresql://ep-cool-name-123456.ap-southeast-1.aws.neon.tech/neondb?sslmode=require` |
+   | `DATABASE_USERNAME` | ส่วนระหว่าง `//` กับ `:` | `neondb_owner` |
+   | `DATABASE_PASSWORD` | ส่วนระหว่าง `:` กับ `@` | `AbC123xyz` |
 
 > ⚠️ ต้องเป็นรูปแบบ `jdbc:postgresql://...` เท่านั้น ไม่ใช่ `postgres://user:pass@...`
 > ตารางจะถูกสร้างอัตโนมัติตอน backend start ครั้งแรก (`ddl-auto: update`)
@@ -49,6 +58,9 @@ Supabase ใช้ได้เหมือนกัน: Project Settings → Dat
 4. Deploy
 
 > `EXPO_PUBLIC_API_URL` ถูกฝังตอน build — ถ้าเปลี่ยนค่าต้องกด **Redeploy**
+
+> ⚠️ ถ้าเปิดเว็บแล้วโดนเด้งไปหน้าล็อกอิน Netlify (HTTP 401) แปลว่าเปิด Site protection อยู่ —
+> ไปที่ **Site configuration → Access & security** แล้วตั้งเป็น **No protection / Public** เพื่อให้คนทั่วไปเข้าเล่นได้
 
 ## 4. ปิด CORS ให้เหลือเฉพาะเว็บของเรา
 
