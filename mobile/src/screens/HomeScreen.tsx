@@ -9,6 +9,7 @@ import { InsiderRulesModal } from '../insider/InsiderRulesModal';
 import { OhanaRulesModal } from '../ohana/OhanaRulesModal';
 import { useResponsive } from '../responsive';
 import { SpyfallRulesModal } from '../spyfall/SpyfallRulesModal';
+import { AvalonRulesModal } from '../avalon/AvalonRulesModal';
 import { colors, GameKey, games } from '../theme';
 import { AuthSession } from '../types';
 import { RulesModal } from '../werewolf/RulesModal';
@@ -106,6 +107,7 @@ export function HomeScreen({
       <OhanaRulesModal visible={rules === 'ohana'} onClose={() => setRules(null)} />
       <InsiderRulesModal visible={rules === 'insider'} onClose={() => setRules(null)} />
       <SpyfallRulesModal visible={rules === 'spyfall'} onClose={() => setRules(null)} />
+      <AvalonRulesModal visible={rules === 'avalon'} onClose={() => setRules(null)} />
     </Screen>
   );
 }

@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
-import { api } from '../api/client';
+import { api, avalonApi } from '../api/client';
+import { roleInfo } from '../avalon/roles';
+import { AvStats } from '../avalon/types';
 import { PageHeader } from '../components/game';
 import { Card, ErrorText, Muted, Screen } from '../components/ui';
-import { colors, formatScore } from '../theme';
+import { colors, formatScore, games } from '../theme';
 import { AuthSession, Profile, RoundHistory } from '../types';
 
 export function ProfileScreen({ auth, onBack }: { auth: AuthSession; onBack: () => void }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [avalon, setAvalon] = useState<AvStats | null>(null);
 
   useEffect(() => {
     api.me(auth).then(setProfile).catch((e: Error) => setError(e.message));
+    avalonApi.myStats(auth).then(setAvalon).catch(() => setAvalon(null));
   }, [auth]);
 
   return (
@@ -34,7 +38,24 @@ export function ProfileScreen({ auth, onBack }: { auth: AuthSession; onBack: () 
             <Stat label="ชนะ" value={String(profile.roundsWon)} color={colors.success} />
           </View>
 
-          <Text style={styles.section}>ประวัติล่าสุด</Text>
+          {avalon && avalon.games > 0 && (
+            <>
+              <Text style={styles.section}>{games.avalon.icon} Avalon</Text>
+              <View style={styles.stats}>
+                <Stat label="เกมที่เล่น" value={String(avalon.games)} color={games.avalon.color} />
+                <Stat label="อัตราชนะ" value={`${avalon.winRate}%`} color={colors.success} />
+                <Stat label="ชนะ" value={String(avalon.wins)} color={colors.secondary} />
+              </View>
+              <Muted>
+                ฝ่ายดี {avalon.goodGames} เกม · ฝ่ายร้าย {avalon.evilGames} เกม
+                {avalon.favoriteRole
+                  ? `  ·  ได้บ่อยที่สุด: ${roleInfo[avalon.favoriteRole].emoji} ${roleInfo[avalon.favoriteRole].name}`
+                  : ''}
+              </Muted>
+            </>
+          )}
+
+          <Text style={styles.section}>ประวัติล่าสุด (คำต้องห้าม)</Text>
           {profile.history.length === 0 ? (
             <Muted>ยังไม่มีประวัติการเล่น ไปสร้างห้องกับเพื่อนกันเลย!</Muted>
           ) : (

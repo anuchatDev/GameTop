@@ -1,4 +1,4 @@
-import { api, insiderApi, ohanaApi, spyfallApi, werewolfApi } from './api/client';
+import { api, avalonApi, insiderApi, ohanaApi, spyfallApi, werewolfApi } from './api/client';
 import { storage } from './storage';
 import { GameKey, games } from './theme';
 import { AuthSession } from './types';
@@ -16,6 +16,7 @@ export const roomApis: Record<GameKey, RoomApi> = {
   ohana: ohanaApi,
   insider: insiderApi,
   spyfall: spyfallApi,
+  avalon: avalonApi,
 };
 
 export const gameOrder = Object.keys(games) as GameKey[];

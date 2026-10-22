@@ -73,6 +73,17 @@ export const games = {
     minPlayers: 3,
     maxPlayers: 12,
   },
+  avalon: {
+    name: 'Avalon',
+    icon: '⚔️',
+    color: '#1D3E8C',
+    tint: '#E6ECFA',
+    tagline: 'อัศวินโต๊ะกลมทำภารกิจ แต่มีคนทรยศแฝงอยู่ — ปกป้องเมอร์ลินให้รอด',
+    players: '5-10 คน',
+    linkParam: 'av',
+    minPlayers: 5,
+    maxPlayers: 10,
+  },
 } as const;
 
 export type GameKey = keyof typeof games;

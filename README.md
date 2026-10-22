@@ -11,7 +11,9 @@
 
 มีเกมที่ 5: **🕶️ Spyfall** — ทุกคนอยู่สถานที่เดียวกันยกเว้นสปาย ถาม-ตอบส่งต่อกัน กล่าวหา / สปายเผยตัวทายสถานที่ (3-12 คน, 50 สถานที่)
 
-- 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md) · หมวดหมู่และคลังคำ: [docs/BRD-categories.md](docs/BRD-categories.md) · Werewolf: [docs/BRD-werewolf.md](docs/BRD-werewolf.md) · Insider: [docs/BRD-insider.md](docs/BRD-insider.md) · Spyfall: [docs/BRD-spyfall.md](docs/BRD-spyfall.md) · Responsive: [docs/BRD-responsive.md](docs/BRD-responsive.md)
+มีเกมที่ 6: **⚔️ Avalon** — อัศวินโต๊ะกลมทำภารกิจ 5 รอบ จับคนทรยศ ปกป้องเมอร์ลินจากมือสังหาร (5-10 คน, เก็บสถิติอัตราชนะ)
+
+- 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md) · หมวดหมู่และคลังคำ: [docs/BRD-categories.md](docs/BRD-categories.md) · Werewolf: [docs/BRD-werewolf.md](docs/BRD-werewolf.md) · Insider: [docs/BRD-insider.md](docs/BRD-insider.md) · Spyfall: [docs/BRD-spyfall.md](docs/BRD-spyfall.md) · Avalon: [docs/BRD-avalon.md](docs/BRD-avalon.md) · Responsive: [docs/BRD-responsive.md](docs/BRD-responsive.md)
 - 🚀 วิธี deploy ออนไลน์: [docs/DEPLOY.md](docs/DEPLOY.md)
 
 | ส่วน | เทคโนโลยี | โฟลเดอร์ |
@@ -157,6 +159,22 @@ npm run web
 | POST | `/{code}/spy-guess` | `{location}` | สปายเผยตัวทายสถานที่ |
 | POST | `/{code}/vote` · `/{code}/end-vote` | `{playerId}` · – | โหวตตอนหมดเวลา / host ปิดโหวต |
 | POST | `/{code}/again` | – | host เริ่มรอบใหม่ |
+
+**⚔️ Avalon** (`/api/avalon`) — แต่ละคนได้แค่ข้อมูลที่บทบาทตัวเองควรรู้, บัตรภารกิจลับ, บทบาทเปิดเผยตอนจบเกม
+
+| Method | Path | Body | คำอธิบาย |
+|---|---|---|---|
+| POST | `/rooms` | – | สร้างห้อง |
+| POST | `/rooms/{code}/players` | – | เข้าห้อง (5-10 คน, เข้าระหว่างเล่นไม่ได้) |
+| GET | `/rooms/{code}` | – | สถานะห้อง |
+| POST | `/rooms/{code}/settings` | `{percival, morgana, mordred, oberon}` | host เปิด/ปิดตัวละครเสริม |
+| POST | `/rooms/{code}/start` | – | host แจกบทบาท + สุ่มหัวหน้าทีม |
+| POST | `/rooms/{code}/propose` | `{playerIds}` | หัวหน้าเสนอทีม (ครบตามจำนวนของภารกิจ) |
+| POST | `/rooms/{code}/vote` | `{approve}` | โหวตทีม (เปิดผลเมื่อครบ) |
+| POST | `/rooms/{code}/quest` | `{success}` | สมาชิกทีมลงบัตร (ฝ่ายดีลงได้แค่สำเร็จ) |
+| POST | `/rooms/{code}/assassinate` | `{playerId}` | มือสังหารชี้ตัวเมอร์ลิน |
+| POST | `/rooms/{code}/again` | – | host เล่นอีกตา |
+| GET | `/stats/me` | – | สถิติของฉัน: จำนวนเกม, อัตราชนะ, บทบาทที่ได้บ่อย |
 
 **ทุกเกม**
 

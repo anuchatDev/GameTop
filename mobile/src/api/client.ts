@@ -13,6 +13,7 @@ import {
   SettingsInput,
   WordInput,
 } from '../types';
+import { AvalonView, AvSettings, AvStats } from '../avalon/types';
 import { InAnswer, InSettingsInput, InsiderView } from '../insider/types';
 import { OhanaView } from '../ohana/types';
 import { SpyfallView } from '../spyfall/types';
@@ -303,4 +304,29 @@ export const spyfallApi = {
     request<SpyfallView>(sfPath(code, '/vote'), { method: 'POST', auth, body: { playerId } }),
   endVote: (auth: AuthSession, code: string) => request<SpyfallView>(sfPath(code, '/end-vote'), { method: 'POST', auth }),
   again: (auth: AuthSession, code: string) => request<SpyfallView>(sfPath(code, '/again'), { method: 'POST', auth }),
+};
+
+function avPath(code: string, suffix = '') {
+  return `/api/avalon/rooms/${encodeURIComponent(code.trim().toUpperCase())}${suffix}`;
+}
+
+/** เกม Avalon */
+export const avalonApi = {
+  create: (auth: AuthSession) => request<AvalonView>('/api/avalon/rooms', { method: 'POST', auth }),
+  join: (auth: AuthSession, code: string) => request<AvalonView>(avPath(code, '/players'), { method: 'POST', auth }),
+  get: (auth: AuthSession, code: string) => request<AvalonView>(avPath(code), { auth }),
+  settings: (auth: AuthSession, code: string, body: AvSettings) =>
+    request<AvalonView>(avPath(code, '/settings'), { method: 'POST', auth, body }),
+  start: (auth: AuthSession, code: string) => request<AvalonView>(avPath(code, '/start'), { method: 'POST', auth }),
+  propose: (auth: AuthSession, code: string, playerIds: string[]) =>
+    request<AvalonView>(avPath(code, '/propose'), { method: 'POST', auth, body: { playerIds } }),
+  vote: (auth: AuthSession, code: string, approve: boolean) =>
+    request<AvalonView>(avPath(code, '/vote'), { method: 'POST', auth, body: { approve } }),
+  quest: (auth: AuthSession, code: string, success: boolean) =>
+    request<AvalonView>(avPath(code, '/quest'), { method: 'POST', auth, body: { success } }),
+  assassinate: (auth: AuthSession, code: string, playerId: string) =>
+    request<AvalonView>(avPath(code, '/assassinate'), { method: 'POST', auth, body: { playerId } }),
+  again: (auth: AuthSession, code: string) => request<AvalonView>(avPath(code, '/again'), { method: 'POST', auth }),
+  /** สถิติของฉัน (อัตราชนะ, บทบาทที่ได้บ่อย) */
+  myStats: (auth: AuthSession) => request<AvStats>('/api/avalon/stats/me', { auth }),
 };

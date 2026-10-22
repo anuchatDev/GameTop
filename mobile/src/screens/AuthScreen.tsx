@@ -44,7 +44,9 @@ export function AuthScreen({
   const [error, setError] = useState<string | null>(null);
   const [notice, setNotice] = useState<string | null>(null);
   const [providers, setProviders] = useState<Providers | null>(null);
-  const { fs } = useResponsive();
+  const { fs, itemWidth } = useResponsive();
+  // ไอคอนทุกเกมอยู่แถวเดียวได้ตั้งแต่จอ 320px — กว้างไม่เกิน 64px
+  const iconWidth = Math.min(64, itemWidth(gameOrder.length, 2));
 
   useEffect(() => {
     api.providers().then(setProviders).catch(() => setProviders(null));
@@ -142,8 +144,8 @@ export function AuthScreen({
         <Muted style={{ textAlign: 'center' }}>เกมปาร์ตี้ออนไลน์ เล่นกับเพื่อนได้ทันที</Muted>
         <View style={styles.games} accessibilityLabel={`มี ${gameOrder.length} เกม: ${gameOrder.map((k) => games[k].name).join(', ')}`}>
           {gameOrder.map((k) => (
-            <View key={k} style={styles.gameItem}>
-              <GameIcon game={k} size={44} />
+            <View key={k} style={[styles.gameItem, { width: iconWidth }]}>
+              <GameIcon game={k} size={Math.min(44, iconWidth - 4)} />
               <Text style={styles.gameName} numberOfLines={2}>
                 {games[k].name}
               </Text>
@@ -378,8 +380,7 @@ const styles = StyleSheet.create({
   hero: { alignItems: 'center', gap: 6, marginBottom: 8 },
   brand: { fontWeight: '900', color: colors.text },
   games: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: 2, marginTop: 8 },
-  // 5 เกมต้องอยู่แถวเดียวได้ตั้งแต่จอ 320px (54 × 5 + 2 × 4 = 278px)
-  gameItem: { width: 54, alignItems: 'center', gap: 4 },
+  gameItem: { alignItems: 'center', gap: 4 },
   gameName: { fontSize: 10, fontWeight: '700', color: colors.text, textAlign: 'center', lineHeight: 13 },
   card: { gap: 12 },
   guestCard: { borderWidth: 3 },

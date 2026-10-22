@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gametop.forbiddenwords.avalon.AvalonService;
 import com.gametop.forbiddenwords.common.ApiException;
 import com.gametop.forbiddenwords.insider.InsiderService;
 import com.gametop.forbiddenwords.ohana.OhanaService;
@@ -25,14 +26,16 @@ public class RoomLookupController {
     private final OhanaService ohana;
     private final InsiderService insider;
     private final SpyfallService spyfall;
+    private final AvalonService avalon;
 
     public RoomLookupController(RoomService forbidden, WerewolfService werewolf, OhanaService ohana,
-                                InsiderService insider, SpyfallService spyfall) {
+                                InsiderService insider, SpyfallService spyfall, AvalonService avalon) {
         this.forbidden = forbidden;
         this.werewolf = werewolf;
         this.ohana = ohana;
         this.insider = insider;
         this.spyfall = spyfall;
+        this.avalon = avalon;
     }
 
     /**
@@ -49,6 +52,7 @@ public class RoomLookupController {
         if (ohana.exists(code)) games.add("ohana");
         if (insider.exists(code)) games.add("insider");
         if (spyfall.exists(code)) games.add("spyfall");
+        if (avalon.exists(code)) games.add("avalon");
         if (games.isEmpty()) {
             throw ApiException.notFound("ไม่พบห้อง " + code.trim().toUpperCase());
         }
