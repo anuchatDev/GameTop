@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
 import { api } from '../api/client';
-import { Button, Card, ErrorText, Muted, Screen, Title } from '../components/ui';
+import { PageHeader } from '../components/game';
+import { Card, ErrorText, Muted, Screen } from '../components/ui';
 import { colors, formatScore } from '../theme';
 import { AuthSession, Profile, RoundHistory } from '../types';
 
@@ -16,7 +17,7 @@ export function ProfileScreen({ auth, onBack }: { auth: AuthSession; onBack: () 
 
   return (
     <Screen>
-      <Title>🏆 โปรไฟล์</Title>
+      <PageHeader title="🏆 โปรไฟล์" onBack={onBack} />
       <ErrorText message={error} />
       {!profile && !error && <ActivityIndicator size="large" color={colors.primary} />}
 
@@ -42,7 +43,6 @@ export function ProfileScreen({ auth, onBack }: { auth: AuthSession; onBack: () 
         </>
       )}
 
-      <Button title="กลับหน้าแรก" variant="ghost" onPress={onBack} />
     </Screen>
   );
 }

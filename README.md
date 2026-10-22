@@ -3,7 +3,11 @@
 เว็บเกมปาร์ตี้ "คำต้องห้าม" เล่นออนไลน์กับเพื่อน 2 คนขึ้นไป (ไม่จำกัดจำนวน): สมัคร/ล็อกอิน → สร้างห้อง → แจกคำ → หลอกล่อให้เพื่อนหลุดปาก → สรุปคะแนนลงโปรไฟล์
 พร้อมระบบผู้ดูแล (Admin) สำหรับจัดการผู้ใช้และคลังคำต้องห้าม
 
-- 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md) · หมวดหมู่และคลังคำ: [docs/BRD-categories.md](docs/BRD-categories.md)
+มีเกมที่ 2: **🐺 One Night Ultimate Werewolf** — บอทผู้ดำเนินเกมเสียงภาษาไทย, สลับการ์ดอัตโนมัติ, เข้าห้องด้วย QR Code
+
+มีเกมที่ 3: **🍻 OHANA** — เกมไพ่ปาร์ตี้ ผลัดกันจั่วแล้วทำตามคำสั่งบนไพ่ ระบบหาคนโดน/ตาถัดไป/ผ้าพันคอ/บัดดี้ให้ (🔞 20+)
+
+- 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md) · หมวดหมู่และคลังคำ: [docs/BRD-categories.md](docs/BRD-categories.md) · Werewolf: [docs/BRD-werewolf.md](docs/BRD-werewolf.md) · Responsive: [docs/BRD-responsive.md](docs/BRD-responsive.md)
 - 🚀 วิธี deploy ออนไลน์: [docs/DEPLOY.md](docs/DEPLOY.md)
 
 | ส่วน | เทคโนโลยี | โฟลเดอร์ |
@@ -82,6 +86,38 @@ npm run web
 | DELETE | `/api/admin/words/{id}` | – | ลบคำ |
 | GET / POST | `/api/admin/categories` | `{name, icon}` | ดูทุกหมวด / สร้างหมวดมาตรฐาน |
 | PUT / DELETE | `/api/admin/categories/{id}` | `{name, icon, active}` | แก้ / เปิด-ปิด / ลบหมวด (ลบคำในหมวดด้วย) |
+
+**🐺 One Night Werewolf** (`/api/werewolf/rooms`)
+
+| Method | Path | Body | คำอธิบาย |
+|---|---|---|---|
+| POST | `/api/werewolf/rooms` | – | สร้างห้อง |
+| POST | `/{code}/players` | – | เข้าห้อง (ถ้าเคยอยู่แล้วได้ที่นั่งเดิม) |
+| GET | `/{code}` | – | สถานะห้อง (เห็นเฉพาะบทบาทตัวเองจนถึงหน้าสรุปผล) |
+| POST | `/{code}/settings` | `{roles, discussionSeconds, nightStepSeconds}` | host ตั้งเซ็ตการ์ด/เวลา (ค่าที่ไม่ส่ง = ค่าเดิม) |
+| POST | `/{code}/start` | – | host แจกการ์ด เริ่มกลางคืน (การ์ดต้อง = ผู้เล่น + 3) |
+| POST | `/{code}/night` | `{playerIds, centerIndexes}` | แอ็กชันกลางคืนของบทบาทที่ถูกเรียก |
+| POST | `/{code}/skip` | – | host ข้ามเวลาคุย → โหวต |
+| POST | `/{code}/vote` | `{target}` | โหวต playerId หรือ `CENTER` |
+| POST | `/{code}/end-vote` | – | host ปิดโหวต |
+| POST | `/{code}/again` | – | host เล่นอีกตา |
+
+**🍻 OHANA** (`/api/ohana/rooms`)
+
+| Method | Path | Body | คำอธิบาย |
+|---|---|---|---|
+| POST | `/api/ohana/rooms` | – | สร้างห้อง |
+| POST | `/{code}/players` | – | เข้าห้อง (เข้าได้ตลอด นั่งต่อท้ายวง) |
+| GET | `/{code}` | – | สถานะห้อง |
+| POST | `/{code}/settings` | `{penalty, kingRules}` | host ตั้งบทลงโทษ และกฎของไพ่ K |
+| POST | `/{code}/start` · `/{code}/end` | – | host เริ่ม / จบเกม |
+| POST | `/{code}/draw` | – | จั่วไพ่ (เฉพาะคนที่ถึงตา) |
+| POST | `/{code}/pick` | `{playerIds}` | ไพ่ 2/3: เลือกเพื่อนโดนด้วย · ไพ่ 7: เลือกคู่ดวล |
+| POST | `/{code}/duel-loser` | `{playerId}` | ไพ่ 7: บอกคนแพ้ดวลปอด |
+| POST | `/{code}/face` | – | ไพ่ J: กดจับหน้า (คนสุดท้ายโดน) |
+| POST | `/{code}/skip` | – | host ข้ามตาคนที่ไม่อยู่ |
+| POST | `/{code}/guests` · `/{code}/guests/remove` | `{name}` · `{playerId}` | 📱 โหมดมือถือเครื่องเดียว: host เพิ่ม/ลบเพื่อนที่ไม่มีบัญชี (host จั่วแทนเมื่อถึงตา) |
+| POST | `/{code}/face-loser` | `{playerId}` | ไพ่ J (เครื่องเดียว): host แตะชื่อคนที่จับหน้าช้าสุด |
 
 **หมวดหมู่** (ผู้ใช้ทุกคน)
 

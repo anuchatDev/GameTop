@@ -3,7 +3,8 @@ import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-nati
 
 import { categoryApi } from '../api/client';
 import { DifficultyPicker, wordCount } from '../components/CategoryPicker';
-import { Button, Card, ErrorText, Input, Muted, Screen, Title } from '../components/ui';
+import { PageHeader } from '../components/game';
+import { Button, Card, ErrorText, Input, Muted, Screen } from '../components/ui';
 import { confirmAction } from '../storage';
 import { categoryIcons, colors, difficultyInfo } from '../theme';
 import { AuthSession, CategoryInfo, CategoryWord, Difficulty } from '../types';
@@ -56,10 +57,7 @@ export function MyCategoriesScreen({ auth, onBack }: { auth: AuthSession; onBack
 
   return (
     <Screen>
-      <View style={styles.header}>
-        <Title>📚 หมวดของฉัน</Title>
-        <Button title="กลับ" variant="ghost" onPress={onBack} style={styles.small} />
-      </View>
+      <PageHeader title="📚 หมวดของฉัน" onBack={onBack} />
       <Muted>สร้างหมวดคำของตัวเองสำหรับปาร์ตี้พิเศษ แล้วเลือกใช้ได้ตอนเป็นเจ้าของห้อง (คนอื่นมองไม่เห็นคำในหมวด)</Muted>
 
       <Card style={{ gap: 10 }}>
@@ -81,7 +79,13 @@ export function MyCategoriesScreen({ auth, onBack }: { auth: AuthSession; onBack
 
       {mine?.map((c) => (
         <Card key={c.id} style={{ gap: 10 }}>
-          <Pressable style={styles.catRow} onPress={() => setOpenId(openId === c.id ? null : c.id)}>
+          <Pressable
+            style={styles.catRow}
+            onPress={() => setOpenId(openId === c.id ? null : c.id)}
+            accessibilityRole="button"
+            accessibilityState={{ expanded: openId === c.id }}
+            accessibilityLabel={`หมวด ${c.name} ${wordCount(c, null)} คำ`}
+          >
             <Text style={{ fontSize: 30 }}>{c.icon}</Text>
             <View style={{ flex: 1 }}>
               <Text style={styles.cardTitle}>{c.name}</Text>
@@ -166,7 +170,7 @@ function WordsEditor({
             <Text style={styles.wordText}>
               {difficultyInfo[w.difficulty].emoji} {w.text}
             </Text>
-            <Pressable onPress={() => remove(w)} accessibilityLabel={`ลบคำ ${w.text}`} hitSlop={8}>
+            <Pressable onPress={() => remove(w)} accessibilityRole="button" accessibilityLabel={`ลบคำ ${w.text}`} style={styles.removeBtn}>
               <Text style={styles.remove}>✕</Text>
             </Pressable>
           </View>
@@ -182,7 +186,7 @@ const styles = StyleSheet.create({
   small: { paddingVertical: 8, paddingHorizontal: 14 },
   cardTitle: { fontSize: 18, fontWeight: '900', color: colors.text },
   icons: { flexDirection: 'row', flexWrap: 'wrap', gap: 6 },
-  iconChoice: { padding: 6, borderRadius: 12, borderWidth: 2, borderColor: 'transparent' },
+  iconChoice: { minWidth: 48, minHeight: 48, alignItems: 'center', justifyContent: 'center', borderRadius: 12, borderWidth: 2, borderColor: 'transparent' },
   iconSelected: { borderColor: colors.secondary, backgroundColor: '#E8F0FF' },
   catRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   chevron: { fontSize: 16, color: colors.muted },
@@ -199,4 +203,5 @@ const styles = StyleSheet.create({
   },
   wordText: { fontSize: 15, fontWeight: '700', color: colors.text },
   remove: { fontSize: 14, fontWeight: '900', color: colors.danger },
+  removeBtn: { minWidth: 32, minHeight: 32, alignItems: 'center', justifyContent: 'center' },
 });

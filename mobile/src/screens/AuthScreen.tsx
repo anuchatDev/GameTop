@@ -49,7 +49,7 @@ export function AuthScreen({ onAuthenticated }: { onAuthenticated: (auth: AuthSe
         <Muted>เกมปาร์ตี้ บลัฟ หลอกล่อ ให้เพื่อนหลุดปาก!</Muted>
       </View>
 
-      <View style={styles.tabs}>
+      <View style={styles.tabs} accessibilityRole="tablist">
         <Tab label="เข้าสู่ระบบ" active={mode === 'login'} onPress={() => switchMode('login')} />
         <Tab label="สมัครสมาชิก" active={mode === 'register'} onPress={() => switchMode('register')} />
       </View>
@@ -102,7 +102,7 @@ export function AuthScreen({ onAuthenticated }: { onAuthenticated: (auth: AuthSe
 
 function Tab({ label, active, onPress }: { label: string; active: boolean; onPress: () => void }) {
   return (
-    <Pressable onPress={onPress} style={[styles.tab, active && styles.tabActive]}>
+    <Pressable onPress={onPress} style={[styles.tab, active && styles.tabActive]} accessibilityRole="tab" accessibilityState={{ selected: active }}>
       <Text style={[styles.tabText, active && { color: '#fff' }]}>{label}</Text>
     </Pressable>
   );

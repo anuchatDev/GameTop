@@ -1,9 +1,8 @@
 {
   "expo": {
-    "name": "คำต้องห้าม",
+    "name": "GameTop — เกมปาร์ตี้ออนไลน์",
     "slug": "forbidden-words",
     "version": "0.1.0",
-    "orientation": "portrait",
     "userInterfaceStyle": "light",
     "backgroundColor": "#FFF4D6",
     "ios": {
@@ -11,6 +10,15 @@
     },
     "android": {
       "package": "com.gametop.forbiddenwords"
+    },
+    "web": {
+      "name": "GameTop — เกมปาร์ตี้ออนไลน์",
+      "shortName": "GameTop",
+      "description": "เล่นเกมปาร์ตี้กับเพื่อนผ่านเว็บ: คำต้องห้าม, One Night Werewolf (มีบอทผู้ดำเนินเกมเสียงไทย) และเกมไพ่ OHANA — สร้างห้องแล้วชวนเพื่อนเข้าด้วยรหัสหรือ QR Code",
+      "lang": "th",
+      "themeColor": "#FFF4D6",
+      "backgroundColor": "#FFF4D6",
+      "bundler": "metro"
     }
   }
 }

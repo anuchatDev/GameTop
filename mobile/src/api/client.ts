@@ -13,6 +13,8 @@ import {
   SettingsInput,
   WordInput,
 } from '../types';
+import { OhanaView } from '../ohana/types';
+import { WwRole, WwView } from '../werewolf/types';
 
 const BASE_URL = (process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:8080').replace(/\/$/, '');
 
@@ -163,4 +165,66 @@ export const adminApi = {
 
   deleteWord: (auth: AuthSession, id: number) =>
     request<null>(`/api/admin/words/${id}`, { method: 'DELETE', auth }),
+};
+
+function wwPath(code: string, suffix = '') {
+  return `/api/werewolf/rooms/${encodeURIComponent(code.trim().toUpperCase())}${suffix}`;
+}
+
+/** เกม One Night Werewolf */
+export const werewolfApi = {
+  create: (auth: AuthSession) => request<WwView>('/api/werewolf/rooms', { method: 'POST', auth }),
+
+  join: (auth: AuthSession, code: string) => request<WwView>(wwPath(code, '/players'), { method: 'POST', auth }),
+
+  get: (auth: AuthSession, code: string) => request<WwView>(wwPath(code), { auth }),
+
+  settings: (
+    auth: AuthSession,
+    code: string,
+    body: { roles?: Record<WwRole, number>; discussionSeconds?: number; nightStepSeconds?: number },
+  ) => request<WwView>(wwPath(code, '/settings'), { method: 'POST', auth, body }),
+
+  start: (auth: AuthSession, code: string) => request<WwView>(wwPath(code, '/start'), { method: 'POST', auth }),
+
+  night: (auth: AuthSession, code: string, playerIds: string[], centerIndexes: number[]) =>
+    request<WwView>(wwPath(code, '/night'), { method: 'POST', auth, body: { playerIds, centerIndexes } }),
+
+  skip: (auth: AuthSession, code: string) => request<WwView>(wwPath(code, '/skip'), { method: 'POST', auth }),
+
+  vote: (auth: AuthSession, code: string, target: string) =>
+    request<WwView>(wwPath(code, '/vote'), { method: 'POST', auth, body: { target } }),
+
+  endVote: (auth: AuthSession, code: string) =>
+    request<WwView>(wwPath(code, '/end-vote'), { method: 'POST', auth }),
+
+  again: (auth: AuthSession, code: string) => request<WwView>(wwPath(code, '/again'), { method: 'POST', auth }),
+};
+
+function ohPath(code: string, suffix = '') {
+  return `/api/ohana/rooms/${encodeURIComponent(code.trim().toUpperCase())}${suffix}`;
+}
+
+/** เกมไพ่ OHANA */
+export const ohanaApi = {
+  create: (auth: AuthSession) => request<OhanaView>('/api/ohana/rooms', { method: 'POST', auth }),
+  join: (auth: AuthSession, code: string) => request<OhanaView>(ohPath(code, '/players'), { method: 'POST', auth }),
+  get: (auth: AuthSession, code: string) => request<OhanaView>(ohPath(code), { auth }),
+  settings: (auth: AuthSession, code: string, body: { penalty?: string; kingRules?: string[] }) =>
+    request<OhanaView>(ohPath(code, '/settings'), { method: 'POST', auth, body }),
+  start: (auth: AuthSession, code: string) => request<OhanaView>(ohPath(code, '/start'), { method: 'POST', auth }),
+  end: (auth: AuthSession, code: string) => request<OhanaView>(ohPath(code, '/end'), { method: 'POST', auth }),
+  draw: (auth: AuthSession, code: string) => request<OhanaView>(ohPath(code, '/draw'), { method: 'POST', auth }),
+  pick: (auth: AuthSession, code: string, playerIds: string[]) =>
+    request<OhanaView>(ohPath(code, '/pick'), { method: 'POST', auth, body: { playerIds } }),
+  duelLoser: (auth: AuthSession, code: string, playerId: string) =>
+    request<OhanaView>(ohPath(code, '/duel-loser'), { method: 'POST', auth, body: { playerId } }),
+  face: (auth: AuthSession, code: string) => request<OhanaView>(ohPath(code, '/face'), { method: 'POST', auth }),
+  skip: (auth: AuthSession, code: string) => request<OhanaView>(ohPath(code, '/skip'), { method: 'POST', auth }),
+  faceLoser: (auth: AuthSession, code: string, playerId: string) =>
+    request<OhanaView>(ohPath(code, '/face-loser'), { method: 'POST', auth, body: { playerId } }),
+  addGuest: (auth: AuthSession, code: string, name: string) =>
+    request<OhanaView>(ohPath(code, '/guests'), { method: 'POST', auth, body: { name } }),
+  removeGuest: (auth: AuthSession, code: string, playerId: string) =>
+    request<OhanaView>(ohPath(code, '/guests/remove'), { method: 'POST', auth, body: { playerId } }),
 };

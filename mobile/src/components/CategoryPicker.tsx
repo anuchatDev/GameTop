@@ -1,6 +1,7 @@
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { MIN_TOUCH } from '../responsive';
 import { colors, difficulties, difficultyInfo } from '../theme';
 import { CategoryInfo, Difficulty } from '../types';
 
@@ -80,6 +81,7 @@ function Chip({
       disabled={disabled}
       style={({ pressed }) => [styles.chip, selected && styles.chipSelected, pressed && { opacity: 0.8 }]}
       accessibilityRole="checkbox"
+      accessibilityLabel={`${label}${count !== undefined ? ` ${count} คำ` : ''}`}
       accessibilityState={{ checked: selected, disabled }}
     >
       <Text style={styles.icon}>{icon}</Text>
@@ -138,6 +140,7 @@ export function DifficultyPicker({
 const styles = StyleSheet.create({
   wrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip: {
+    minHeight: MIN_TOUCH + 4,
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
@@ -161,6 +164,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: colors.card,
   },
-  segmentItem: { flex: 1, paddingVertical: 10, alignItems: 'center' },
+  segmentItem: { flex: 1, minHeight: MIN_TOUCH, paddingVertical: 10, alignItems: 'center', justifyContent: 'center' },
   segmentText: { fontSize: 14, fontWeight: '800', color: colors.text },
 });

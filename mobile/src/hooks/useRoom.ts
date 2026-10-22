@@ -15,6 +15,7 @@ export function useRoom(auth: AuthSession, code: string) {
   const [busy, setBusy] = useState(false);
   // กันผลลัพธ์ที่มาช้ากว่าเขียนทับข้อมูลที่ใหม่กว่า
   const seq = useRef(0);
+  const joined = useRef(false);
 
   const apply = useCallback((view: RoomView, requestSeq: number) => {
     if (requestSeq < seq.current) return;
@@ -26,7 +27,10 @@ export function useRoom(auth: AuthSession, code: string) {
   const refresh = useCallback(async () => {
     const requestSeq = seq.current + 1;
     try {
-      apply(await api.getRoom(auth, code), requestSeq);
+      // ครั้งแรก "เข้าห้อง" (มาจาก QR/ลิงก์ หรือกลับที่นั่งเดิม) ครั้งต่อไปแค่ถามสถานะ
+      const view = joined.current ? await api.getRoom(auth, code) : await api.joinRoom(auth, code);
+      joined.current = true;
+      apply(view, requestSeq);
       setError(null);
     } catch (e) {
       setError((e as Error).message);
@@ -34,6 +38,7 @@ export function useRoom(auth: AuthSession, code: string) {
   }, [auth, code, apply]);
 
   useEffect(() => {
+    joined.current = false;
     refresh();
     const id = setInterval(refresh, POLL_MS);
     return () => clearInterval(id);

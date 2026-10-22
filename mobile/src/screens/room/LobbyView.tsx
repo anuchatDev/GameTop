@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 
 import { categoryApi } from '../../api/client';
 import { CategoryPicker, DifficultyPicker, wordCount } from '../../components/CategoryPicker';
+import { OptionChips, PlayerChips, RoomCodeCard, SectionTitle } from '../../components/game';
 import { Button, Card, Muted } from '../../components/ui';
-import { colors, difficultyInfo, playerColor } from '../../theme';
+import { colors, difficultyInfo } from '../../theme';
 import { CategoryInfo, SettingsInput } from '../../types';
 import { RoomViewProps } from '../RoomScreen';
 
@@ -14,28 +15,13 @@ export function LobbyView(props: RoomViewProps) {
 
   return (
     <>
-      <Card style={styles.codeCard}>
-        <Muted>บอกรหัสนี้ให้เพื่อน</Muted>
-        <Text style={styles.bigCode}>{room.code}</Text>
-      </Card>
+      <RoomCodeCard game="forbidden" code={room.code} />
 
-      <Text style={styles.section}>
+      <SectionTitle>
         ผู้เล่น {room.players.length}
         {room.maxPlayers > 0 ? `/${room.maxPlayers}` : ' คน'}
-      </Text>
-      <View style={styles.list}>
-        {room.players.map((p, i) => (
-          <View key={p.id} style={[styles.chip, { backgroundColor: playerColor(i) }]}>
-            <Text style={styles.chipText}>
-              {p.host ? '👑 ' : ''}
-              {p.name}
-              {p.id === room.youId ? ' (คุณ)' : ''}
-            </Text>
-          </View>
-        ))}
-      </View>
-
-      {isHost ? <SettingsEditor {...props} /> : <SettingsSummary {...props} />}
+      </SectionTitle>
+      <PlayerChips players={room.players} youId={room.youId} />
 
       {isHost ? (
         <Button
@@ -48,6 +34,9 @@ export function LobbyView(props: RoomViewProps) {
       ) : (
         <Muted style={{ textAlign: 'center' }}>รอเจ้าของห้องกดเริ่มเกม...</Muted>
       )}
+
+      {isHost ? <SettingsEditor {...props} /> : <SettingsSummary {...props} />}
+
       <Muted style={{ textAlign: 'center' }}>แนะนำ 4 คนขึ้นไปจะสนุกที่สุด</Muted>
       <Button title="ออกจากห้อง" variant="ghost" onPress={onLeave} />
     </>
@@ -157,52 +146,8 @@ export function formatRounds(rounds: number): string {
   return rounds === 0 ? 'ไม่จำกัดรอบ' : `${rounds} รอบ`;
 }
 
-function OptionChips({
-  options,
-  value,
-  label,
-  onChange,
-}: {
-  options: number[];
-  value: number;
-  label: (v: number) => string;
-  onChange: (v: number) => void;
-}) {
-  return (
-    <View style={styles.options}>
-      {options.map((o) => (
-        <Pressable
-          key={o}
-          onPress={() => onChange(o)}
-          style={[styles.option, o === value && styles.optionSelected]}
-          accessibilityRole="radio"
-          accessibilityState={{ selected: o === value }}
-        >
-          <Text style={[styles.optionText, o === value && { color: '#fff' }]}>{label(o)}</Text>
-        </Pressable>
-      ))}
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
-  options: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  option: {
-    paddingVertical: 8,
-    paddingHorizontal: 14,
-    borderRadius: 999,
-    borderWidth: 2,
-    borderColor: colors.text,
-    backgroundColor: colors.card,
-  },
-  optionSelected: { backgroundColor: colors.text },
-  optionText: { fontSize: 15, fontWeight: '800', color: colors.text },
-  codeCard: { alignItems: 'center' },
-  bigCode: { fontSize: 56, fontWeight: '900', letterSpacing: 10, color: colors.primary },
-  section: { fontSize: 18, fontWeight: '800', color: colors.text },
-  list: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  chip: { paddingVertical: 10, paddingHorizontal: 14, borderRadius: 999, borderWidth: 2, borderColor: colors.text },
-  chipText: { color: '#fff', fontWeight: '800', fontSize: 16 },
   cardTitle: { fontSize: 17, fontWeight: '900', color: colors.text },
   summary: { fontSize: 16, fontWeight: '700', color: colors.text, lineHeight: 24 },
 });

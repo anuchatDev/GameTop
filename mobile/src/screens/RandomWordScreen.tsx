@@ -1,10 +1,11 @@
 import { useKeepAwake } from 'expo-keep-awake';
-import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { ActivityIndicator, PanResponder, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { categoryApi } from '../api/client';
 import { CategoryPicker, DifficultyPicker } from '../components/CategoryPicker';
-import { Button, ErrorText, Muted, Screen, Title } from '../components/ui';
+import { PageHeader } from '../components/game';
+import { Button, ErrorText, Muted, Screen } from '../components/ui';
 import { colors, difficultyInfo } from '../theme';
 import { AuthSession, CategoryInfo, Difficulty, DrawnWord } from '../types';
 
@@ -58,18 +59,29 @@ export function RandomWordScreen({ auth, onBack }: { auth: AuthSession; onBack: 
     setCount((c) => c + 1);
   }
 
+  // ปัดการ์ดไปทางซ้ายเพื่อสุ่มคำถัดไป (Swipe)
+  const nextRef = useRef(next);
+  nextRef.current = next;
+  const swipe = useMemo(
+    () =>
+      PanResponder.create({
+        onMoveShouldSetPanResponder: (_, g) => Math.abs(g.dx) > 20 && Math.abs(g.dx) > Math.abs(g.dy),
+        onPanResponderRelease: (_, g) => {
+          if (g.dx < -60) nextRef.current();
+        },
+      }),
+    [],
+  );
+
   function toggle(id: number) {
     setSelected((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
   }
 
   return (
     <Screen>
-      <View style={styles.header}>
-        <Title>🎲 สุ่มคำ</Title>
-        <Button title="กลับ" variant="ghost" onPress={onBack} style={styles.small} />
-      </View>
+      <PageHeader title="🎲 สุ่มคำ" onBack={onBack} />
 
-      <View style={[styles.wordCard, current && revealed && styles.wordCardRevealed]}>
+      <View style={[styles.wordCard, current && revealed && styles.wordCardRevealed]} {...swipe.panHandlers}>
         {loading ? (
           <ActivityIndicator size="large" color={colors.primary} />
         ) : current ? (
@@ -94,7 +106,7 @@ export function RandomWordScreen({ auth, onBack }: { auth: AuthSession; onBack: 
 
       <ErrorText message={error} />
       <Button title={current ? '➡️ คำถัดไป' : '🎲 สุ่มคำ'} onPress={next} loading={loading} />
-      {count > 0 && <Muted style={{ textAlign: 'center' }}>สุ่มไปแล้ว {count} คำ</Muted>}
+      {count > 0 && <Muted style={{ textAlign: 'center' }}>สุ่มไปแล้ว {count} คำ · ปัดการ์ดไปทางซ้ายเพื่อคำถัดไป</Muted>}
 
       <Text style={styles.section}>หมวด</Text>
       {categories ? (

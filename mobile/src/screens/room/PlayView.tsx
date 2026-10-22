@@ -6,6 +6,7 @@ import { KillModal } from '../../components/KillModal';
 import { Button, Muted } from '../../components/ui';
 import { WordCard } from '../../components/WordCard';
 import { useCountdown } from '../../hooks/useCountdown';
+import { useResponsive } from '../../responsive';
 import { colors, formatTime, playerColor } from '../../theme';
 import { PlayerView } from '../../types';
 import { RoomViewProps } from '../RoomScreen';
@@ -16,6 +17,8 @@ export function PlayView({ room, isHost, busy, receivedAt, actions }: RoomViewPr
   const [victim, setVictim] = useState<PlayerView | null>(null);
 
   const me = room.players.find((p) => p.id === room.youId);
+  const { columns, itemWidth, fs } = useResponsive();
+  const cardWidth = itemWidth(columns(2, 3, 4), 12);
   const urgent = remaining <= 30_000;
 
   async function confirmKill(killerId: string | null) {
@@ -28,7 +31,9 @@ export function PlayView({ room, isHost, busy, receivedAt, actions }: RoomViewPr
   return (
     <>
       <View style={[styles.timer, urgent && { backgroundColor: colors.danger }]}>
-        <Text style={styles.timerText}>{formatTime(remaining)}</Text>
+        <Text style={[styles.timerText, { fontSize: fs(56) }]} accessibilityRole="timer" accessibilityLabel={`เหลือเวลา ${formatTime(remaining)}`}>
+          {formatTime(remaining)}
+        </Text>
       </View>
 
       {me && !me.alive ? (
@@ -44,6 +49,7 @@ export function PlayView({ room, isHost, busy, receivedAt, actions }: RoomViewPr
             player={p}
             isYou={p.id === room.youId}
             color={playerColor(i)}
+            width={cardWidth}
             onPress={p.alive ? () => setVictim(p) : undefined}
           />
         ))}
@@ -71,7 +77,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 32,
   },
-  timerText: { color: '#fff', fontSize: 56, fontWeight: '900', fontVariant: ['tabular-nums'] },
+  timerText: { color: '#fff', fontWeight: '900', fontVariant: ['tabular-nums'] },
   center: { textAlign: 'center' },
   grid: { flexDirection: 'row', flexWrap: 'wrap', gap: 12 },
 });

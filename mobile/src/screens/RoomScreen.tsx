@@ -1,6 +1,7 @@
-import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import React, { useState } from 'react';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
+import { GameHeader, Pill } from '../components/game';
 import { Button, ErrorText, Screen } from '../components/ui';
 import { RoomActions, useRoom } from '../hooks/useRoom';
 import { colors } from '../theme';
@@ -9,6 +10,7 @@ import { GuessView } from './room/GuessView';
 import { LobbyView } from './room/LobbyView';
 import { PlayView } from './room/PlayView';
 import { ResultView } from './room/ResultView';
+import { ForbiddenRulesModal } from './ForbiddenRulesModal';
 
 export interface RoomViewProps {
   auth: AuthSession;
@@ -23,6 +25,7 @@ export interface RoomViewProps {
 /** สลับหน้าจอตามสถานะห้องที่ได้จาก backend */
 export function RoomScreen({ auth, code, onLeave }: { auth: AuthSession; code: string; onLeave: () => void }) {
   const { room, receivedAt, error, busy, actions } = useRoom(auth, code);
+  const [rulesOpen, setRulesOpen] = useState(false);
 
   if (!room) {
     return (
@@ -40,27 +43,26 @@ export function RoomScreen({ auth, code, onLeave }: { auth: AuthSession; code: s
 
   return (
     <Screen>
-      <View style={styles.header}>
-        <Text style={styles.code}>ห้อง {room.code}</Text>
-        {room.roundNumber > 0 && (
-          <Text style={styles.round}>
-            รอบที่ {room.roundNumber}
-            {room.settings.totalRounds > 0 ? `/${room.settings.totalRounds}` : ''}
-          </Text>
-        )}
-      </View>
+      <GameHeader
+        game="forbidden"
+        code={room.code}
+        subtitle={
+          room.roundNumber > 0
+            ? `รอบที่ ${room.roundNumber}${room.settings.totalRounds > 0 ? `/${room.settings.totalRounds}` : ''}`
+            : undefined
+        }
+        right={<Pill label="📖 กติกา" onPress={() => setRulesOpen(true)} />}
+      />
       <ErrorText message={error} />
       {room.status === 'LOBBY' && <LobbyView {...props} />}
       {room.status === 'PLAYING' && <PlayView {...props} />}
       {room.status === 'GUESSING' && <GuessView {...props} />}
       {room.status === 'FINISHED' && <ResultView {...props} />}
+      <ForbiddenRulesModal visible={rulesOpen} onClose={() => setRulesOpen(false)} />
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: 'center', gap: 20 },
-  header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  code: { fontSize: 20, fontWeight: '900', color: colors.text, letterSpacing: 2 },
-  round: { fontSize: 16, fontWeight: '700', color: colors.muted },
 });

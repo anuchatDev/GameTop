@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { adminApi } from '../api/client';
-import { Button, Card, ErrorText, Input, Muted, Screen, Title } from '../components/ui';
+import { PageHeader } from '../components/game';
+import { Button, Card, ErrorText, Input, Muted, Screen } from '../components/ui';
 import { confirmAction } from '../storage';
 import { CategoryPicker, DifficultyPicker, wordCount } from '../components/CategoryPicker';
 import { categoryIcons, colors, difficultyInfo, formatScore } from '../theme';
@@ -31,10 +32,7 @@ export function AdminScreen({ auth, onBack }: { auth: AuthSession; onBack: () =>
 
   return (
     <Screen>
-      <View style={styles.header}>
-        <Title>🛠️ ผู้ดูแลระบบ</Title>
-        <Button title="กลับ" variant="ghost" onPress={onBack} style={styles.small} />
-      </View>
+      <PageHeader title="🛠️ ผู้ดูแลระบบ" onBack={onBack} />
 
       {stats && (
         <View style={styles.stats}>
@@ -340,7 +338,7 @@ function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
               {w.active ? '' : ' · ปิดใช้งาน'}
             </Muted>
           </View>
-          <Pressable onPress={() => startEdit(w)} style={styles.iconButton}>
+          <Pressable onPress={() => startEdit(w)} style={styles.iconButton} accessibilityRole="button" accessibilityLabel={`แก้ไขคำ ${w.text}`}>
             <Text style={styles.iconText}>✏️</Text>
           </Pressable>
           <Pressable
@@ -355,10 +353,12 @@ function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
               )
             }
             style={styles.iconButton}
+            accessibilityRole="button"
+            accessibilityLabel={`${w.active ? 'ปิด' : 'เปิด'}ใช้งานคำ ${w.text}`}
           >
             <Text style={styles.iconText}>{w.active ? '🙈' : '👁️'}</Text>
           </Pressable>
-          <Pressable onPress={() => remove(w)} style={styles.iconButton}>
+          <Pressable onPress={() => remove(w)} style={styles.iconButton} accessibilityRole="button" accessibilityLabel={`ลบคำ ${w.text}`}>
             <Text style={styles.iconText}>🗑️</Text>
           </Pressable>
         </View>
@@ -509,13 +509,13 @@ function CategoryRow({
           {c.active ? '' : ' · ปิดใช้งาน'}
         </Muted>
       </View>
-      <Pressable onPress={onEdit} disabled={busy} style={styles.iconButton}>
+      <Pressable onPress={onEdit} disabled={busy} style={styles.iconButton} accessibilityRole="button" accessibilityLabel={`แก้ไขหมวด ${c.name}`}>
         <Text style={styles.iconText}>✏️</Text>
       </Pressable>
-      <Pressable onPress={onToggle} disabled={busy} style={styles.iconButton}>
+      <Pressable onPress={onToggle} disabled={busy} style={styles.iconButton} accessibilityRole="button" accessibilityLabel={`${c.active ? 'ปิด' : 'เปิด'}ใช้งานหมวด ${c.name}`}>
         <Text style={styles.iconText}>{c.active ? '🙈' : '👁️'}</Text>
       </Pressable>
-      <Pressable onPress={onDelete} disabled={busy} style={styles.iconButton}>
+      <Pressable onPress={onDelete} disabled={busy} style={styles.iconButton} accessibilityRole="button" accessibilityLabel={`ลบหมวด ${c.name}`}>
         <Text style={styles.iconText}>🗑️</Text>
       </Pressable>
     </View>
@@ -552,13 +552,15 @@ function Badge({ label, color }: { label: string; color: string }) {
 const styles = StyleSheet.create({
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   small: { paddingVertical: 8, paddingHorizontal: 14 },
-  stats: { flexDirection: 'row', gap: 10 },
-  stat: { flex: 1, borderRadius: 16, borderWidth: 3, borderColor: colors.text, paddingVertical: 12, alignItems: 'center' },
+  stats: { flexDirection: 'row', flexWrap: 'wrap', gap: 10 },
+  stat: { flexGrow: 1, flexBasis: 120, borderRadius: 16, borderWidth: 3, borderColor: colors.text, paddingVertical: 12, alignItems: 'center' },
   statValue: { fontSize: 24, fontWeight: '900', color: '#fff' },
   statLabel: { fontSize: 13, fontWeight: '700', color: '#fff' },
   tabs: { flexDirection: 'row', gap: 8 },
   tab: {
     flex: 1,
+    minHeight: 48,
+    justifyContent: 'center',
     paddingVertical: 12,
     borderRadius: 14,
     borderWidth: 2,
@@ -574,7 +576,7 @@ const styles = StyleSheet.create({
   actionButton: { flex: 1, paddingVertical: 10 },
   badge: { borderRadius: 999, paddingHorizontal: 10, paddingVertical: 3 },
   badgeText: { color: '#fff', fontWeight: '800', fontSize: 12 },
-  checkbox: { paddingVertical: 4 },
+  checkbox: { minHeight: 44, justifyContent: 'center' },
   checkboxText: { fontSize: 16, color: colors.text, fontWeight: '700' },
   wordRow: {
     flexDirection: 'row',
@@ -588,10 +590,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
   },
   wordText: { fontSize: 18, fontWeight: '800', color: colors.text },
-  iconButton: { padding: 8 },
-  iconChoice: { padding: 4, borderRadius: 10, borderWidth: 2, borderColor: 'transparent' },
+  iconButton: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center' },
+  iconChoice: { minWidth: 44, minHeight: 44, alignItems: 'center', justifyContent: 'center', borderRadius: 10, borderWidth: 2, borderColor: 'transparent' },
   iconSelected: { borderColor: colors.secondary, backgroundColor: '#E8F0FF' },
   deleteButton: {
+    minWidth: 44,
+    minHeight: 44,
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 14,

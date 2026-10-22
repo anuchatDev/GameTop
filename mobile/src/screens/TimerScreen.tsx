@@ -2,7 +2,8 @@ import { useKeepAwake } from 'expo-keep-awake';
 import React, { useEffect, useRef, useState } from 'react';
 import { StyleSheet, Text, Vibration, View } from 'react-native';
 
-import { Button, Muted, Screen, Title } from '../components/ui';
+import { PageHeader } from '../components/game';
+import { Button, Muted, Screen } from '../components/ui';
 import { colors, formatTime } from '../theme';
 
 const ROUND_MS = 5 * 60 * 1000;
@@ -49,7 +50,7 @@ export function TimerScreen({ onBack }: { onBack: () => void }) {
 
   return (
     <Screen scroll={false}>
-      <Title>⏳ จับเวลา</Title>
+      <PageHeader title="⏳ จับเวลา" onBack={onBack} />
       <View style={styles.center}>
         <View style={[styles.circle, done && { backgroundColor: colors.danger }]}>
           <Text style={styles.time}>{done ? 'หมดเวลา!' : formatTime(remaining)}</Text>
@@ -58,7 +59,6 @@ export function TimerScreen({ onBack }: { onBack: () => void }) {
       </View>
       <Button title={running ? 'หยุดชั่วคราว' : done ? 'เริ่มรอบใหม่' : 'เริ่ม'} variant="success" onPress={toggle} />
       <Button title="รีเซ็ต" variant="secondary" onPress={reset} />
-      <Button title="กลับหน้าแรก" variant="ghost" onPress={onBack} />
     </Screen>
   );
 }

@@ -49,7 +49,12 @@ export function KillModal({
 
 function Option({ label, selected, onPress }: { label: string; selected: boolean; onPress: () => void }) {
   return (
-    <Pressable onPress={onPress} style={[styles.option, selected && styles.optionSelected]}>
+    <Pressable
+      onPress={onPress}
+      style={[styles.option, selected && styles.optionSelected]}
+      accessibilityRole="radio"
+      accessibilityState={{ selected }}
+    >
       <Text style={[styles.optionText, selected && { color: '#fff' }]}>{label}</Text>
     </Pressable>
   );
@@ -62,6 +67,8 @@ const styles = StyleSheet.create({
   subtitle: { fontSize: 16, color: colors.muted, textAlign: 'center' },
   options: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   option: {
+    minHeight: 44,
+    justifyContent: 'center',
     paddingVertical: 10,
     paddingHorizontal: 14,
     borderRadius: 999,
