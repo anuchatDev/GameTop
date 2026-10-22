@@ -15,6 +15,9 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class UserAccount {
 
+    /** ค่า passwordHash ของบัญชีที่ไม่มีรหัสผ่าน (ไม่ใช่ BCrypt จึงไม่มีรหัสไหนตรง) */
+    private static final String NO_PASSWORD = "!";
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -54,6 +57,13 @@ public class UserAccount {
     @Column(length = 20)
     private String displayName;
 
+    /** ล็อกอินผ่าน "google" / "line" — null = สมัครด้วยรหัสผ่าน */
+    @Column(length = 10)
+    private String provider;
+
+    @Column(length = 100)
+    private String providerId;
+
     protected UserAccount() {
     }
 
@@ -68,10 +78,24 @@ public class UserAccount {
 
     /** ผู้เล่นชั่วคราว: username/อีเมลสุ่มให้ และไม่มีรหัสผ่าน (ล็อกอินซ้ำไม่ได้ ใช้ token อย่างเดียว) */
     public static UserAccount guest(String username, String displayName, Instant createdAt) {
-        UserAccount u = new UserAccount(username, username + "@guest.gametop", "!", createdAt);
+        UserAccount u = new UserAccount(username, username + "@guest.gametop", NO_PASSWORD, createdAt);
         u.guest = true;
         u.displayName = displayName;
         return u;
+    }
+
+    /** บัญชีที่สมัครผ่าน Google / LINE — ไม่มีรหัสผ่านจนกว่าจะตั้งผ่านลืมรหัสผ่าน */
+    public static UserAccount social(String username, String email, String displayName, String provider,
+                                     String providerId, Instant createdAt) {
+        UserAccount u = new UserAccount(username, email, NO_PASSWORD, createdAt);
+        u.displayName = displayName;
+        u.linkProvider(provider, providerId);
+        return u;
+    }
+
+    public void linkProvider(String provider, String providerId) {
+        this.provider = provider;
+        this.providerId = providerId;
     }
 
     void recordRound(double score, boolean won) {
@@ -120,6 +144,15 @@ public class UserAccount {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    /** มีรหัสผ่านให้ล็อกอินไหม (ผู้เล่นชั่วคราว / บัญชี Google, LINE ไม่มี) */
+    public boolean hasPassword() {
+        return !NO_PASSWORD.equals(passwordHash);
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
     public boolean isGuest() {

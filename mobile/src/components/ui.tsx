@@ -123,6 +123,38 @@ export function Input(props: TextInputProps) {
   );
 }
 
+/**
+ * ช่องกรอกพร้อมชื่อช่อง (อยู่ตลอด ไม่หายตอนพิมพ์เหมือน placeholder) และคำแนะนำใต้ช่อง
+ */
+export function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
+  return (
+    <View style={styles.field}>
+      <Text style={styles.fieldLabel}>{label}</Text>
+      {children}
+      {hint && <Text style={styles.fieldHint}>{hint}</Text>}
+    </View>
+  );
+}
+
+/** ช่องรหัสผ่านที่กด 👁 เพื่อดูสิ่งที่พิมพ์ได้ (บนมือถือพิมพ์ผิดง่าย) */
+export function PasswordInput(props: Omit<TextInputProps, 'secureTextEntry'>) {
+  const [shown, setShown] = React.useState(false);
+  return (
+    <View style={styles.passwordWrap}>
+      <Input {...props} secureTextEntry={!shown} style={[{ paddingRight: MIN_TOUCH + 12 }, props.style]} />
+      <Pressable
+        onPress={() => setShown((s) => !s)}
+        style={styles.eye}
+        accessibilityRole="button"
+        accessibilityLabel={shown ? 'ซ่อนรหัสผ่าน' : 'แสดงรหัสผ่าน'}
+        accessibilityState={{ checked: shown }}
+      >
+        <Text style={styles.eyeText}>{shown ? '🙈' : '👁'}</Text>
+      </Pressable>
+    </View>
+  );
+}
+
 export function Title({ children }: { children: React.ReactNode }) {
   const { fs } = useResponsive();
   return (
@@ -164,6 +196,19 @@ const styles = StyleSheet.create({
   },
   ghost: { borderWidth: 2, borderColor: colors.text, borderBottomWidth: 2 },
   buttonText: { color: '#fff', fontSize: 18, fontWeight: '800', textAlign: 'center' },
+  field: { gap: 6 },
+  fieldLabel: { fontSize: 15, fontWeight: '800', color: colors.text },
+  fieldHint: { fontSize: 13, color: colors.muted, lineHeight: 18 },
+  passwordWrap: { justifyContent: 'center' },
+  eye: {
+    position: 'absolute',
+    right: 4,
+    width: MIN_TOUCH,
+    height: MIN_TOUCH,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  eyeText: { fontSize: 20 },
   input: {
     // minWidth 0: บนเว็บช่องกรอกมีความกว้างตั้งต้น ถ้าไม่ตั้งไว้จะไม่ยอมหดในแถว ทำให้ปุ่มข้างๆ ล้นจอแคบ
     minWidth: 0,

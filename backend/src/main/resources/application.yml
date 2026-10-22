@@ -20,6 +20,20 @@ app:
   cors-origins: ${CORS_ORIGINS:*}
   # ชื่อผู้ใช้ที่ได้สิทธิ์ Admin อัตโนมัติ คั่นด้วย comma (ระบบจะให้สิทธิ์ตอน start และตอนสมัคร)
   admin-usernames: ${ADMIN_USERNAMES:}
+  # URL หน้าเว็บ — ใช้ทำลิงก์ในอีเมลรีเซ็ตรหัสผ่าน
+  public-url: ${PUBLIC_URL:http://localhost:8081}
+  mail:
+    # อีเมลรีเซ็ตรหัสผ่านส่งผ่าน Brevo (ฟรี 300 ฉบับ/วัน) — from ต้องเป็นอีเมลที่ยืนยันใน Brevo แล้ว
+    brevo-api-key: ${BREVO_API_KEY:}
+    from: ${MAIL_FROM:}
+    from-name: GameTop
+    # dev: ไม่มี API key ให้พิมพ์ลิงก์รีเซ็ตลง log ของ server แทน
+    log-links: true
+  social:
+    # ล็อกอินด้วย Google / LINE — เว้นว่าง = ซ่อนปุ่ม
+    google-client-id: ${GOOGLE_CLIENT_ID:}
+    line-channel-id: ${LINE_CHANNEL_ID:}
+    line-channel-secret: ${LINE_CHANNEL_SECRET:}
 
 game:
   # ค่าเริ่มต้นของห้องใหม่ — Host เปลี่ยนได้ในหน้ารอผู้เล่น

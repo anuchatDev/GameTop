@@ -23,3 +23,18 @@ services:
         sync: false
       - key: ADMIN_USERNAMES
         sync: false
+      # URL หน้าเว็บบน Netlify — ใช้ทำลิงก์ในอีเมลรีเซ็ตรหัสผ่าน
+      - key: PUBLIC_URL
+        sync: false
+      # ลืมรหัสผ่าน (Brevo) — ไม่ตั้ง = ซ่อนปุ่มลืมรหัสผ่าน
+      - key: BREVO_API_KEY
+        sync: false
+      - key: MAIL_FROM
+        sync: false
+      # ล็อกอินด้วย Google / LINE — ไม่ตั้ง = ซ่อนปุ่ม
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: LINE_CHANNEL_ID
+        sync: false
+      - key: LINE_CHANNEL_SECRET
+        sync: false

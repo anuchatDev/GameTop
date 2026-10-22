@@ -64,6 +64,9 @@ npm run web
 | POST | `/api/auth/register` | `{username, email, password}` | สมัคร → `{token, user}` |
 | POST | `/api/auth/login` | `{login, password}` | login = ชื่อผู้ใช้หรืออีเมล |
 | POST | `/api/auth/guest` | `{nickname}` | เล่นแบบไม่สมัคร → `{token, user, guest: true}` (ชื่อเล่นซ้ำกับคนอื่นได้, ล็อกอินซ้ำไม่ได้) |
+| GET | `/api/auth/providers` | – | ปุ่มที่เปิดใช้: `{googleClientId, lineChannelId, passwordReset}` |
+| POST | `/api/auth/google` · `/api/auth/line` | `{credential}` · `{code, redirectUri}` | ล็อกอินด้วย Google / LINE (อีเมลตรงกับบัญชีเดิม = เข้าบัญชีเดิม) |
+| POST | `/api/auth/forgot` · `/api/auth/reset` | `{email}` · `{token, password}` | ส่งลิงก์รีเซ็ต (ใช้ได้ครั้งเดียว 30 นาที) / ตั้งรหัสใหม่แล้วเข้าสู่ระบบ |
 | GET | `/api/me` | – | โปรไฟล์ + คะแนนสะสม + ประวัติ 20 รอบล่าสุด |
 | POST | `/api/rooms` | – | สร้างห้อง (คนสร้างเป็น host) |
 | POST | `/api/rooms/{code}/players` | – | เข้าห้อง (ถ้าเคยอยู่แล้วจะได้ที่นั่งเดิม) |

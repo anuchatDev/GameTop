@@ -72,6 +72,20 @@ export const api = {
   register: (username: string, email: string, password: string) =>
     request<AuthSession>('/api/auth/register', { method: 'POST', body: { username, email, password } }),
 
+  /** ปุ่มเข้าสู่ระบบที่เปิดไว้ (client id ของ Google / LINE) และเปิดลืมรหัสผ่านหรือยัง */
+  providers: () =>
+    request<{ googleClientId: string | null; lineChannelId: string | null; passwordReset: boolean }>('/api/auth/providers'),
+
+  google: (credential: string) => request<AuthSession>('/api/auth/google', { method: 'POST', body: { credential } }),
+
+  line: (code: string, redirectUri: string) =>
+    request<AuthSession>('/api/auth/line', { method: 'POST', body: { code, redirectUri } }),
+
+  forgotPassword: (email: string) => request<null>('/api/auth/forgot', { method: 'POST', body: { email } }),
+
+  resetPassword: (token: string, password: string) =>
+    request<AuthSession>('/api/auth/reset', { method: 'POST', body: { token, password } }),
+
   /** เล่นแบบไม่สมัคร — กรอกแค่ชื่อเล่น */
   guest: (nickname: string) => request<AuthSession>('/api/auth/guest', { method: 'POST', body: { nickname } }),
 

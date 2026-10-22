@@ -55,7 +55,7 @@ public class AuthService {
     public AuthResponse login(String login, String password) {
         String key = login.trim();
         UserAccount user = (key.contains("@") ? users.findByEmailIgnoreCase(key) : users.findByUsernameIgnoreCase(key))
-                .filter(u -> !u.isGuest() && passwordEncoder.matches(password, u.getPasswordHash()))
+                .filter(u -> u.hasPassword() && passwordEncoder.matches(password, u.getPasswordHash()))
                 .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"));
         if (user.isBanned()) {
             throw new ApiException(HttpStatus.UNAUTHORIZED, "บัญชีนี้ถูกระงับการใช้งาน");
@@ -67,18 +67,60 @@ public class AuthService {
     @Transactional
     public AuthResponse guest(String nickname) {
         String name = nickname.trim().replaceAll("\\s+", " ");
+        return toResponse(users.save(UserAccount.guest(randomUsername("g_"), name, clock.instant())));
+    }
+
+    /**
+     * ล็อกอินด้วย Google / LINE: เคยล็อกอินแล้ว → บัญชีเดิม · อีเมลที่ยืนยันแล้วตรงกับบัญชีที่สมัครไว้ → ผูกกับบัญชีนั้น ·
+     * ไม่งั้นสร้างบัญชีใหม่ (ชื่อที่แสดง = ชื่อจาก Google / LINE)
+     */
+    @Transactional
+    public AuthResponse socialLogin(SocialVerifier.SocialProfile profile) {
+        UserAccount user = users.findByProviderAndProviderId(profile.provider(), profile.id())
+                .or(() -> linkByEmail(profile))
+                .orElseGet(() -> createSocial(profile));
+        if (user.isBanned()) {
+            throw new ApiException(HttpStatus.UNAUTHORIZED, "บัญชีนี้ถูกระงับการใช้งาน");
+        }
+        return toResponse(user);
+    }
+
+    private java.util.Optional<UserAccount> linkByEmail(SocialVerifier.SocialProfile profile) {
+        if (profile.email() == null) {
+            return java.util.Optional.empty();
+        }
+        return users.findByEmailIgnoreCase(profile.email()).filter(u -> !u.isGuest()).map(u -> {
+            u.linkProvider(profile.provider(), profile.id());
+            return users.save(u);
+        });
+    }
+
+    private UserAccount createSocial(SocialVerifier.SocialProfile profile) {
+        String username = randomUsername("u_");
+        String email = profile.email() != null && !users.existsByEmailIgnoreCase(profile.email())
+                ? profile.email().toLowerCase()
+                : username + "@" + profile.provider() + ".gametop";
+        String name = profile.name() == null || profile.name().isBlank() ? "ผู้เล่น" : profile.name().trim();
+        if (name.length() > 20) {
+            name = name.substring(0, 20).trim();
+        }
+        return users.save(UserAccount.social(username, email, name, profile.provider(), profile.id(), clock.instant()));
+    }
+
+    /** username ภายในที่ผู้ใช้ไม่เห็น (บัญชีชั่วคราว / Google / LINE แสดงชื่อเล่นแทน) */
+    private String randomUsername(String prefix) {
         String username;
         do {
-            StringBuilder sb = new StringBuilder("g_");
+            StringBuilder sb = new StringBuilder(prefix);
             for (int i = 0; i < 10; i++) {
                 sb.append(GUEST_ALPHABET.charAt(random.nextInt(GUEST_ALPHABET.length())));
             }
             username = sb.toString();
         } while (users.existsByUsernameIgnoreCase(username));
-        return toResponse(users.save(UserAccount.guest(username, name, clock.instant())));
+        return username;
     }
 
-    private AuthResponse toResponse(UserAccount user) {
+    AuthResponse toResponse(UserAccount user) {
         return new AuthResponse(jwtService.issue(user.getId()),
                 new AuthUser(user.getId(), user.getDisplayName(), user.getRole()), user.isGuest());
     }

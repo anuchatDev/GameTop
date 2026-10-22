@@ -13,3 +13,6 @@ app:
     # ไม่มีค่า default — ถ้าไม่ตั้ง JWT_SECRET แอปจะไม่ยอม start
     secret: ${JWT_SECRET}
   cors-origins: ${CORS_ORIGINS}
+  mail:
+    # prod: ไม่มี Brevo API key = ปิดปุ่มลืมรหัสผ่าน (ไม่พิมพ์ลิงก์ลง log)
+    log-links: false

@@ -75,6 +75,38 @@ Supabase ใช้ได้เหมือนกัน: Project Settings → Dat
 กลับไปที่ Render → Environment → แก้ `CORS_ORIGINS` เป็น URL frontend จริง เช่น
 `https://forbidden-words.netlify.app` (หลายค่าคั่นด้วย comma) → Save (Render จะ redeploy ให้)
 
+## 6. (ไม่บังคับ) เปิดลืมรหัสผ่าน และล็อกอินด้วย LINE / Google
+
+ทุกอย่างในข้อนี้ฟรี ไม่ตั้ง = ปุ่มนั้นถูกซ่อนไว้เฉยๆ เว็บใช้งานได้ตามปกติ
+ตั้งค่าเสร็จแล้วกด Save ใน Render (จะ redeploy ให้) — **ไม่ต้อง** build หน้าเว็บใหม่ เพราะหน้าเว็บถาม backend เองว่าเปิดปุ่มไหนบ้าง
+
+**ลืมรหัสผ่าน (ส่งอีเมลผ่าน Brevo — ฟรี 300 ฉบับ/วัน)**
+
+1. สมัคร https://www.brevo.com → **Senders, Domains & Dedicated IPs → Senders** → เพิ่มอีเมลผู้ส่ง แล้วกดยืนยันในอีเมล
+2. **SMTP & API → API Keys → Generate** → คัดลอก key
+3. Render → Environment: `BREVO_API_KEY` = key, `MAIL_FROM` = อีเมลผู้ส่งที่ยืนยันแล้ว,
+   `PUBLIC_URL` = `https://forbidden-words.netlify.app`
+
+> ใช้ HTTP API แทน SMTP เพราะ Render แบบฟรีปิดพอร์ต SMTP
+
+**LINE Login**
+
+1. https://developers.line.biz → Create provider → Create a **LINE Login** channel (App types: Web app)
+2. แท็บ **LINE Login** → Callback URL = `https://forbidden-words.netlify.app/` (มี / ปิดท้าย ตรงกับหน้าเว็บ)
+3. ถ้าต้องการอีเมล: แท็บ Basic settings → **OpenID Connect → Email address permission → Apply**
+   (ไม่ขอก็ได้ — ผู้ใช้ LINE จะได้บัญชีใหม่แยกจากบัญชีที่สมัครด้วยอีเมล)
+4. Render → Environment: `LINE_CHANNEL_ID` = Channel ID, `LINE_CHANNEL_SECRET` = Channel secret
+5. กด **Publish** channel (ตอนเป็น Developing มีแค่ผู้ดูแล channel ที่ล็อกอินได้)
+
+**Google**
+
+1. https://console.cloud.google.com → APIs & Services → **OAuth consent screen** → External → กรอกชื่อแอป/อีเมล → Publish
+2. **Credentials → Create credentials → OAuth client ID** → Web application →
+   Authorized JavaScript origins = `https://forbidden-words.netlify.app` (ทดสอบบนเครื่องเพิ่ม `http://localhost:8081`)
+3. Render → Environment: `GOOGLE_CLIENT_ID` = Client ID (ไม่ต้องใช้ Client secret)
+
+ล็อกอินด้วย LINE / Google ที่อีเมล (ยืนยันแล้ว) ตรงกับบัญชีที่สมัครไว้ = เข้าบัญชีเดิม ไม่สร้างบัญชีซ้ำ
+
 ## Environment Variables ทั้งหมด
 
 | ตัวแปร | ที่ไหน | จำเป็น | คำอธิบาย |
@@ -87,6 +119,10 @@ Supabase ใช้ได้เหมือนกัน: Project Settings → Dat
 | `CORS_ORIGINS` | backend | ✅ | URL ของ frontend คั่นด้วย comma |
 | `ADMIN_USERNAMES` | backend | – | ชื่อผู้ใช้ที่ได้สิทธิ์ Admin คั่นด้วย comma |
 | `PORT` | backend | – | แพลตฟอร์มตั้งให้เอง (ค่าเริ่มต้น 8080) |
+| `PUBLIC_URL` | backend | – | URL หน้าเว็บ ใช้ทำลิงก์ในอีเมลรีเซ็ตรหัสผ่าน |
+| `BREVO_API_KEY` / `MAIL_FROM` | backend | – | เปิดลืมรหัสผ่าน (ดูข้อ 6) |
+| `LINE_CHANNEL_ID` / `LINE_CHANNEL_SECRET` | backend | – | เปิดล็อกอินด้วย LINE |
+| `GOOGLE_CLIENT_ID` | backend | – | เปิดล็อกอินด้วย Google |
 | `EXPO_PUBLIC_API_URL` | frontend | ✅ | URL ของ backend |
 
 ดูตัวอย่างใน [backend/.env.example](../backend/.env.example) และ [mobile/.env.example](../mobile/.env.example)

@@ -1,11 +1,14 @@
 package com.gametop.forbiddenwords.auth;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.gametop.forbiddenwords.config.AppProperties;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
@@ -18,9 +21,62 @@ import jakarta.validation.constraints.Size;
 public class AuthController {
 
     private final AuthService authService;
+    private final PasswordResetService resetService;
+    private final SocialVerifier socialVerifier;
+    private final AppProperties.Social social;
 
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, PasswordResetService resetService, SocialVerifier socialVerifier,
+                          AppProperties props) {
         this.authService = authService;
+        this.resetService = resetService;
+        this.socialVerifier = socialVerifier;
+        this.social = props.social();
+    }
+
+    /** หน้าเข้าสู่ระบบใช้ซ่อน/แสดงปุ่ม — client id ของ Google / LINE เป็นค่าสาธารณะ ส่งให้หน้าเว็บได้ */
+    @GetMapping("/providers")
+    public Providers providers() {
+        return new Providers(social.googleEnabled() ? social.googleClientId() : null,
+                social.lineEnabled() ? social.lineChannelId() : null, resetService.enabled());
+    }
+
+    @PostMapping("/google")
+    public AuthService.AuthResponse google(@Valid @RequestBody GoogleRequest request) {
+        return authService.socialLogin(socialVerifier.verifyGoogle(request.credential()));
+    }
+
+    @PostMapping("/line")
+    public AuthService.AuthResponse line(@Valid @RequestBody LineRequest request) {
+        return authService.socialLogin(socialVerifier.verifyLine(request.code(), request.redirectUri()));
+    }
+
+    /** ลืมรหัสผ่าน — ตอบเหมือนกันเสมอ ไม่บอกว่าอีเมลนี้มีบัญชีหรือไม่ */
+    @PostMapping("/forgot")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void forgot(@Valid @RequestBody ForgotRequest request) {
+        resetService.requestReset(request.email());
+    }
+
+    /** ตั้งรหัสใหม่จากลิงก์ในอีเมล แล้วเข้าสู่ระบบเลย */
+    @PostMapping("/reset")
+    public AuthService.AuthResponse reset(@Valid @RequestBody ResetRequest request) {
+        return resetService.reset(request.token(), request.password());
+    }
+
+    public record Providers(String googleClientId, String lineChannelId, boolean passwordReset) {
+    }
+
+    public record GoogleRequest(@NotBlank String credential) {
+    }
+
+    public record LineRequest(@NotBlank String code, @NotBlank String redirectUri) {
+    }
+
+    public record ForgotRequest(@NotBlank(message = "กรอกอีเมลก่อนนะ") @Email(message = "รูปแบบอีเมลไม่ถูกต้อง") String email) {
+    }
+
+    public record ResetRequest(@NotBlank String token,
+                               @NotBlank @Size(min = 6, max = 72, message = "รหัสผ่านต้องยาว 6-72 ตัวอักษร") String password) {
     }
 
     @PostMapping("/register")

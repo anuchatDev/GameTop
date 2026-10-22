@@ -17,6 +17,7 @@ import { SpyfallScreen } from './src/screens/spyfall/SpyfallScreen';
 import { OhanaScreen } from './src/screens/ohana/OhanaScreen';
 import { WerewolfScreen } from './src/screens/werewolf/WerewolfScreen';
 import { prefs } from './src/gameRegistry';
+import { readLineReturn } from './src/socialLogin';
 import { storage } from './src/storage';
 import { GameKey, games } from './src/theme';
 import { AuthSession } from './src/types';
@@ -70,12 +71,38 @@ function readJoinLink(): Route | null {
 }
 
 const joinLink = readJoinLink();
+// กลับมาจากหน้า LINE Login (?code=&state=) — พร้อมห้องที่จะเข้าที่จำไว้ก่อนออกไป
+const lineReturn = readLineReturn();
+// เปิดจากลิงก์ตั้งรหัสผ่านใหม่ในอีเมล (?reset=)
+const resetToken = readParam('reset');
+
+/** อ่านค่าจาก URL แล้วลบออก กันกดรีเฟรชแล้วใช้ซ้ำ */
+function readParam(name: string): string | null {
+  try {
+    const loc = (globalThis as any).location;
+    if (!loc?.search) return null;
+    const params = new URLSearchParams(loc.search);
+    const value = params.get(name);
+    if (!value) return null;
+    params.delete(name);
+    const rest = params.toString();
+    (globalThis as any).history?.replaceState(null, '', loc.pathname + (rest ? '?' + rest : ''));
+    return value;
+  } catch {
+    return null;
+  }
+}
 
 export default function App() {
   // จำการล็อกอินและห้องล่าสุดไว้ — รีเฟรชหน้าแล้วกลับเข้าห้องเดิมได้ทันที
-  const [auth, setAuth] = useState<AuthSession | null>(() => storage.get<AuthSession>(AUTH_KEY));
+  // (เปิดลิงก์ตั้งรหัสผ่านใหม่ = เริ่มจากหน้าเข้าสู่ระบบเสมอ)
+  const [auth, setAuth] = useState<AuthSession | null>(() => (resetToken ? null : storage.get<AuthSession>(AUTH_KEY)));
   // เปิดจากลิงก์ QR ก่อนล็อกอิน → ล็อกอินเสร็จแล้วพาเข้าห้องให้
-  const [pending, setPending] = useState<Route | null>(() => joinLink);
+  const [pending, setPending] = useState<Route | null>(() => joinLink ?? ((lineReturn?.afterLogin as Route | null) ?? null));
+  // ใช้ได้ครั้งเดียว — ล็อกอินแล้วล้างทิ้ง (ออกจากระบบทีหลังจะไม่เอา code / ลิงก์เดิมมาใช้ซ้ำ)
+  const [oneShot, setOneShot] = useState<{ lineCode?: string; resetToken?: string } | null>(() =>
+    lineReturn || resetToken ? { lineCode: lineReturn?.code, resetToken: resetToken ?? undefined } : null,
+  );
   const [route, setRoute] = useState<Route>(() => {
     if (!auth) return { name: 'home' };
     if (joinLink) return joinLink;
@@ -162,10 +189,14 @@ export default function App() {
       {!auth && route.name !== 'timer' && (
         <AuthScreen
           invite={pending && gameOfRoute(pending) && 'code' in pending ? { game: gameOfRoute(pending)!, code: pending.code } : null}
+          afterLogin={pending}
+          lineCode={oneShot?.lineCode}
+          resetToken={oneShot?.resetToken}
           onAuthenticated={(a) => {
             setAuth(a);
             setRoute(pending ?? { name: 'home' });
             setPending(null);
+            setOneShot(null);
           }}
         />
       )}
