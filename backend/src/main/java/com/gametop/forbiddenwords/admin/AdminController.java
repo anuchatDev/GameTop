@@ -21,12 +21,15 @@ import com.gametop.forbiddenwords.admin.AdminService.WordInput;
 import com.gametop.forbiddenwords.admin.AdminService.WordItem;
 import com.gametop.forbiddenwords.auth.AuthInterceptor;
 import com.gametop.forbiddenwords.auth.AuthUser;
+import com.gametop.forbiddenwords.category.CategoryController.CategoryRequest;
+import com.gametop.forbiddenwords.category.CategoryService;
+import com.gametop.forbiddenwords.category.CategoryService.CategoryInfo;
 import com.gametop.forbiddenwords.user.Role;
+import com.gametop.forbiddenwords.word.Difficulty;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 /** ระบบผู้ดูแล — AuthInterceptor อนุญาตเฉพาะผู้ใช้ที่มีสิทธิ์ ADMIN */
@@ -35,9 +38,11 @@ import jakarta.validation.constraints.Size;
 public class AdminController {
 
     private final AdminService admin;
+    private final CategoryService categories;
 
-    public AdminController(AdminService admin) {
+    public AdminController(AdminService admin, CategoryService categories) {
         this.admin = admin;
+        this.categories = categories;
     }
 
     @GetMapping("/stats")
@@ -70,8 +75,8 @@ public class AdminController {
 
     @GetMapping("/words")
     public List<WordItem> words(@RequestParam(required = false) String q,
-                                @RequestParam(required = false) String pack) {
-        return admin.listWords(q, pack);
+                                @RequestParam(required = false) Long categoryId) {
+        return admin.listWords(q, categoryId);
     }
 
     @PostMapping("/words")
@@ -91,6 +96,33 @@ public class AdminController {
         admin.deleteWord(id);
     }
 
+    // ---------- หมวดหมู่ ----------
+
+    @GetMapping("/categories")
+    public List<CategoryInfo> categories(@RequestAttribute(AuthInterceptor.USER_ATTR) AuthUser actor) {
+        return categories.listAll(actor);
+    }
+
+    /** สร้างหมวดมาตรฐานใหม่ (ทุกคนเลือกเล่นได้) */
+    @PostMapping("/categories")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CategoryInfo createCategory(@RequestAttribute(AuthInterceptor.USER_ATTR) AuthUser actor,
+                                       @Valid @RequestBody CategoryRequest request) {
+        return categories.createStandard(actor, request.name(), request.icon());
+    }
+
+    @PutMapping("/categories/{id}")
+    public CategoryInfo updateCategory(@RequestAttribute(AuthInterceptor.USER_ATTR) AuthUser actor,
+                                       @PathVariable Long id, @Valid @RequestBody CategoryRequest request) {
+        return categories.update(actor, id, request.name(), request.icon(), request.active());
+    }
+
+    @DeleteMapping("/categories/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteCategory(@RequestAttribute(AuthInterceptor.USER_ATTR) AuthUser actor, @PathVariable Long id) {
+        categories.delete(actor, id);
+    }
+
     public record BanRequest(boolean banned) {
     }
 
@@ -99,13 +131,12 @@ public class AdminController {
 
     public record WordRequest(
             @NotBlank(message = "กรุณากรอกคำ") @Size(max = 50, message = "คำยาวได้ไม่เกิน 50 ตัวอักษร") String text,
-            @NotBlank(message = "กรุณากรอกหมวด") @Size(max = 30, message = "หมวดยาวได้ไม่เกิน 30 ตัวอักษร") String category,
-            @NotBlank(message = "กรุณากรอกแพ็ก")
-            @Pattern(regexp = "^[a-z0-9-]{1,30}$", message = "ชื่อแพ็กใช้ได้เฉพาะ a-z 0-9 และ - (เช่น base, exp1)") String pack,
+            @NotNull(message = "กรุณาเลือกหมวด") Long categoryId,
+            Difficulty difficulty,
             Boolean active) {
 
         WordInput toInput() {
-            return new WordInput(text, category, pack, active);
+            return new WordInput(text, categoryId, difficulty, active);
         }
     }
 }

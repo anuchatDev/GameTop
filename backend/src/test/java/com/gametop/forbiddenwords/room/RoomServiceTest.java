@@ -26,7 +26,7 @@ import com.gametop.forbiddenwords.word.WordDeck;
 
 class RoomServiceTest {
 
-    private static final GameProperties PROPS = new GameProperties(300, 2, 6, 1.0, 0.5, 1.0, 6);
+    private static final GameProperties PROPS = new GameProperties(300, 2, 6, 1.0, 0.5, 1.0, 6, 0);
 
     private static final AuthUser A = new AuthUser(1L, "เอ", Role.PLAYER);
     private static final AuthUser B = new AuthUser(2L, "บี", Role.PLAYER);
@@ -41,7 +41,7 @@ class RoomServiceTest {
         List<WordCard> cards = IntStream.rangeClosed(1, 10)
                 .mapToObj(i -> new WordCard("t-" + i, "คำ" + i, "ทดสอบ", "test"))
                 .toList();
-        WordDeck deck = (count, exclude) -> cards.subList(0, count);
+        WordDeck deck = (count, exclude, filter) -> cards.subList(0, count);
         clock = new MutableClock(Instant.parse("2026-01-01T00:00:00Z"));
         service = new RoomService(deck, new ScoreCalculator(PROPS), PROPS, clock,
                 room -> recordedRounds.add(room.getRoundNumber()));
@@ -139,12 +139,81 @@ class RoomServiceTest {
     }
 
     @Test
+    void hostSettingsAreUsedWhenDealing() {
+        List<com.gametop.forbiddenwords.word.DeckFilter> filters = new ArrayList<>();
+        List<WordCard> cards = IntStream.rangeClosed(1, 10)
+                .mapToObj(i -> new WordCard("s-" + i, "คำ" + i, "ทดสอบ", "test"))
+                .toList();
+        RoomService svc = new RoomService((count, exclude, filter) -> {
+            filters.add(filter);
+            return cards.subList(0, count);
+        }, new ScoreCalculator(PROPS), PROPS, clock, room -> { });
+        String code = svc.createRoom(A).code();
+        svc.join(code, B);
+        List<CategoryRef> food = List.of(new CategoryRef(7L, "อาหาร", "🍜"));
+        var hard = com.gametop.forbiddenwords.word.Difficulty.HARD;
+
+        assertThatThrownBy(() -> svc.updateSettings(code, B, food, hard, null, null)).isInstanceOf(ApiException.class);
+        RoomView view = svc.updateSettings(code, A, food, hard, null, null);
+        svc.startRound(code, A);
+
+        assertThat(view.settings().categories()).extracting(CategoryRef::name).containsExactly("อาหาร");
+        assertThat(filters).hasSize(1);
+        assertThat(filters.get(0).categoryIds()).containsExactly(7L);
+        assertThat(filters.get(0).difficulty()).isEqualTo(com.gametop.forbiddenwords.word.Difficulty.HARD);
+        // เปลี่ยนหมวดระหว่างรอบไม่ได้
+        assertThatThrownBy(() -> svc.updateSettings(code, A, List.of(), null, null, null))
+                .isInstanceOf(ApiException.class);
+    }
+
+    @Test
+    void newRoomUsesDefaultsAndHostCanChangeTimeAndRounds() {
+        GameProperties defaults = new GameProperties(300, 2, 0, 1.0, 0.5, 1.0, 6, 3);
+        RoomService svc = new RoomService((count, exclude, filter) -> List.of(
+                new WordCard("1", "ก", "x", "t"), new WordCard("2", "ข", "x", "t")).subList(0, count),
+                new ScoreCalculator(defaults), defaults, clock, room -> { });
+        RoomView created = svc.createRoom(A);
+        String code = created.code();
+        svc.join(code, B);
+
+        assertThat(created.settings().roundSeconds()).isEqualTo(300);
+        assertThat(created.settings().totalRounds()).isEqualTo(3);
+
+        // ค่าที่ไม่ส่งมา (null) ใช้ค่าเดิม, ค่าผิดช่วงถูกปฏิเสธ
+        RoomView changed = svc.updateSettings(code, A, List.of(), null, 120, 2);
+        assertThat(changed.settings().roundSeconds()).isEqualTo(120);
+        assertThat(svc.updateSettings(code, A, List.of(), null, null, null).settings().totalRounds()).isEqualTo(2);
+        assertThatThrownBy(() -> svc.updateSettings(code, A, List.of(), null, 10, 2)).isInstanceOf(ApiException.class);
+        assertThatThrownBy(() -> svc.updateSettings(code, A, List.of(), null, 120, 99)).isInstanceOf(ApiException.class);
+
+        // ใช้เวลาที่ตั้งไว้ และจบเกมเมื่อครบ 2 รอบ
+        assertThat(svc.startRound(code, A).remainingMs()).isEqualTo(120_000);
+        svc.endRound(code, A);
+        svc.endRound(code, A);
+        svc.startRound(code, A);
+        svc.endRound(code, A);
+        RoomView last = svc.endRound(code, A);
+        assertThat(last.gameOver()).isTrue();
+        assertThat(player(last, B).totalScore()).isEqualTo(1.0);
+        assertThatThrownBy(() -> svc.startRound(code, A)).isInstanceOf(ApiException.class);
+
+        // เริ่มเกมใหม่: ล้างคะแนนในห้องและนับรอบใหม่
+        assertThatThrownBy(() -> svc.restartGame(code, B)).isInstanceOf(ApiException.class);
+        RoomView restarted = svc.restartGame(code, A);
+        assertThat(restarted.status()).isEqualTo(RoomStatus.LOBBY);
+        assertThat(restarted.roundNumber()).isZero();
+        assertThat(restarted.gameOver()).isFalse();
+        assertThat(player(restarted, B).totalScore()).isZero();
+        assertThat(restarted.settings().roundSeconds()).isEqualTo(120);
+    }
+
+    @Test
     void zeroMaxPlayersMeansUnlimited() {
-        GameProperties unlimited = new GameProperties(300, 2, 0, 1.0, 0.5, 1.0, 6);
+        GameProperties unlimited = new GameProperties(300, 2, 0, 1.0, 0.5, 1.0, 6, 0);
         List<WordCard> cards = IntStream.rangeClosed(1, 20)
                 .mapToObj(i -> new WordCard("u-" + i, "คำ" + i, "ทดสอบ", "test"))
                 .toList();
-        RoomService open = new RoomService((count, exclude) -> cards.subList(0, count), new ScoreCalculator(unlimited),
+        RoomService open = new RoomService((count, exclude, filter) -> cards.subList(0, count), new ScoreCalculator(unlimited),
                 unlimited, clock, room -> { });
 
         String code = open.createRoom(A).code();

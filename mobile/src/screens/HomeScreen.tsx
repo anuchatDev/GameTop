@@ -10,6 +10,8 @@ export function HomeScreen({
   auth,
   onEnterRoom,
   onOpenProfile,
+  onOpenRandom,
+  onOpenCategories,
   onOpenAdmin,
   onOpenTimer,
   onLogout,
@@ -17,6 +19,8 @@ export function HomeScreen({
   auth: AuthSession;
   onEnterRoom: (code: string) => void;
   onOpenProfile: () => void;
+  onOpenRandom: () => void;
+  onOpenCategories: () => void;
   onOpenAdmin: () => void;
   onOpenTimer: () => void;
   onLogout: () => void;
@@ -72,6 +76,10 @@ export function HomeScreen({
 
       <ErrorText message={error} />
 
+      <View style={styles.row}>
+        <Button title="🎲 สุ่มคำ" variant="secondary" onPress={onOpenRandom} style={{ flex: 1 }} />
+        <Button title="📚 หมวดของฉัน" variant="secondary" onPress={onOpenCategories} style={{ flex: 1 }} />
+      </View>
       <Button title="🏆 โปรไฟล์ & คะแนนสะสม" variant="success" onPress={onOpenProfile} />
       {auth.user.role === 'ADMIN' && <Button title="🛠️ ระบบผู้ดูแล (Admin)" variant="secondary" onPress={onOpenAdmin} />}
       <Button title="⏳ ใช้เป็นนาฬิกาจับเวลาอย่างเดียว" variant="ghost" onPress={onOpenTimer} />

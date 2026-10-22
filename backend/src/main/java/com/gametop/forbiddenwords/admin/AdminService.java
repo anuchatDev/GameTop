@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.gametop.forbiddenwords.auth.AuthUser;
+import com.gametop.forbiddenwords.category.Category;
+import com.gametop.forbiddenwords.category.CategoryRepository;
+import com.gametop.forbiddenwords.category.CategoryService;
 import com.gametop.forbiddenwords.common.ApiException;
 import com.gametop.forbiddenwords.config.GameProperties;
 import com.gametop.forbiddenwords.room.RoomService;
@@ -16,6 +19,7 @@ import com.gametop.forbiddenwords.user.Role;
 import com.gametop.forbiddenwords.user.RoundResultRepository;
 import com.gametop.forbiddenwords.user.UserAccount;
 import com.gametop.forbiddenwords.user.UserRepository;
+import com.gametop.forbiddenwords.word.Difficulty;
 import com.gametop.forbiddenwords.word.Word;
 import com.gametop.forbiddenwords.word.WordRepository;
 
@@ -25,21 +29,27 @@ public class AdminService {
     private final UserRepository users;
     private final RoundResultRepository results;
     private final WordRepository words;
+    private final CategoryRepository categoryRepo;
+    private final CategoryService categories;
     private final RoomService rooms;
     private final GameProperties gameProps;
 
-    public AdminService(UserRepository users, RoundResultRepository results, WordRepository words, RoomService rooms,
+    public AdminService(UserRepository users, RoundResultRepository results, WordRepository words,
+                        CategoryRepository categoryRepo, CategoryService categories, RoomService rooms,
                         GameProperties gameProps) {
         this.users = users;
         this.results = results;
         this.words = words;
+        this.categoryRepo = categoryRepo;
+        this.categories = categories;
         this.rooms = rooms;
         this.gameProps = gameProps;
     }
 
     @Transactional(readOnly = true)
     public Stats stats() {
-        return new Stats(users.count(), words.count(), words.countByActiveTrue(), rooms.activeRoomCount());
+        return new Stats(users.count(), words.count(), words.countByActiveTrue(), categoryRepo.count(),
+                rooms.activeRoomCount());
     }
 
     // ---------- ผู้ใช้ ----------
@@ -85,6 +95,7 @@ public class AdminService {
             throw ApiException.badRequest("ลบบัญชีตัวเองไม่ได้");
         }
         results.deleteByUserId(user.getId());
+        categories.deleteAllOwnedBy(user.getId());
         users.delete(user);
     }
 
@@ -94,11 +105,12 @@ public class AdminService {
 
     // ---------- คลังคำ ----------
 
+    /** categoryId = null คือทุกหมวด */
     @Transactional(readOnly = true)
-    public List<WordItem> listWords(String query, String pack) {
+    public List<WordItem> listWords(String query, Long categoryId) {
         String q = normalize(query);
-        return words.findAllByOrderByPackAscCategoryAscIdAsc().stream()
-                .filter(w -> pack == null || pack.isBlank() || w.getPack().equals(pack))
+        return words.findAllByOrderByCategoryIdAscIdAsc().stream()
+                .filter(w -> categoryId == null || categoryId.equals(w.getCategoryId()))
                 .filter(w -> q.isEmpty() || w.getText().toLowerCase(Locale.ROOT).contains(q)
                         || w.getCategory().toLowerCase(Locale.ROOT).contains(q))
                 .map(WordItem::of)
@@ -107,22 +119,25 @@ public class AdminService {
 
     @Transactional
     public WordItem createWord(WordInput input) {
+        Category category = categories.requireCategory(input.categoryId());
         String text = input.text().trim();
-        requireUniqueText(text, null);
-        Word word = words.save(new Word(text, input.category().trim(), input.pack().trim(), input.activeOrDefault()));
+        requireUniqueText(category.getId(), text, null);
+        Word word = words.save(new Word(text, category.getId(), category.getName(), input.difficultyOrDefault(),
+                category.isStandard() ? "admin" : "custom", input.activeOrDefault()));
         return WordItem.of(word);
     }
 
     @Transactional
     public WordItem updateWord(Long id, WordInput input) {
         Word word = requireWord(id);
+        Category category = categories.requireCategory(input.categoryId());
         String text = input.text().trim();
-        requireUniqueText(text, id);
+        requireUniqueText(category.getId(), text, id);
         boolean active = input.activeOrDefault();
         if (word.isActive() && !active) {
             requireEnoughActiveWordsAfterRemovingOne();
         }
-        word.update(text, input.category().trim(), input.pack().trim(), active);
+        word.update(text, category.getId(), category.getName(), input.difficultyOrDefault(), active);
         return WordItem.of(word);
     }
 
@@ -135,15 +150,14 @@ public class AdminService {
         words.delete(word);
     }
 
-    private void requireUniqueText(String text, Long selfId) {
-        words.findFirstByTextIgnoreCase(text)
+    private void requireUniqueText(Long categoryId, String text, Long selfId) {
+        words.findFirstByCategoryIdAndTextIgnoreCase(categoryId, text)
                 .filter(existing -> !existing.getId().equals(selfId))
                 .ifPresent(existing -> {
-                    throw ApiException.conflict("มีคำว่า \"" + text + "\" อยู่แล้ว");
+                    throw ApiException.conflict("มีคำว่า \"" + text + "\" ในหมวดนี้แล้ว");
                 });
     }
 
-    /** ต้องเหลือคำที่เปิดใช้งานพอสำหรับห้องที่มีผู้เล่นเต็ม ไม่อย่างนั้นเริ่มเกมไม่ได้ */
     private void requireEnoughActiveWordsAfterRemovingOne() {
         if (words.countByActiveTrue() - 1 < gameProps.minActiveWords()) {
             throw ApiException.conflict("ต้องเหลือคำที่เปิดใช้งานอย่างน้อย " + gameProps.minActiveWords() + " คำ");
@@ -160,7 +174,7 @@ public class AdminService {
 
     // ---------- DTO ----------
 
-    public record Stats(long users, long words, long activeWords, int activeRooms) {
+    public record Stats(long users, long words, long activeWords, long categories, int activeRooms) {
     }
 
     public record UserSummary(Long id, String username, String email, Role role, boolean banned,
@@ -172,17 +186,23 @@ public class AdminService {
         }
     }
 
-    public record WordItem(Long id, String text, String category, String pack, boolean active) {
+    public record WordItem(Long id, String text, Long categoryId, String categoryName, Difficulty difficulty,
+                           String pack, boolean active) {
 
         static WordItem of(Word w) {
-            return new WordItem(w.getId(), w.getText(), w.getCategory(), w.getPack(), w.isActive());
+            return new WordItem(w.getId(), w.getText(), w.getCategoryId(), w.getCategory(), w.getDifficulty(),
+                    w.getPack(), w.isActive());
         }
     }
 
-    public record WordInput(String text, String category, String pack, Boolean active) {
+    public record WordInput(String text, Long categoryId, Difficulty difficulty, Boolean active) {
 
         boolean activeOrDefault() {
             return active == null || active;
+        }
+
+        Difficulty difficultyOrDefault() {
+            return difficulty == null ? Difficulty.MEDIUM : difficulty;
         }
     }
 }

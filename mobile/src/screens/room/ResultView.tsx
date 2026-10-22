@@ -5,15 +5,17 @@ import { Button, Card, Muted, Title } from '../../components/ui';
 import { colors, formatScore } from '../../theme';
 import { PlayerView } from '../../types';
 import { RoomViewProps } from '../RoomScreen';
+import { SettingsEditor } from './LobbyView';
 
-export function ResultView({ room, isHost, busy, actions, onLeave }: RoomViewProps) {
+export function ResultView(props: RoomViewProps) {
+  const { room, isHost, busy, actions, onLeave } = props;
   const nameOf = (id: string | null) => room.players.find((p) => p.id === id)?.name;
   const leaderboard = [...room.players].sort((a, b) => b.totalScore - a.totalScore);
   const winners = room.players.filter((p) => p.winner);
 
   return (
     <>
-      <Title>🏁 สรุปรอบที่ {room.roundNumber}</Title>
+      <Title>{room.gameOver ? '🏆 จบเกม!' : `🏁 สรุปรอบที่ ${room.roundNumber}`}</Title>
 
       <View style={styles.winnerBanner}>
         <Text style={styles.winnerLabel}>ผู้ชนะรอบนี้</Text>
@@ -44,10 +46,26 @@ export function ResultView({ room, isHost, busy, actions, onLeave }: RoomViewPro
         </View>
       ))}
 
-      {isHost ? (
-        <Button title="เล่นรอบต่อไป" variant="success" loading={busy} onPress={actions.start} />
+      {room.gameOver ? (
+        <>
+          <Muted style={{ textAlign: 'center' }}>
+            เล่นครบ {room.settings.totalRounds} รอบแล้ว — แชมป์คือ {leaderboard[0]?.name} 🎉
+          </Muted>
+          {isHost ? (
+            <Button title="🔄 เริ่มเกมใหม่" variant="success" loading={busy} onPress={actions.restart} />
+          ) : (
+            <Muted style={{ textAlign: 'center' }}>รอเจ้าของห้องเริ่มเกมใหม่...</Muted>
+          )}
+        </>
       ) : (
-        <Muted style={{ textAlign: 'center' }}>รอเจ้าของห้องเริ่มรอบใหม่...</Muted>
+        <>
+          {isHost && <SettingsEditor {...props} />}
+          {isHost ? (
+            <Button title="เล่นรอบต่อไป" variant="success" loading={busy} onPress={actions.start} />
+          ) : (
+            <Muted style={{ textAlign: 'center' }}>รอเจ้าของห้องเริ่มรอบใหม่...</Muted>
+          )}
+        </>
       )}
       <Button title="ออกจากห้อง" variant="ghost" onPress={onLeave} />
     </>

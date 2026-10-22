@@ -50,6 +50,17 @@ public class Player {
         this.guessCorrect = correct;
     }
 
+    void resetGame() {
+        this.totalScore = 0;
+        this.word = null;
+        this.alive = true;
+        this.eliminatedBy = null;
+        this.kills = 0;
+        this.guess = null;
+        this.guessCorrect = null;
+        this.roundScore = 0;
+    }
+
     void finishRound(double score) {
         this.roundScore = score;
         this.totalScore += score;

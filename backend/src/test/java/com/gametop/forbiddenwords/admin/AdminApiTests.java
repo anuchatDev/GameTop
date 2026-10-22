@@ -56,31 +56,50 @@ class AdminApiTests {
 
         mvc.perform(get("/api/admin/stats").header("Authorization", "Bearer " + adminToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.activeWords").value(100));
+                .andExpect(jsonPath("$.categories").value(5))
+                .andExpect(jsonPath("$.activeWords").value(1267));
         mvc.perform(get("/api/admin/users").param("q", "plain").header("Authorization", "Bearer " + adminToken))
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].username").value("plainuser"));
 
-        // เพิ่ม / แก้ / ลบ คำ
-        String word = "{\"text\":\"ทุเรียน\",\"category\":\"อาหาร\",\"pack\":\"exp1\"}";
+        // หมวดมาตรฐาน: Admin สร้างได้ ผู้เล่นทั่วไปสร้างผ่าน /api/admin ไม่ได้
+        long categoryId = body(mvc.perform(post("/api/admin/categories").header("Authorization", "Bearer " + adminToken)
+                        .contentType(MediaType.APPLICATION_JSON).content("{\"name\":\"ผลไม้\",\"icon\":\"🍉\"}"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.standard").value(true))).get("id").asLong();
+
+        // เพิ่ม / แก้ / ลบ คำ (ห้ามคำซ้ำในหมวดเดียวกัน)
+        String word = "{\"text\":\"ส้มโอ\",\"categoryId\":" + categoryId + ",\"difficulty\":\"HARD\"}";
         long wordId = body(mvc.perform(post("/api/admin/words").header("Authorization", "Bearer " + adminToken)
                         .contentType(MediaType.APPLICATION_JSON).content(word))
-                .andExpect(status().isCreated())).get("id").asLong();
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.categoryName").value("ผลไม้"))
+                .andExpect(jsonPath("$.difficulty").value("HARD"))).get("id").asLong();
         mvc.perform(post("/api/admin/words").header("Authorization", "Bearer " + adminToken)
                         .contentType(MediaType.APPLICATION_JSON).content(word))
                 .andExpect(status().isConflict());
         mvc.perform(put("/api/admin/words/" + wordId).header("Authorization", "Bearer " + adminToken)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"text\":\"มังคุด\",\"category\":\"ผลไม้\",\"pack\":\"exp1\",\"active\":false}"))
+                        .content("{\"text\":\"มังคุด\",\"categoryId\":" + categoryId + ",\"difficulty\":\"EASY\",\"active\":false}"))
                 .andExpect(jsonPath("$.text").value("มังคุด"))
+                .andExpect(jsonPath("$.difficulty").value("EASY"))
                 .andExpect(jsonPath("$.active").value(false));
-        mvc.perform(get("/api/words").param("pack", "exp1"))
-                .andExpect(jsonPath("$.length()").value(0)); // ปิดใช้งานแล้วไม่ถูกแจก
+        mvc.perform(get("/api/admin/words").param("categoryId", String.valueOf(categoryId))
+                        .header("Authorization", "Bearer " + adminToken))
+                .andExpect(jsonPath("$.length()").value(1));
         mvc.perform(post("/api/admin/words").header("Authorization", "Bearer " + adminToken)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"text\":\"x\",\"category\":\"y\",\"pack\":\"Bad Pack\"}"))
+                        .contentType(MediaType.APPLICATION_JSON).content("{\"text\":\"x\"}"))
                 .andExpect(status().isBadRequest());
         mvc.perform(delete("/api/admin/words/" + wordId).header("Authorization", "Bearer " + adminToken))
+                .andExpect(status().isNoContent());
+
+        // เปลี่ยนชื่อหมวด → ปิดใช้งาน → ลบ
+        mvc.perform(put("/api/admin/categories/" + categoryId).header("Authorization", "Bearer " + adminToken)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"name\":\"ผลไม้ไทย\",\"icon\":\"🥭\",\"active\":false}"))
+                .andExpect(jsonPath("$.name").value("ผลไม้ไทย"))
+                .andExpect(jsonPath("$.active").value(false));
+        mvc.perform(delete("/api/admin/categories/" + categoryId).header("Authorization", "Bearer " + adminToken))
                 .andExpect(status().isNoContent());
 
         // ระงับบัญชี → ใช้ token เดิมไม่ได้ และล็อกอินใหม่ไม่ได้

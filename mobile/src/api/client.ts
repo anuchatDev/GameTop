@@ -1,4 +1,18 @@
-import { AdminStats, AdminUser, AdminWord, AuthSession, Profile, Role, RoomView, WordInput } from '../types';
+import {
+  AdminStats,
+  AdminUser,
+  AdminWord,
+  AuthSession,
+  CategoryInfo,
+  CategoryWord,
+  Difficulty,
+  DrawnWord,
+  Profile,
+  Role,
+  RoomView,
+  SettingsInput,
+  WordInput,
+} from '../types';
 
 const BASE_URL = (process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:8080').replace(/\/$/, '');
 
@@ -61,6 +75,12 @@ export const api = {
 
   getRoom: (auth: AuthSession, code: string) => request<RoomView>(roomPath(code), { auth }),
 
+  updateSettings: (auth: AuthSession, code: string, settings: SettingsInput) =>
+    request<RoomView>(roomPath(code, '/settings'), { method: 'POST', auth, body: settings }),
+
+  restartGame: (auth: AuthSession, code: string) =>
+    request<RoomView>(roomPath(code, '/restart'), { method: 'POST', auth }),
+
   startRound: (auth: AuthSession, code: string) => request<RoomView>(roomPath(code, '/start'), { method: 'POST', auth }),
 
   reportKill: (auth: AuthSession, code: string, victimId: string, killerId: string | null) =>
@@ -70,6 +90,33 @@ export const api = {
     request<RoomView>(roomPath(code, '/guess'), { method: 'POST', auth, body: { guess } }),
 
   endRound: (auth: AuthSession, code: string) => request<RoomView>(roomPath(code, '/end'), { method: 'POST', auth }),
+};
+
+/** หมวดหมู่คำ: หมวดมาตรฐาน + หมวดเฉพาะกิจของผู้ใช้ */
+export const categoryApi = {
+  list: (auth: AuthSession) => request<CategoryInfo[]>('/api/categories', { auth }),
+
+  create: (auth: AuthSession, name: string, icon: string) =>
+    request<CategoryInfo>('/api/categories', { method: 'POST', auth, body: { name, icon } }),
+
+  update: (auth: AuthSession, id: number, name: string, icon: string) =>
+    request<CategoryInfo>(`/api/categories/${id}`, { method: 'PUT', auth, body: { name, icon } }),
+
+  remove: (auth: AuthSession, id: number) => request<null>(`/api/categories/${id}`, { method: 'DELETE', auth }),
+
+  words: (auth: AuthSession, id: number) => request<CategoryWord[]>(`/api/categories/${id}/words`, { auth }),
+
+  addWord: (auth: AuthSession, id: number, text: string, difficulty: Difficulty) =>
+    request<CategoryWord>(`/api/categories/${id}/words`, { method: 'POST', auth, body: { text, difficulty } }),
+
+  deleteWord: (auth: AuthSession, id: number, wordId: number) =>
+    request<null>(`/api/categories/${id}/words/${wordId}`, { method: 'DELETE', auth }),
+
+  draw: (auth: AuthSession, ids: number[], difficulty: Difficulty | null, count = 30) =>
+    request<DrawnWord[]>(
+      `/api/categories/draw${query({ ids: ids.join(','), difficulty: difficulty ?? undefined, count: String(count) })}`,
+      { auth },
+    ),
 };
 
 function query(params: Record<string, string | undefined>) {
@@ -92,8 +139,21 @@ export const adminApi = {
   deleteUser: (auth: AuthSession, id: number) =>
     request<null>(`/api/admin/users/${id}`, { method: 'DELETE', auth }),
 
-  words: (auth: AuthSession, q?: string, pack?: string) =>
-    request<AdminWord[]>(`/api/admin/words${query({ q, pack })}`, { auth }),
+  categories: (auth: AuthSession) => request<CategoryInfo[]>('/api/admin/categories', { auth }),
+
+  createCategory: (auth: AuthSession, name: string, icon: string) =>
+    request<CategoryInfo>('/api/admin/categories', { method: 'POST', auth, body: { name, icon } }),
+
+  updateCategory: (auth: AuthSession, id: number, name: string, icon: string, active: boolean) =>
+    request<CategoryInfo>(`/api/admin/categories/${id}`, { method: 'PUT', auth, body: { name, icon, active } }),
+
+  deleteCategory: (auth: AuthSession, id: number) =>
+    request<null>(`/api/admin/categories/${id}`, { method: 'DELETE', auth }),
+
+  words: (auth: AuthSession, q?: string, categoryId?: number | null) =>
+    request<AdminWord[]>(`/api/admin/words${query({ q, categoryId: categoryId ? String(categoryId) : undefined })}`, {
+      auth,
+    }),
 
   createWord: (auth: AuthSession, input: WordInput) =>
     request<AdminWord>('/api/admin/words', { method: 'POST', auth, body: input }),

@@ -1,0 +1,3754 @@
+{
+  "words": [
+    {
+      "text": "ผ้า",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ถ้วย",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ชาม",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หม้อ",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กระทะ",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "มีด",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เขียง",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ขวด",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กล่อง",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กระป๋อง",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซอง",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แปรง",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หวี",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กระดุม",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซิป",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เข็มขัด",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ถุงมือ",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ผ้าพันคอ",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เสื้อกันหนาว",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ชุดนอน",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กระโปรง",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กางเกงขาสั้น",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รองเท้าแตะ",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "นาฬิกาปลุก",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "โทรศัพท์",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คอมพิวเตอร์",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แท็บเล็ต",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เมาส์",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คีย์บอร์ด",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "จอ",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปลั๊ก",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สายไฟ",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หลอดไฟ",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลูกบอล",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ตุ๊กตา",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ของเล่น",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "จักรยาน",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รถเมล์",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เรือ",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เครื่องบิน",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รถไฟ",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "มอเตอร์ไซค์",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แท็กซี่",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดอกไม้",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ต้นไม้",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หญ้า",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ก้อนหิน",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ทราย",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลม",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ฟ้า",
+      "category": "everyday",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ผ้าปูที่นอน",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ตู้เสื้อผ้า",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โซฟา",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ฝักบัว",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ชักโครก",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อ่างล้างหน้า",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ก๊อกน้ำ",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สายยาง",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระถางต้นไม้",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "บัวรดน้ำ",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เครื่องซักผ้า",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เครื่องดูดฝุ่น",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แอร์",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กาต้มน้ำ",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เครื่องปิ้งขนมปัง",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ที่เปิดกระป๋อง",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทัพพี",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ตะหลิว",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระชอน",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ฟองน้ำ",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "น้ำยาล้างจาน",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทิชชู่",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สำลี",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "คอตตอนบัด",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ยาดม",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พลาสเตอร์",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปรอทวัดไข้",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หน้ากากอนามัย",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เจลล้างมือ",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แว่นกันแดด",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระเป๋าเป้",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระเป๋าเดินทาง",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พาวเวอร์แบงก์",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เมมโมรี่การ์ด",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กล้องถ่ายรูป",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ขาตั้งกล้อง",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เครื่องพิมพ์",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "คัตเตอร์",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กาว",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปากกาเน้นข้อความ",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไวท์บอร์ด",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แฟ้ม",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ซองจดหมาย",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แสตมป์",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระปุกออมสิน",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "จักรเย็บผ้า",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เต็นท์",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ถุงนอน",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไม้เท้า",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "รถเข็น",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ที่คีบน้ำแข็ง",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เครื่องกรองน้ำ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เครื่องทำน้ำอุ่น",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เบรกเกอร์",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ฟิวส์",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มิเตอร์ไฟ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นาฬิกาทราย",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เข็มทิศ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กล้องส่องทางไกล",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แว่นขยาย",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กล้องจุลทรรศน์",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ลูกโลก",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แผนที่",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตลับเมตร",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คีม",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ประแจ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เลื่อย",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กบไสไม้",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สิ่ว",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตะไบ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "น็อต",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สกรู",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บานพับ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กลอนประตู",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ลูกบิด",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แม่กุญแจ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โซ่",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เชือก",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "รอก",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บันไดพับ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ถังดับเพลิง",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สัญญาณกันขโมย",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กล้องวงจรปิด",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เครื่องฟอกอากาศ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมอนข้าง",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มุ้ง",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไม้ตียุง",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ยากันยุง",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แม่แรง",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ยางอะไหล่",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กระจกมองหลัง",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ที่บังแดด",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เข็มหมุด",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมึกพิมพ์",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไม้หนีบผ้า",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ราวตากผ้า",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เตาถ่าน",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เตาแก๊ส",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ถังแก๊ส",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สายพ่วงแบต",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไก่",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หมู",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เนื้อ",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กุ้ง",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปู",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หอย",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปลาหมึก",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไข่ดาว",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไข่ต้ม",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ข้าวต้ม",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ผัดผัก",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แกงจืด",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไข่พะโล้",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซุป",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สลัด",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สเต๊ก",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สปาเก็ตตี้",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ขนมจีบ",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซาลาเปา",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ติ่มซำ",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เกี๊ยว",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "โรตี",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แพนเค้ก",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "วาฟเฟิล",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "โดนัท",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คุกกี้",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เยลลี่",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "พุดดิ้ง",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "โยเกิร์ต",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ชีส",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เนย",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แยม",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "น้ำผึ้ง",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "น้ำตาล",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เกลือ",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "พริก",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กระเทียม",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หอมแดง",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "มะนาว",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แอปเปิล",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "องุ่น",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สับปะรด",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "มะละกอ",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ฝรั่ง",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สตรอว์เบอร์รี",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ชา",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "น้ำอัดลม",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "โซดา",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ข้าวกล่อง",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ขนมขบเคี้ยว",
+      "category": "food",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ข้าวผัดอเมริกัน",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ผัดผักบุ้ง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลาทอด",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลาเผา",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กุ้งเผา",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หอยทอด",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ออส่วน",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ยำมาม่า",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "คอหมูย่าง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไก่ทอดหาดใหญ่",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ข้าวคลุกกะปิ",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ข้าวไข่เจียว",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ผัดพริกแกง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ต้มแซ่บ",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แกงป่า",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แกงเหลือง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลาราดพริก",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หมูทอดกระเทียม",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไก่ผัดเม็ดมะม่วง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เปาะเปี๊ยะ",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ขนมโตเกียว",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ขนมตาล",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ข้าวโพด",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มันเผา",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กล้วยปิ้ง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทับทิมกรอบ",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ลอดช่อง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เฉาก๊วย",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "น้ำเต้าหู้",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โกโก้",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ชาเขียว",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กาแฟเย็น",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นมเย็น",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "น้ำมะนาว",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แตงโมปั่น",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สมูทตี้",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ชีสเค้ก",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "บราวนี่",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ครัวซองต์",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มาการอง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทาโก้",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ราเมง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อุด้ง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ข้าวหน้าเนื้อ",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทงคัตสึ",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กิมจิ",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ต๊อกบกกี",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "บิบิมบับ",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แซนด์วิช",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ฮอตดอก",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แกงฮังเล",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แกงขี้เหล็ก",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แกงเทโพ",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ต้มโคล้ง",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หลนปู",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "น้ำพริกอ่อง",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แกงโฮะ",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขนมจีนน้ำเงี้ยว",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ข้าวแต๋น",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขนมหม้อแกง",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขนมเปียกปูน",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขนมกล้วย",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ข้าวเกรียบปากหม้อ",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขนมจาก",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขนมสอดไส้",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทองหยอด",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เม็ดขนุน",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สังขยา",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ข้าวหลาม",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กระยาสารท",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขนมเทียน",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขนมไข่",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปลาส้ม",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แหนม",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมูยอ",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กุนเชียง",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไข่เค็ม",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไข่เยี่ยวม้า",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ผักกาดดอง",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กะปิ",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปลาร้า",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ผักชี",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตะไคร้",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ข่า",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ใบมะกรูด",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กระชาย",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขมิ้น",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "อบเชย",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โป๊ยกั๊ก",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มะขาม",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มะยม",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มะกอก",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ระกำ",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กระท้อน",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ส้มโอ",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ลิ้นจี่",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "น้อยหน่า",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขนุน",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ชมพู่",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แก้วมังกร",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ภาพยนตร์",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เพลงรัก",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เพลงฮิต",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดนตรี",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กีตาร์",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กลอง",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เปียโน",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไวโอลิน",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไมค์",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "วิดีโอ",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คลิป",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซับสไครบ์",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "นิยาย",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "มังงะ",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เว็บตูน",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ทวิตเตอร์",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แคปชัน",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "อัปโหลด",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดาวน์โหลด",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไวไฟ",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แอป",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เกมคอนโซล",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "จอยเกม",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เพลย์สเตชัน",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "นินเทนโด",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รูบิก",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หนังตลก",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หนังรัก",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หนังแอ็กชัน",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดิสนีย์",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "มาร์เวล",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ตั๋วหนัง",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ผู้ชม",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แฟนคลับ",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลายเซ็น",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "โปสเตอร์",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซิงเกิล",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "อัลบั้ม",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ท่าเต้น",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คัฟเวอร์",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซีซั่น",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ตอนจบ",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ข่าวบันเทิง",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รางวัล",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "พรมแดง",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แฮชแท็ก",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สตอรี่",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ฟิลเตอร์",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แชต",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไลก์เพจ",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สตาร์วอร์ส",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แมทริกซ์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "จูราสสิกพาร์ก",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไลออนคิง",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โฟรเซน",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทอมแอนด์เจอร์รี่",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สพันจ์บ็อบ",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สนูปี้",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หมีพูห์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ลาบูบู้",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ซูเปอร์แมน",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "วันเดอร์วูแมน",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ฮัลค์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ธอร์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กัปตันอเมริกา",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อเวนเจอร์ส",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โจ๊กเกอร์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แบล็กแพนเธอร์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เดดพูล",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ซอนิก",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แพคแมน",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เตตริส",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไมน์คราฟต์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ฟรีฟาย",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โรบล็อกซ์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พับจี",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แม่นาก",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระสือ",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ขุนแผน",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ศรีธนญชัย",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สังข์ทอง",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พระอภัยมณี",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปังปอนด์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ขายหัวเราะ",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หนูหิ่น",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เบนเท็น",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แอนนาเบลล์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ซาดาโกะ",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ชัคกี้",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เดธโน้ต",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไอ้มดแดง",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อุลตร้าแมน",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กันดั้ม",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เซเลอร์มูน",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โทโทโร่",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ดาบพิฆาตอสูร",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สปายแฟมิลี่",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทามาก็อตจิ",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เทเลทับบีส์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "บาร์บี้",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "บ็อกซ์ออฟฟิศ",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บทภาพยนตร์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สตันต์แมน",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "รีเมค",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "รีบูต",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ครอสโอเวอร์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มัลติเวิร์ส",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "พล็อตทวิสต์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คลิฟแฮงเกอร์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แฟนฟิค",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ชิปเปอร์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ติ่ง",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไบแอส",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มาสคอต",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คอนเทนต์ครีเอเตอร์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สปอนเซอร์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ยอดวิว",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เทรนด์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซับสไครเบอร์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โดเนท",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สตรีมมิ่ง",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "อีสปอร์ต",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คอมเมนต์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ดิสไลก์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "วล็อก",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไอดอลฝึกหัด",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เดบิวต์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คัมแบ็ก",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไลต์สติ๊ก",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "อังกอร์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แบ็กสเตจ",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไลน์อัป",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เฟสติวัล",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บีทบ็อกซ์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "รีมิกซ์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ลิปซิงก์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซาวด์เช็ก",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ออโต้จูน",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เฮฟวี่เมทัล",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แจ๊ส",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ร็อก",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ฮิปฮอป",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โอเปร่า",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมอลำ",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ลิเก",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โขน",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หนังตะลุง",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มิวสิคัล",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สารคดี",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซิทคอม",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ห้องนั่งเล่น",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ห้องเรียน",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ห้องประชุม",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หอพัก",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "อพาร์ตเมนต์",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "บ้านพัก",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ระเบียง",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หลังคา",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รั้ว",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สนามหญ้า",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สนามฟุตบอล",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สนามกีฬา",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านหนังสือ",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านขายยา",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านเสื้อผ้า",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านดอกไม้",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านขนม",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านก๋วยเตี๋ยว",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ฟู้ดคอร์ท",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซูเปอร์มาร์เก็ต",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ตลาดนัด",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ตลาดสด",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ป้ายรถเมล์",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รถไฟฟ้า",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ท่ารถ",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ทางม้าลาย",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไฟแดง",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สี่แยก",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ทางด่วน",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สวนสาธารณะ",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ชายหาด",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เนินเขา",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ทุ่งนา",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หมู่บ้าน",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เมือง",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ชนบท",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ต่างประเทศ",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ต่างจังหวัด",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "มหาวิทยาลัย",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "อนุบาล",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สถานีตำรวจ",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านเกม",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านนวด",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "โรงยิม",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สนามบาส",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านคาราโอเกะ",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านหมูกระทะ",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้านทอง",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ห้องแต่งตัว",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลานกว้าง",
+      "category": "places",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เชียงราย",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "น่าน",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปาย",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กาญจนบุรี",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ขอนแก่น",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อุดรธานี",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โคราช",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หาดใหญ่",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สงขลา",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ระยอง",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เกาะช้าง",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เกาะเสม็ด",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เกาะพีพี",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เกาะล้าน",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "บางแสน",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ชะอำ",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ประจวบคีรีขันธ์",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สุโขทัย",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ลพบุรี",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อัมพวา",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "วัดพระแก้ว",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "วัดอรุณ",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พระบรมมหาราชวัง",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เอเชียทีค",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไอคอนสยาม",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ถนนข้าวสาร",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สนามหลวง",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อนุสาวรีย์ชัย",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สิงคโปร์",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ฮ่องกง",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไต้หวัน",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "จีน",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อเมริกา",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อังกฤษ",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ฝรั่งเศส",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อิตาลี",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ออสเตรเลีย",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ดูไบ",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "บาหลี",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เวียดนาม",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ลาว",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กัมพูชา",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พม่า",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อินเดีย",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โตเกียว",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โซล",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นิวยอร์ก",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ฮอกไกโด",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ภูกระดึง",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โอซาก้า",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อเมซอน",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซาฮารา",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หิมาลัย",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เอเวอเรสต์",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แอนตาร์กติกา",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไซบีเรีย",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กรีนแลนด์",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไอซ์แลนด์",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "อียิปต์",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กรุงโรม",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โคลอสเซียม",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เทพีเสรีภาพ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บิ๊กเบน",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทัชมาฮาล",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นครวัด",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บุโรพุทโธ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มาชูปิกชู",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สโตนเฮนจ์",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หอเอนปิซา",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซิดนีย์โอเปร่าเฮาส์",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ภูเขาไฟฟูจิ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แกรนด์แคนยอน",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "น้ำตกไนแองการา",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทะเลเดดซี",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แม่น้ำโขง",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แม่น้ำเจ้าพระยา",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ดอยอินทนนท์",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สามเหลี่ยมทองคำ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สถานีอวกาศ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ดาวอังคาร",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หลุมดำ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ห้องทดลอง",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ห้องผ่าตัด",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ห้องฉุกเฉิน",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ห้องใต้ดิน",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ห้องใต้หลังคา",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หอคอย",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปราสาท",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "พระราชวัง",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ป้อมปราการ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คูเมือง",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สนามรบ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เขาวงกต",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เกาะร้าง",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บ่อน้ำพุร้อน",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทุ่งทานตะวัน",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นาขั้นบันได",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สวนพฤกษศาสตร์",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทะเลสาบสงขลา",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แม่น้ำไนล์",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "พ่อค้า",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนขายของ",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "พี่ชาย",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "พี่สาว",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "น้องชาย",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "น้องสาว",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลูกชาย",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลูกสาว",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ญาติ",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ครอบครัว",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แฟนเก่า",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เพื่อนสนิท",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เพื่อนร่วมงาน",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รุ่นพี่",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รุ่นน้อง",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ครูใหญ่",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "นักศึกษา",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เด็กผู้ชาย",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เด็กผู้หญิง",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ผู้ชาย",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ผู้หญิง",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "วัยรุ่น",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนแก่",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เจ้าของ",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนรวย",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนจน",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนดัง",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนแปลกหน้า",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เจ้าบ่าว",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เจ้าสาว",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เพื่อนเจ้าสาว",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "พ่อครัว",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แม่บ้าน",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนสวน",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนส่งของ",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนเก็บขยะ",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "พระ",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เณร",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ชาวต่างชาติ",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "นักท่องเที่ยว",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนไข้",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ผู้โดยสาร",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนขับแท็กซี่",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ผู้จัดการ",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "พนักงาน",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เลขา",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เด็กเสิร์ฟ",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "บาริสต้า",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แม่ค้าส้มตำ",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คนเดินถนน",
+      "category": "people",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ช่างไฟฟ้า",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ช่างประปา",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ช่างไม้",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ช่างทาสี",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ช่างเสริมสวย",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ช่างแต่งหน้า",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นางแบบ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นายแบบ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ดีไซเนอร์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักบัญชี",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักการตลาด",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เซลส์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นายหน้า",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักธุรกิจ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เจ้าของร้าน",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ซีอีโอ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ฟรีแลนซ์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ติวเตอร์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อาจารย์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ศาสตราจารย์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักวิจัย",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ผู้ประกาศข่าว",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักพากย์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักดนตรี",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มือกลอง",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มือกีตาร์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักว่ายน้ำ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักวิ่ง",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กรรมการ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โค้ช",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ผู้รักษาประตู",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ชาวประมง",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เกษตรกร",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "คาวบอย",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทหารเรือ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทหารอากาศ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ผู้ใหญ่บ้าน",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กำนัน",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นายอำเภอ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ผู้ว่าราชการ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักการเมือง",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "รัฐมนตรี",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พระราชา",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ราชินี",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เจ้าชาย",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อัศวิน",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักเทนนิส",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักแบดมินตัน",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แร็ปเปอร์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สตรีมเมอร์เกม",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักธรณีวิทยา",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักชีววิทยา",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักเคมี",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักฟิสิกส์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักคณิตศาสตร์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักประวัติศาสตร์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักปรัชญา",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักพฤกษศาสตร์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักอุตุนิยมวิทยา",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ศัลยแพทย์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "จิตแพทย์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แพทย์นิติเวช",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักกายภาพบำบัด",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โภชนากร",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ฤๅษี",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมอดู",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมอผี",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักต้มตุ๋น",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มิจฉาชีพ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แฮกเกอร์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สายลับ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บอดี้การ์ด",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "จอมโจร",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หัวขโมย",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักโทษ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ผู้คุม",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "อัยการ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักสังคมสงเคราะห์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ล่าม",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "วาทยกร",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักประพันธ์เพลง",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คนเชิดหุ่น",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตัวตลก",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักกายกรรม",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไวกิ้ง",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "จักรพรรดิ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "องครักษ์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แม่ทัพ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แม่มด",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ยักษ์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นางฟ้า",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เทวดา",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มนุษย์ต่างดาว",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แวมไพร์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มนุษย์หมาป่า",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซอมบี้",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ดาร์วิน",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กาลิเลโอ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โมสาร์ท",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บีโธเฟน",
+      "category": "people",
+      "difficulty": "HARD"
+    }
+  ]
+}

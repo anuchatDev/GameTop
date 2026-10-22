@@ -8,8 +8,8 @@ import java.util.List;
 public interface WordDeck {
 
     /**
-     * สุ่มการ์ดไม่ซ้ำกัน {@code count} ใบ โดยเลี่ยงคำที่เคยใช้แล้วในห้อง
-     * ถ้าคำที่ยังไม่ใช้เหลือไม่พอ จะสุ่มจากทั้งคลังแทน
+     * สุ่มการ์ดไม่ซ้ำกัน {@code count} ใบจากหมวด/ระดับที่กำหนด โดยเลี่ยงคำที่เคยใช้แล้วในห้อง
+     * ถ้าคำที่ยังไม่ใช้เหลือไม่พอ จะสุ่มจากคำทั้งหมดที่ตรงเงื่อนไขแทน
      */
-    List<WordCard> draw(int count, Collection<String> excludeIds);
+    List<WordCard> draw(int count, Collection<String> excludeIds, DeckFilter filter);
 }

@@ -4,8 +4,10 @@ import React, { useEffect, useState } from 'react';
 import { api, setUnauthorizedHandler } from './src/api/client';
 import { AdminScreen } from './src/screens/AdminScreen';
 import { AuthScreen } from './src/screens/AuthScreen';
+import { MyCategoriesScreen } from './src/screens/MyCategoriesScreen';
 import { HomeScreen } from './src/screens/HomeScreen';
 import { ProfileScreen } from './src/screens/ProfileScreen';
+import { RandomWordScreen } from './src/screens/RandomWordScreen';
 import { RoomScreen } from './src/screens/RoomScreen';
 import { TimerScreen } from './src/screens/TimerScreen';
 import { storage } from './src/storage';
@@ -16,6 +18,8 @@ type Route =
   | { name: 'room'; code: string }
   | { name: 'profile' }
   | { name: 'admin' }
+  | { name: 'random' }
+  | { name: 'categories' }
   | { name: 'timer' };
 
 const AUTH_KEY = 'fw.auth';
@@ -85,6 +89,8 @@ export default function App() {
           onEnterRoom={(code) => setRoute({ name: 'room', code })}
           onOpenProfile={() => setRoute({ name: 'profile' })}
           onOpenAdmin={() => setRoute({ name: 'admin' })}
+          onOpenRandom={() => setRoute({ name: 'random' })}
+          onOpenCategories={() => setRoute({ name: 'categories' })}
           onOpenTimer={() => setRoute({ name: 'timer' })}
           onLogout={logout}
         />
@@ -92,6 +98,8 @@ export default function App() {
       {auth && route.name === 'room' && <RoomScreen auth={auth} code={route.code} onLeave={goHome} />}
       {auth && route.name === 'profile' && <ProfileScreen auth={auth} onBack={goHome} />}
       {auth && route.name === 'admin' && <AdminScreen auth={auth} onBack={goHome} />}
+      {auth && route.name === 'random' && <RandomWordScreen auth={auth} onBack={goHome} />}
+      {auth && route.name === 'categories' && <MyCategoriesScreen auth={auth} onBack={goHome} />}
       {route.name === 'timer' && <TimerScreen onBack={goHome} />}
     </>
   );

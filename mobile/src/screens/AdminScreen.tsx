@@ -4,10 +4,20 @@ import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-nati
 import { adminApi } from '../api/client';
 import { Button, Card, ErrorText, Input, Muted, Screen, Title } from '../components/ui';
 import { confirmAction } from '../storage';
-import { colors, formatScore } from '../theme';
-import { AdminStats, AdminUser, AdminWord, AuthSession, WordInput } from '../types';
+import { CategoryPicker, DifficultyPicker, wordCount } from '../components/CategoryPicker';
+import { categoryIcons, colors, difficultyInfo, formatScore } from '../theme';
+import { AdminStats, AdminUser, AdminWord, AuthSession, CategoryInfo, Difficulty, WordInput } from '../types';
 
-type Tab = 'users' | 'words';
+type Tab = 'users' | 'words' | 'categories';
+
+interface WordForm {
+  text: string;
+  categoryId: number | null;
+  difficulty: Difficulty;
+  active: boolean;
+}
+
+const EMPTY_FORM: WordForm = { text: '', categoryId: null, difficulty: 'MEDIUM', active: true };
 
 export function AdminScreen({ auth, onBack }: { auth: AuthSession; onBack: () => void }) {
   const [tab, setTab] = useState<Tab>('users');
@@ -30,6 +40,7 @@ export function AdminScreen({ auth, onBack }: { auth: AuthSession; onBack: () =>
         <View style={styles.stats}>
           <Stat label="ผู้ใช้" value={stats.users} color={colors.secondary} />
           <Stat label="คำที่เปิดใช้" value={`${stats.activeWords}/${stats.words}`} color={colors.primary} />
+          <Stat label="หมวด" value={stats.categories} color={colors.accent} />
           <Stat label="ห้องที่เปิดอยู่" value={stats.activeRooms} color={colors.success} />
         </View>
       )}
@@ -37,9 +48,12 @@ export function AdminScreen({ auth, onBack }: { auth: AuthSession; onBack: () =>
       <View style={styles.tabs}>
         <TabButton label="👥 ผู้ใช้" active={tab === 'users'} onPress={() => setTab('users')} />
         <TabButton label="📝 คลังคำ" active={tab === 'words'} onPress={() => setTab('words')} />
+        <TabButton label="🗂️ หมวด" active={tab === 'categories'} onPress={() => setTab('categories')} />
       </View>
 
-      {tab === 'users' ? <UsersTab auth={auth} onChanged={refreshStats} /> : <WordsTab auth={auth} onChanged={refreshStats} />}
+      {tab === 'users' && <UsersTab auth={auth} onChanged={refreshStats} />}
+      {tab === 'words' && <WordsTab auth={auth} onChanged={refreshStats} />}
+      {tab === 'categories' && <CategoriesTab auth={auth} onChanged={refreshStats} />}
     </Screen>
   );
 }
@@ -187,20 +201,24 @@ function UsersTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
 
 // ---------------- คลังคำ ----------------
 
-const EMPTY_FORM: WordInput = { text: '', category: '', pack: 'base', active: true };
-
 function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => void }) {
+  const [categories, setCategories] = useState<CategoryInfo[]>([]);
+  const [filterId, setFilterId] = useState<number | null>(null);
   const [q, setQ] = useState('');
   const [words, setWords] = useState<AdminWord[] | null>(null);
   const [error, setError] = useState<string | null>(null);
-  const [form, setForm] = useState<WordInput>(EMPTY_FORM);
+  const [form, setForm] = useState<WordForm>(EMPTY_FORM);
   const [editingId, setEditingId] = useState<number | null>(null);
   const [saving, setSaving] = useState(false);
 
+  useEffect(() => {
+    adminApi.categories(auth).then(setCategories).catch((e: Error) => setError(e.message));
+  }, [auth]);
+
   const load = useCallback(
-    (query: string) => {
+    (query: string, categoryId: number | null) => {
       adminApi
-        .words(auth, query)
+        .words(auth, query, categoryId)
         .then((list) => {
           setWords(list);
           setError(null);
@@ -210,16 +228,17 @@ function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
     [auth],
   );
 
-  useEffect(() => load(''), [load]);
+  // เปลี่ยนตัวกรองหมวด → โหลดใหม่ (คำค้นจะใช้ตอนกดค้นหา)
+  useEffect(() => load(q, filterId), [load, filterId]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function resetForm() {
-    setForm(EMPTY_FORM);
+    setForm({ ...EMPTY_FORM, categoryId: filterId });
     setEditingId(null);
   }
 
   function startEdit(w: AdminWord) {
     setEditingId(w.id);
-    setForm({ text: w.text, category: w.category, pack: w.pack, active: w.active });
+    setForm({ text: w.text, categoryId: w.categoryId, difficulty: w.difficulty, active: w.active });
   }
 
   async function run(action: () => Promise<unknown>) {
@@ -227,7 +246,7 @@ function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
     try {
       await action();
       setError(null);
-      load(q);
+      load(q, filterId);
       onChanged();
       return true;
     } catch (e) {
@@ -239,7 +258,8 @@ function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
   }
 
   async function save() {
-    const input = { ...form, text: form.text.trim(), category: form.category.trim(), pack: form.pack.trim() };
+    if (form.categoryId === null) return;
+    const input: WordInput = { ...form, text: form.text.trim(), categoryId: form.categoryId };
     const ok = await run(() =>
       editingId === null ? adminApi.createWord(auth, input) : adminApi.updateWord(auth, editingId, input),
     );
@@ -253,32 +273,26 @@ function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
     }
   }
 
-  const packs = Array.from(new Set(words?.map((w) => w.pack) ?? [])).sort();
-  const canSave = form.text.trim() && form.category.trim() && form.pack.trim();
+  const iconOf = (id: number) => categories.find((c) => c.id === id)?.icon ?? '';
+  const canSave = form.text.trim() && form.categoryId !== null;
 
   return (
     <>
       <Card style={{ gap: 10 }}>
         <Text style={styles.itemTitle}>{editingId === null ? '➕ เพิ่มคำใหม่' : '✏️ แก้ไขคำ'}</Text>
         <Input placeholder="คำ เช่น ทุเรียน" value={form.text} onChangeText={(text) => setForm({ ...form, text })} maxLength={50} />
-        <View style={styles.row}>
-          <Input
-            placeholder="หมวด เช่น อาหาร"
-            value={form.category}
-            onChangeText={(category) => setForm({ ...form, category })}
-            maxLength={30}
-            style={{ flex: 1 }}
-          />
-          <Input
-            placeholder="แพ็ก เช่น exp1"
-            value={form.pack}
-            onChangeText={(pack) => setForm({ ...form, pack: pack.toLowerCase() })}
-            autoCapitalize="none"
-            maxLength={30}
-            style={{ flex: 1 }}
-          />
-        </View>
-        <Muted style={{ fontSize: 13 }}>แพ็กที่มีอยู่: {packs.join(', ') || '-'} (พิมพ์ชื่อใหม่เพื่อสร้างแพ็กเสริม)</Muted>
+        <Muted style={{ fontSize: 13 }}>หมวด</Muted>
+        <CategoryPicker
+          categories={categories}
+          selected={form.categoryId === null ? [] : [form.categoryId]}
+          onToggle={(id) => setForm({ ...form, categoryId: id })}
+        />
+        <Muted style={{ fontSize: 13 }}>ระดับความยาก</Muted>
+        <DifficultyPicker
+          value={form.difficulty}
+          onChange={(d) => d && setForm({ ...form, difficulty: d })}
+          allowAll={false}
+        />
         <Pressable onPress={() => setForm({ ...form, active: !form.active })} style={styles.checkbox}>
           <Text style={styles.checkboxText}>{form.active ? '☑️' : '⬜'} เปิดใช้งาน (สุ่มแจกในเกม)</Text>
         </Pressable>
@@ -295,15 +309,22 @@ function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
         </View>
       </Card>
 
+      <Text style={styles.itemTitle}>กรองตามหมวด</Text>
+      <CategoryPicker
+        categories={categories}
+        selected={filterId === null ? [] : [filterId]}
+        onToggle={(id) => setFilterId(filterId === id ? null : id)}
+        onSelectAll={() => setFilterId(null)}
+      />
       <View style={styles.row}>
         <Input
-          placeholder="ค้นหาคำ / หมวด"
+          placeholder="ค้นหาคำ"
           value={q}
           onChangeText={setQ}
-          onSubmitEditing={() => load(q)}
+          onSubmitEditing={() => load(q, filterId)}
           style={{ flex: 1 }}
         />
-        <Button title="ค้นหา" variant="secondary" onPress={() => load(q)} />
+        <Button title="ค้นหา" variant="secondary" onPress={() => load(q, filterId)} />
       </View>
       <ErrorText message={error} />
       {!words && !error && <ActivityIndicator color={colors.primary} />}
@@ -314,7 +335,8 @@ function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
           <View style={{ flex: 1 }}>
             <Text style={styles.wordText}>{w.text}</Text>
             <Muted style={{ fontSize: 13 }}>
-              {w.category} · {w.pack}
+              {iconOf(w.categoryId)} {w.categoryName} · {difficultyInfo[w.difficulty].emoji}{' '}
+              {difficultyInfo[w.difficulty].label}
               {w.active ? '' : ' · ปิดใช้งาน'}
             </Muted>
           </View>
@@ -322,7 +344,16 @@ function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
             <Text style={styles.iconText}>✏️</Text>
           </Pressable>
           <Pressable
-            onPress={() => run(() => adminApi.updateWord(auth, w.id, { ...w, active: !w.active }))}
+            onPress={() =>
+              run(() =>
+                adminApi.updateWord(auth, w.id, {
+                  text: w.text,
+                  categoryId: w.categoryId,
+                  difficulty: w.difficulty,
+                  active: !w.active,
+                }),
+              )
+            }
             style={styles.iconButton}
           >
             <Text style={styles.iconText}>{w.active ? '🙈' : '👁️'}</Text>
@@ -333,6 +364,161 @@ function WordsTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => voi
         </View>
       ))}
     </>
+  );
+}
+
+// ---------------- หมวดหมู่ ----------------
+
+function CategoriesTab({ auth, onChanged }: { auth: AuthSession; onChanged: () => void }) {
+  const [list, setList] = useState<CategoryInfo[] | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [name, setName] = useState('');
+  const [icon, setIcon] = useState<string>(categoryIcons[0]);
+  const [editing, setEditing] = useState<CategoryInfo | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  const load = useCallback(() => {
+    adminApi
+      .categories(auth)
+      .then((l) => {
+        setList(l);
+        setError(null);
+      })
+      .catch((e: Error) => setError(e.message));
+  }, [auth]);
+
+  useEffect(load, [load]);
+
+  async function run(action: () => Promise<unknown>) {
+    setBusy(true);
+    try {
+      await action();
+      load();
+      onChanged();
+      return true;
+    } catch (e) {
+      setError((e as Error).message);
+      return false;
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function save() {
+    const ok = await run(() =>
+      editing
+        ? adminApi.updateCategory(auth, editing.id, name.trim(), icon, editing.active)
+        : adminApi.createCategory(auth, name.trim(), icon),
+    );
+    if (ok) cancelEdit();
+  }
+
+  function startEdit(c: CategoryInfo) {
+    setEditing(c);
+    setName(c.name);
+    setIcon(c.icon);
+  }
+
+  function cancelEdit() {
+    setEditing(null);
+    setName('');
+    setIcon(categoryIcons[0]);
+  }
+
+  async function remove(c: CategoryInfo) {
+    if (!(await confirmAction(`ลบหมวด "${c.name}" พร้อมคำ ${wordCount(c, null)} คำในหมวด? (ย้อนกลับไม่ได้)`))) return;
+    await run(() => adminApi.deleteCategory(auth, c.id));
+  }
+
+  const standard = list?.filter((c) => c.standard) ?? [];
+  const custom = list?.filter((c) => !c.standard) ?? [];
+  const iconChoices = editing && !categoryIcons.includes(editing.icon) ? [editing.icon, ...categoryIcons] : categoryIcons;
+
+  const row = (c: CategoryInfo) => (
+    <CategoryRow
+      key={c.id}
+      c={c}
+      busy={busy}
+      onEdit={() => startEdit(c)}
+      onToggle={() => run(() => adminApi.updateCategory(auth, c.id, c.name, c.icon, !c.active))}
+      onDelete={() => remove(c)}
+    />
+  );
+
+  return (
+    <>
+      <Card style={{ gap: 10 }}>
+        <Text style={styles.itemTitle}>{editing ? `✏️ แก้ไขหมวด "${editing.name}"` : '➕ สร้างหมวดมาตรฐานใหม่'}</Text>
+        <Input placeholder="ชื่อหมวด เช่น กีฬา" value={name} onChangeText={setName} maxLength={30} />
+        <View style={[styles.row, { flexWrap: 'wrap' }]}>
+          {iconChoices.map((i) => (
+            <Pressable key={i} onPress={() => setIcon(i)} style={[styles.iconChoice, icon === i && styles.iconSelected]}>
+              <Text style={{ fontSize: 22 }}>{i}</Text>
+            </Pressable>
+          ))}
+        </View>
+        <View style={styles.row}>
+          <Button
+            title={editing ? 'บันทึก' : 'สร้างหมวด'}
+            variant="success"
+            loading={busy}
+            disabled={!name.trim()}
+            onPress={save}
+            style={{ flex: 1 }}
+          />
+          {editing && <Button title="ยกเลิก" variant="ghost" onPress={cancelEdit} />}
+        </View>
+        <Muted style={{ fontSize: 13 }}>หมวดมาตรฐานทุกคนเลือกเล่นได้ — เพิ่มคำเข้าหมวดได้ที่แท็บ "คลังคำ"</Muted>
+      </Card>
+
+      <ErrorText message={error} />
+      {!list && !error && <ActivityIndicator color={colors.primary} />}
+
+      {list && <Text style={styles.itemTitle}>หมวดมาตรฐาน ({standard.length})</Text>}
+      {standard.map(row)}
+
+      {list && <Text style={styles.itemTitle}>หมวดเฉพาะกิจของผู้ใช้ ({custom.length})</Text>}
+      {list && custom.length === 0 && <Muted>ยังไม่มีผู้ใช้สร้างหมวดเอง</Muted>}
+      {custom.map(row)}
+    </>
+  );
+}
+
+function CategoryRow({
+  c,
+  busy,
+  onEdit,
+  onToggle,
+  onDelete,
+}: {
+  c: CategoryInfo;
+  busy: boolean;
+  onEdit: () => void;
+  onToggle: () => void;
+  onDelete: () => void;
+}) {
+  return (
+    <View style={[styles.wordRow, !c.active && { opacity: 0.5 }]}>
+      <Text style={{ fontSize: 26 }}>{c.icon}</Text>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.wordText}>{c.name}</Text>
+        <Muted style={{ fontSize: 13 }}>
+          {wordCount(c, null)} คำ · {difficultyInfo.EASY.emoji} {c.counts.EASY} {difficultyInfo.MEDIUM.emoji}{' '}
+          {c.counts.MEDIUM} {difficultyInfo.HARD.emoji} {c.counts.HARD}
+          {c.ownerName ? ` · โดย ${c.ownerName}` : ''}
+          {c.active ? '' : ' · ปิดใช้งาน'}
+        </Muted>
+      </View>
+      <Pressable onPress={onEdit} disabled={busy} style={styles.iconButton}>
+        <Text style={styles.iconText}>✏️</Text>
+      </Pressable>
+      <Pressable onPress={onToggle} disabled={busy} style={styles.iconButton}>
+        <Text style={styles.iconText}>{c.active ? '🙈' : '👁️'}</Text>
+      </Pressable>
+      <Pressable onPress={onDelete} disabled={busy} style={styles.iconButton}>
+        <Text style={styles.iconText}>🗑️</Text>
+      </Pressable>
+    </View>
   );
 }
 
@@ -403,6 +589,8 @@ const styles = StyleSheet.create({
   },
   wordText: { fontSize: 18, fontWeight: '800', color: colors.text },
   iconButton: { padding: 8 },
+  iconChoice: { padding: 4, borderRadius: 10, borderWidth: 2, borderColor: 'transparent' },
+  iconSelected: { borderColor: colors.secondary, backgroundColor: '#E8F0FF' },
   deleteButton: {
     paddingVertical: 8,
     paddingHorizontal: 12,

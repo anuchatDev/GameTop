@@ -18,6 +18,7 @@ import com.gametop.forbiddenwords.auth.AuthUser;
 import com.gametop.forbiddenwords.common.ApiException;
 import com.gametop.forbiddenwords.config.GameProperties;
 import com.gametop.forbiddenwords.room.dto.RoomView;
+import com.gametop.forbiddenwords.word.Difficulty;
 import com.gametop.forbiddenwords.word.WordCard;
 import com.gametop.forbiddenwords.word.WordDeck;
 
@@ -50,6 +51,7 @@ public class RoomService {
         Room room;
         do {
             room = new Room(generateCode(), now);
+            room.setSettings(RoomSettings.defaults(props.roundSeconds(), props.defaultRounds()));
         } while (rooms.putIfAbsent(room.getCode(), room) != null);
 
         synchronized (room) {
@@ -96,12 +98,15 @@ public class RoomService {
             if (room.getStatus() == RoomStatus.PLAYING || room.getStatus() == RoomStatus.GUESSING) {
                 throw ApiException.conflict("รอบนี้ยังไม่จบ");
             }
+            if (room.isGameOver()) {
+                throw ApiException.conflict("ครบ " + room.getSettings().totalRounds() + " รอบแล้ว กด \"เริ่มเกมใหม่\" เพื่อเล่นอีกครั้ง");
+            }
             List<Player> players = room.getPlayers();
             if (players.size() < props.minPlayers()) {
                 throw ApiException.badRequest("ต้องมีผู้เล่นอย่างน้อย " + props.minPlayers() + " คน");
             }
 
-            List<WordCard> cards = deck.draw(players.size(), room.getUsedWordIds());
+            List<WordCard> cards = deck.draw(players.size(), room.getUsedWordIds(), room.getSettings().toFilter());
             if (cards.stream().anyMatch(c -> room.getUsedWordIds().contains(c.id()))) {
                 // คำในสำรับถูกใช้หมดแล้ว เริ่มนับใหม่
                 room.getUsedWordIds().clear();
@@ -111,9 +116,60 @@ public class RoomService {
                 room.getUsedWordIds().add(cards.get(i).id());
             }
             Instant now = clock.instant();
-            room.nextRound(now.plusSeconds(props.roundSeconds()));
+            room.nextRound(now.plusSeconds(room.getSettings().roundSeconds()));
             room.touch(now);
             return toView(room, viewer);
+        }
+    }
+
+    /**
+     * Host ตั้งค่าห้อง: หมวด/ระดับความยาก/เวลาต่อรอบ/จำนวนรอบ (ทำได้ระหว่างรอบไม่ได้)
+     * หมวดต้องผ่านการตรวจสิทธิ์จาก CategoryService มาแล้ว — roundSeconds/totalRounds null = ใช้ค่าเดิม
+     */
+    public RoomView updateSettings(String code, AuthUser user, List<CategoryRef> categories, Difficulty difficulty,
+                                   Integer roundSeconds, Integer totalRounds) {
+        Room room = getRoom(code);
+        synchronized (room) {
+            Player viewer = requirePlayer(room, user);
+            requireHost(viewer);
+            refresh(room);
+            if (room.getStatus() == RoomStatus.PLAYING || room.getStatus() == RoomStatus.GUESSING) {
+                throw ApiException.conflict("เปลี่ยนหมวดระหว่างรอบไม่ได้");
+            }
+            RoomSettings current = room.getSettings();
+            RoomSettings settings = new RoomSettings(categories, difficulty,
+                    roundSeconds == null ? current.roundSeconds() : roundSeconds,
+                    totalRounds == null ? current.totalRounds() : totalRounds);
+            validate(settings);
+            room.setSettings(settings);
+            room.touch(clock.instant());
+            return toView(room, viewer);
+        }
+    }
+
+    /** เริ่มเกมใหม่ในห้องเดิม (ล้างคะแนนในห้อง — คะแนนสะสมในโปรไฟล์ไม่หาย) */
+    public RoomView restartGame(String code, AuthUser user) {
+        Room room = getRoom(code);
+        synchronized (room) {
+            Player viewer = requirePlayer(room, user);
+            requireHost(viewer);
+            refresh(room);
+            if (room.getStatus() == RoomStatus.PLAYING || room.getStatus() == RoomStatus.GUESSING) {
+                throw ApiException.conflict("รอบนี้ยังไม่จบ");
+            }
+            room.resetGame();
+            room.touch(clock.instant());
+            return toView(room, viewer);
+        }
+    }
+
+    private static void validate(RoomSettings s) {
+        if (s.roundSeconds() < RoomSettings.MIN_ROUND_SECONDS || s.roundSeconds() > RoomSettings.MAX_ROUND_SECONDS) {
+            throw ApiException.badRequest("เวลาต่อรอบต้องอยู่ระหว่าง " + RoomSettings.MIN_ROUND_SECONDS + " วินาที ถึง "
+                    + RoomSettings.MAX_ROUND_SECONDS / 60 + " นาที");
+        }
+        if (s.totalRounds() < 0 || s.totalRounds() > RoomSettings.MAX_ROUNDS) {
+            throw ApiException.badRequest("จำนวนรอบต้องอยู่ระหว่าง 1-" + RoomSettings.MAX_ROUNDS + " (หรือ 0 = ไม่จำกัด)");
         }
     }
 
@@ -301,7 +357,8 @@ public class RoomService {
                     room.isWinner(p));
         }).toList();
 
-        return new RoomView(room.getCode(), status, room.getRoundNumber(), props.roundSeconds(), remainingMs,
-                props.minPlayers(), props.maxPlayers(), viewer.getId(), players);
+        return new RoomView(room.getCode(), status, room.getRoundNumber(), room.getSettings().roundSeconds(),
+                remainingMs, props.minPlayers(), props.maxPlayers(), viewer.getId(), players, room.getSettings(),
+                room.isGameOver());
     }
 }

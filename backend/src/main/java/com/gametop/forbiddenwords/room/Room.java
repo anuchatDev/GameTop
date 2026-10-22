@@ -16,6 +16,7 @@ public class Room {
     private final List<Player> players = new ArrayList<>();
     private final Set<String> usedWordIds = new HashSet<>();
     private RoomStatus status = RoomStatus.LOBBY;
+    private RoomSettings settings;
     private int roundNumber;
     private Instant roundEndsAt;
     private Instant lastActivity;
@@ -35,6 +36,28 @@ public class Room {
 
     public Set<String> getUsedWordIds() {
         return usedWordIds;
+    }
+
+    public RoomSettings getSettings() {
+        return settings;
+    }
+
+    void setSettings(RoomSettings settings) {
+        this.settings = settings;
+    }
+
+    /** จบเกมแล้ว = เล่นครบจำนวนรอบที่ตั้งไว้ และรอบสุดท้ายสรุปผลแล้ว */
+    public boolean isGameOver() {
+        return status == RoomStatus.FINISHED && settings.hasRoundLimit() && roundNumber >= settings.totalRounds();
+    }
+
+    /** เริ่มเกมใหม่ในห้องเดิม: ล้างคะแนนและนับรอบใหม่ */
+    void resetGame() {
+        roundNumber = 0;
+        roundEndsAt = null;
+        status = RoomStatus.LOBBY;
+        usedWordIds.clear();
+        players.forEach(Player::resetGame);
     }
 
     public RoomStatus getStatus() {

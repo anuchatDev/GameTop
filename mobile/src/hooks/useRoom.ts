@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 import { api } from '../api/client';
-import { AuthSession, RoomView } from '../types';
+import { AuthSession, RoomView, SettingsInput } from '../types';
 
 const POLL_MS = 1500;
 
@@ -60,6 +60,8 @@ export function useRoom(auth: AuthSession, code: string) {
   const actions = useMemo(
     () => ({
       start: () => run(() => api.startRound(auth, code)),
+      updateSettings: (settings: SettingsInput) => run(() => api.updateSettings(auth, code, settings)),
+      restart: () => run(() => api.restartGame(auth, code)),
       kill: (victimId: string, killerId: string | null) => run(() => api.reportKill(auth, code, victimId, killerId)),
       guess: (guess: string) => run(() => api.submitGuess(auth, code, guess)),
       end: () => run(() => api.endRound(auth, code)),

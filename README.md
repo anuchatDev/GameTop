@@ -3,7 +3,7 @@
 เว็บเกมปาร์ตี้ "คำต้องห้าม" เล่นออนไลน์กับเพื่อน 2 คนขึ้นไป (ไม่จำกัดจำนวน): สมัคร/ล็อกอิน → สร้างห้อง → แจกคำ → หลอกล่อให้เพื่อนหลุดปาก → สรุปคะแนนลงโปรไฟล์
 พร้อมระบบผู้ดูแล (Admin) สำหรับจัดการผู้ใช้และคลังคำต้องห้าม
 
-- 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md)
+- 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md) · หมวดหมู่และคลังคำ: [docs/BRD-categories.md](docs/BRD-categories.md)
 - 🚀 วิธี deploy ออนไลน์: [docs/DEPLOY.md](docs/DEPLOY.md)
 
 | ส่วน | เทคโนโลยี | โฟลเดอร์ |
@@ -59,7 +59,9 @@ npm run web
 | POST | `/api/rooms` | – | สร้างห้อง (คนสร้างเป็น host) |
 | POST | `/api/rooms/{code}/players` | – | เข้าห้อง (ถ้าเคยอยู่แล้วจะได้ที่นั่งเดิม) |
 | GET | `/api/rooms/{code}` | – | สถานะห้อง (คำของตัวเองถูกซ่อน) |
+| POST | `/api/rooms/{code}/settings` | `{categoryIds, difficulty, roundSeconds, totalRounds}` | host ตั้งหมวด/ระดับ/เวลาต่อรอบ/จำนวนรอบ (ค่าที่ไม่ส่ง = ใช้ค่าเดิม, totalRounds 0 = ไม่จำกัด) |
 | POST | `/api/rooms/{code}/start` | – | host เริ่มรอบ / แจกคำ |
+| POST | `/api/rooms/{code}/restart` | – | host เริ่มเกมใหม่หลังเล่นครบรอบ (ล้างคะแนนในห้อง) |
 | POST | `/api/rooms/{code}/kills` | `{victimId, killerId?}` | รายงานคนพูดคำต้องห้าม |
 | POST | `/api/rooms/{code}/guess` | `{guess}` | ผู้รอดชีวิตทายคำ |
 | POST | `/api/rooms/{code}/end` | – | host ข้ามขั้น (จบช่วงเล่น / สรุปผล) |
@@ -74,19 +76,36 @@ npm run web
 | GET | `/api/admin/users?q=` | – | รายชื่อผู้ใช้ (ค้นหาได้) |
 | POST | `/api/admin/users/{id}/ban` | `{banned}` | ระงับ / ยกเลิกระงับบัญชี |
 | POST | `/api/admin/users/{id}/role` | `{role}` | `PLAYER` หรือ `ADMIN` |
-| GET | `/api/admin/words?q=&pack=` | – | คลังคำทั้งหมด (รวมคำที่ปิดใช้งาน) |
-| POST | `/api/admin/words` | `{text, category, pack, active}` | เพิ่มคำ |
-| PUT | `/api/admin/words/{id}` | `{text, category, pack, active}` | แก้ไข / เปิด-ปิดใช้งาน |
+| GET | `/api/admin/words?q=&categoryId=` | – | คลังคำทั้งหมด (รวมคำที่ปิดใช้งาน) |
+| POST | `/api/admin/words` | `{text, categoryId, difficulty, active}` | เพิ่มคำ |
+| PUT | `/api/admin/words/{id}` | `{text, categoryId, difficulty, active}` | แก้ไข / เปิด-ปิดใช้งาน |
 | DELETE | `/api/admin/words/{id}` | – | ลบคำ |
+| GET / POST | `/api/admin/categories` | `{name, icon}` | ดูทุกหมวด / สร้างหมวดมาตรฐาน |
+| PUT / DELETE | `/api/admin/categories/{id}` | `{name, icon, active}` | แก้ / เปิด-ปิด / ลบหมวด (ลบคำในหมวดด้วย) |
 
-สถานะห้อง: `LOBBY → PLAYING (5 นาที) → GUESSING → FINISHED → PLAYING ...`
+**หมวดหมู่** (ผู้ใช้ทุกคน)
 
-## ระบบผู้ดูแล (Admin) และแพ็กเสริม
+| Method | Path | Body | คำอธิบาย |
+|---|---|---|---|
+| GET | `/api/categories` | – | หมวดมาตรฐาน + หมวดของฉัน พร้อมจำนวนคำแต่ละระดับ |
+| GET | `/api/categories/draw?ids=&difficulty=&count=` | – | สุ่มคำ (โหมด 🎲 สุ่มคำ) |
+| POST | `/api/categories` | `{name, icon}` | สร้างหมวดเฉพาะกิจ |
+| PUT / DELETE | `/api/categories/{id}` | `{name, icon}` | แก้ / ลบหมวดของตัวเอง |
+| GET / POST | `/api/categories/{id}/words` | `{text, difficulty}` | ดู / เพิ่มคำในหมวด |
+| DELETE | `/api/categories/{id}/words/{wordId}` | – | ลบคำ |
+
+สถานะห้อง: `LOBBY → PLAYING (ตามเวลาที่ตั้ง) → GUESSING → FINISHED → PLAYING ...` จนครบจำนวนรอบ → จบเกม (`gameOver`) → `restart` กลับไป `LOBBY`
+
+ค่าเริ่มต้นของห้องใหม่: **5 นาทีต่อรอบ, 3 รอบ** — ปรับได้ที่ `game.round-seconds` / `game.default-rounds` ใน application.yml
+
+## ระบบผู้ดูแล (Admin) และหมวดหมู่คำ
 
 - ตั้ง Admin คนแรก: ใส่ชื่อผู้ใช้ใน env `ADMIN_USERNAMES` (dev: `$env:ADMIN_USERNAMES="ชื่อ"; .mvnw spring-boot:run`)
 - หน้า Admin (ปุ่ม 🛠️ ในหน้าแรก): ดูภาพรวม, ระงับ/ตั้งสิทธิ์ผู้ใช้, เพิ่ม/แก้/ลบ/ปิดใช้งานคำ
-- **แพ็กเสริม:** เพิ่มคำในหน้า Admin แล้วใส่ชื่อแพ็กใหม่ (เช่น `exp1`) — ไม่ต้อง deploy ใหม่
-- คลังคำเก็บในฐานข้อมูล — ไฟล์ [base.json](backend/src/main/resources/words/base.json) ใช้นำเข้า 100 คำแรกอัตโนมัติเมื่อฐานข้อมูลยังว่างเท่านั้น
+- **หมวดมาตรฐาน 5 หมวด** แต่ละคำมีระดับ ง่าย/ปานกลาง/ยาก — Host เลือกหมวดและระดับได้ก่อนเริ่มแต่ละรอบ
+- **แพ็กเสริม = หมวดใหม่:** Admin สร้างหมวดมาตรฐานใหม่ที่แท็บ "หมวด" แล้วเพิ่มคำที่แท็บ "คลังคำ" — ไม่ต้อง deploy ใหม่
+- **หมวดเฉพาะกิจ:** ผู้ใช้สร้างหมวดของตัวเองได้ที่ "📚 หมวดของฉัน" (เช่น ธีมปีใหม่, ธีมบริษัท)
+- ข้อมูลตั้งต้นนำเข้าอัตโนมัติทีละเวอร์ชัน (จำไว้ในตาราง `app_meta`): [base.json](backend/src/main/resources/words/base.json) 100 คำ และ [categories-v2.json](backend/src/main/resources/seed/categories-v2.json) หมวด 5 หมวด + คำเพิ่ม 109 คำ [words-v3.json](backend/src/main/resources/seed/words-v3.json) อีก 308 คำ และ [words-v4.json](backend/src/main/resources/seed/words-v4.json) อีก 750 คำ (รวม 1267 คำ) — คำที่ Admin ลบแล้วจะไม่กลับมา
 
 ## ข้อจำกัดของเวอร์ชัน MVP (ตาม BRD)
 

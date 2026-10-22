@@ -53,6 +53,18 @@ function contrastWithWhite(rgb: number[]): number {
   return 1.05 / (0.2126 * r + 0.7152 * g + 0.0722 * b + 0.05);
 }
 
+/** ป้ายระดับความยาก */
+export const difficultyInfo = {
+  EASY: { label: 'ง่าย', emoji: '🟢', color: '#06D6A0' },
+  MEDIUM: { label: 'ปานกลาง', emoji: '🟡', color: '#E0A100' },
+  HARD: { label: 'ยาก', emoji: '🔴', color: '#EF233C' },
+} as const;
+
+export const difficulties = ['EASY', 'MEDIUM', 'HARD'] as const;
+
+/** ไอคอนให้เลือกตอนสร้างหมวด */
+export const categoryIcons = ['🎉', '🎄', '🎃', '🏢', '⚽', '🎵', '🐶', '🍻', '🎓', '❤️', '🌏', '🎮'];
+
 export function formatTime(ms: number): string {
   const total = Math.ceil(ms / 1000);
   const m = Math.floor(total / 60);

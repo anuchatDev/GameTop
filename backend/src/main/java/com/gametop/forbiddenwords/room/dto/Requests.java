@@ -14,4 +14,12 @@ public final class Requests {
 
     public record GuessRequest(@NotBlank @Size(max = 50) String guess) {
     }
+
+    /**
+     * categoryIds ว่าง = ทุกหมวดมาตรฐาน, difficulty null = ทุกระดับ,
+     * roundSeconds / totalRounds null = ใช้ค่าเดิมของห้อง (totalRounds 0 = ไม่จำกัด)
+     */
+    public record SettingsRequest(java.util.List<Long> categoryIds, com.gametop.forbiddenwords.word.Difficulty difficulty,
+                                  Integer roundSeconds, Integer totalRounds) {
+    }
 }

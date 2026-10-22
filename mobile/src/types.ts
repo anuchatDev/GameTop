@@ -1,5 +1,58 @@
 export type RoomStatus = 'LOBBY' | 'PLAYING' | 'GUESSING' | 'FINISHED';
 
+export type Difficulty = 'EASY' | 'MEDIUM' | 'HARD';
+
+export interface CategoryRef {
+  id: number;
+  name: string;
+  icon: string;
+}
+
+/** ตั้งค่าห้องโดย Host — categories ว่าง = ทุกหมวดมาตรฐาน, difficulty null = ทุกระดับ */
+export interface RoomSettings {
+  categories: CategoryRef[];
+  difficulty: Difficulty | null;
+  /** เวลาต่อรอบ (วินาที) */
+  roundSeconds: number;
+  /** จำนวนรอบต่อเกม — 0 = ไม่จำกัด */
+  totalRounds: number;
+}
+
+export interface SettingsInput {
+  categoryIds: number[];
+  difficulty: Difficulty | null;
+  roundSeconds: number;
+  totalRounds: number;
+}
+
+export interface CategoryInfo {
+  id: number;
+  name: string;
+  icon: string;
+  /** true = หมวดมาตรฐาน (ทุกคนใช้ได้), false = หมวดเฉพาะกิจของผู้ใช้ */
+  standard: boolean;
+  mine: boolean;
+  active: boolean;
+  ownerName: string | null;
+  /** จำนวนคำที่เปิดใช้งานแยกตามระดับ */
+  counts: Record<Difficulty, number>;
+}
+
+export interface CategoryWord {
+  id: number;
+  text: string;
+  difficulty: Difficulty;
+  active: boolean;
+}
+
+export interface DrawnWord {
+  id: number;
+  text: string;
+  categoryName: string;
+  categoryIcon: string;
+  difficulty: Difficulty;
+}
+
 export interface PlayerView {
   id: string;
   name: string;
@@ -29,6 +82,9 @@ export interface RoomView {
   maxPlayers: number;
   youId: string;
   players: PlayerView[];
+  settings: RoomSettings;
+  /** เล่นครบจำนวนรอบแล้ว */
+  gameOver: boolean;
 }
 
 export type Role = 'PLAYER' | 'ADMIN';
@@ -72,6 +128,7 @@ export interface AdminStats {
   users: number;
   words: number;
   activeWords: number;
+  categories: number;
   activeRooms: number;
 }
 
@@ -90,14 +147,16 @@ export interface AdminUser {
 export interface AdminWord {
   id: number;
   text: string;
-  category: string;
+  categoryId: number;
+  categoryName: string;
+  difficulty: Difficulty;
   pack: string;
   active: boolean;
 }
 
 export interface WordInput {
   text: string;
-  category: string;
-  pack: string;
+  categoryId: number;
+  difficulty: Difficulty;
   active: boolean;
 }

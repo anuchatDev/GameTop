@@ -1,5 +1,7 @@
 package com.gametop.forbiddenwords.room;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gametop.forbiddenwords.auth.AuthInterceptor;
 import com.gametop.forbiddenwords.auth.AuthUser;
+import com.gametop.forbiddenwords.category.CategoryService;
 import com.gametop.forbiddenwords.room.dto.Requests.GuessRequest;
 import com.gametop.forbiddenwords.room.dto.Requests.KillRequest;
+import com.gametop.forbiddenwords.room.dto.Requests.SettingsRequest;
 import com.gametop.forbiddenwords.room.dto.RoomView;
 
 import jakarta.validation.Valid;
@@ -23,9 +27,11 @@ import jakarta.validation.Valid;
 public class RoomController {
 
     private final RoomService roomService;
+    private final CategoryService categoryService;
 
-    public RoomController(RoomService roomService) {
+    public RoomController(RoomService roomService, CategoryService categoryService) {
         this.roomService = roomService;
+        this.categoryService = categoryService;
     }
 
     @PostMapping
@@ -43,6 +49,19 @@ public class RoomController {
     @GetMapping("/{code}")
     public RoomView view(@PathVariable String code, @RequestAttribute(AuthInterceptor.USER_ATTR) AuthUser user) {
         return roomService.view(code, user);
+    }
+
+    @PostMapping("/{code}/settings")
+    public RoomView settings(@PathVariable String code, @RequestAttribute(AuthInterceptor.USER_ATTR) AuthUser user,
+                             @RequestBody SettingsRequest request) {
+        List<CategoryRef> categories = categoryService.resolveForHost(user, request.categoryIds());
+        return roomService.updateSettings(code, user, categories, request.difficulty(), request.roundSeconds(),
+                request.totalRounds());
+    }
+
+    @PostMapping("/{code}/restart")
+    public RoomView restart(@PathVariable String code, @RequestAttribute(AuthInterceptor.USER_ATTR) AuthUser user) {
+        return roomService.restartGame(code, user);
     }
 
     @PostMapping("/{code}/start")

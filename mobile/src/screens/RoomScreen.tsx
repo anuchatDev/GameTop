@@ -11,6 +11,7 @@ import { PlayView } from './room/PlayView';
 import { ResultView } from './room/ResultView';
 
 export interface RoomViewProps {
+  auth: AuthSession;
   room: RoomView;
   isHost: boolean;
   busy: boolean;
@@ -35,13 +36,18 @@ export function RoomScreen({ auth, code, onLeave }: { auth: AuthSession; code: s
   }
 
   const me = room.players.find((p) => p.id === room.youId);
-  const props: RoomViewProps = { room, isHost: !!me?.host, busy, receivedAt, actions, onLeave };
+  const props: RoomViewProps = { auth, room, isHost: !!me?.host, busy, receivedAt, actions, onLeave };
 
   return (
     <Screen>
       <View style={styles.header}>
         <Text style={styles.code}>ห้อง {room.code}</Text>
-        {room.roundNumber > 0 && <Text style={styles.round}>รอบที่ {room.roundNumber}</Text>}
+        {room.roundNumber > 0 && (
+          <Text style={styles.round}>
+            รอบที่ {room.roundNumber}
+            {room.settings.totalRounds > 0 ? `/${room.settings.totalRounds}` : ''}
+          </Text>
+        )}
       </View>
       <ErrorText message={error} />
       {room.status === 'LOBBY' && <LobbyView {...props} />}

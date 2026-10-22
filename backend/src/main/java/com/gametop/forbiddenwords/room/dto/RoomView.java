@@ -2,6 +2,7 @@ package com.gametop.forbiddenwords.room.dto;
 
 import java.util.List;
 
+import com.gametop.forbiddenwords.room.RoomSettings;
 import com.gametop.forbiddenwords.room.RoomStatus;
 
 /**
@@ -16,7 +17,9 @@ public record RoomView(
         int minPlayers,
         int maxPlayers, // 0 = ไม่จำกัด
         String youId,
-        List<PlayerView> players
+        List<PlayerView> players,
+        RoomSettings settings,
+        boolean gameOver
 ) {
 
     public record PlayerView(

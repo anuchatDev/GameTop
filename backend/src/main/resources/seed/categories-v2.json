@@ -1,0 +1,581 @@
+{
+  "categories": [
+    {
+      "slug": "everyday",
+      "name": "รอบตัว & ของใช้",
+      "icon": "🧺",
+      "sortOrder": 1
+    },
+    {
+      "slug": "food",
+      "name": "อาหาร & เครื่องดื่ม",
+      "icon": "🍜",
+      "sortOrder": 2
+    },
+    {
+      "slug": "popculture",
+      "name": "ภาพยนตร์ & ป๊อปคัลเจอร์",
+      "icon": "🎬",
+      "sortOrder": 3
+    },
+    {
+      "slug": "places",
+      "name": "สถานที่ & ท่องเที่ยว",
+      "icon": "🏝️",
+      "sortOrder": 4
+    },
+    {
+      "slug": "people",
+      "name": "อาชีพ & บุคคลชื่อดัง",
+      "icon": "🧑‍🚀",
+      "sortOrder": 5
+    }
+  ],
+  "words": [
+    {
+      "text": "พัดลม",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไม้แขวนเสื้อ",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลั๊กไฟ",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ผ้าห่ม",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หมอน",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กรรไกร",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ยาสีฟัน",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "รีโมท",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ถุงเท้า",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แปรงสีฟัน",
+      "category": "everyday",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เครื่องคิดเลข",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไม้จิ้มฟัน",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ที่เปิดขวด",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตะปู",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เทปกาว",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สายชาร์จ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปฏิทิน",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กระติกน้ำ",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ผ้าเช็ดหน้า",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไม้บรรทัด",
+      "category": "everyday",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ข้าวเหนียวมะม่วง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ต้มยำกุ้ง",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ผัดไทย",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มาม่า",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ชานมไข่มุก",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "น้ำแข็งไส",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โจ๊ก",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ข้าวมันไก่",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ลูกชิ้น",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทุเรียน",
+      "category": "food",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แกงเขียวหวาน",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ห่อหมก",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขนมครก",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทองหยิบ",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ลาบ",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สุกี้",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บัวลอย",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปาท่องโก๋",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ข้าวซอย",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กล้วยทอด",
+      "category": "food",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ติ๊กต็อก",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "การ์ตูน",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หนังผี",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซีรีส์",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คอนเสิร์ต",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไอดอล",
+      "category": "popculture",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แฮร์รี่ พอตเตอร์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โดราเอมอน",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สไปเดอร์แมน",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เน็ตฟลิกซ์",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เคป็อป",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มาริโอ",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โปเกมอน",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ลูกทุ่ง",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ละครหลังข่าว",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แร็ป",
+      "category": "popculture",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มีม",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สตรีมเมอร์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไวรัล",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คอสเพลย์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "อนิเมะ",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไลฟ์สด",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แฟนด้อม",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เกมโชว์",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซับไตเติล",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซาวด์แทร็ก",
+      "category": "popculture",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สนามบิน",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "วัด",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ภูเขา",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "น้ำตก",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สวนสัตว์",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โรงหนัง",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สวนสนุก",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เชียงใหม่",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ภูเก็ต",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พัทยา",
+      "category": "places",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พิพิธภัณฑ์",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ห้องสมุด",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สถานทูต",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ประภาคาร",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตลาดน้ำ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เกาะ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ถ้ำ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทะเลทราย",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สถานีรถไฟ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ขั้วโลกเหนือ",
+      "category": "places",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "พยาบาล",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทหาร",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักร้อง",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักบิน",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เชฟ",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ชาวนา",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ยูทูบเบอร์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นักบอล",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "วินมอเตอร์ไซค์",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แม่ค้า",
+      "category": "people",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สถาปนิก",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักบินอวกาศ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทนายความ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักวิทยาศาสตร์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไกด์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักมายากล",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ช่างตัดผม",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นักข่าว",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ผู้กำกับ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ดีเจ",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สุนทรภู่",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไอน์สไตน์",
+      "category": "people",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซานตาคลอส",
+      "category": "people",
+      "difficulty": "HARD"
+    }
+  ]
+}
