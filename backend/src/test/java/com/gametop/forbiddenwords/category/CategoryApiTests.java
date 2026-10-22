@@ -40,12 +40,12 @@ class CategoryApiTests {
     private WordRepository words;
 
     @Test
-    void seedCreatesFiveStandardCategoriesWithDifficulties() throws Exception {
+    void seedCreatesStandardCategoriesWithDifficulties() throws Exception {
         String token = register("seedcheck", "seed@example.com").get("token").asText();
 
         JsonNode list = body(mvc.perform(get("/api/categories").header("Authorization", "Bearer " + token))
                 .andExpect(status().isOk()));
-        assertThat(list).hasSize(5);
+        assertThat(list).hasSize(8);
         assertThat(list.get(0).get("name").asText()).isEqualTo("รอบตัว & ของใช้");
         int total = 0;
         for (JsonNode c : list) {
@@ -56,7 +56,7 @@ class CategoryApiTests {
                 total += c.get("counts").get(level).asInt();
             }
         }
-        assertThat(total).isEqualTo(1267);
+        assertThat(total).isEqualTo(1267 + 520 + 450);
 
         // คำเดิมถูกย้ายเข้าหมวดใหม่ทั้งหมด และคำโซเชียลอยู่ในหมวดป๊อปคัลเจอร์
         assertThat(words.findByCategoryIdIsNull()).isEmpty();
@@ -86,7 +86,7 @@ class CategoryApiTests {
 
         // คนอื่นมองไม่เห็น / แก้ไม่ได้ / ใช้ไม่ได้
         JsonNode guestList = body(mvc.perform(get("/api/categories").header("Authorization", "Bearer " + guest)));
-        assertThat(guestList).hasSize(5);
+        assertThat(guestList).hasSize(8);
         mvc.perform(get("/api/categories/" + catId + "/words").header("Authorization", "Bearer " + guest))
                 .andExpect(status().isForbidden());
         mvc.perform(get("/api/categories/draw").param("ids", String.valueOf(catId))
@@ -104,8 +104,8 @@ class CategoryApiTests {
                 .andExpect(jsonPath("$.length()").value(3))
                 .andExpect(jsonPath("$[0].categoryIcon").value("🎉"));
         mvc.perform(get("/api/categories/draw").param("ids", String.valueOf(food)).param("difficulty", "HARD")
-                        .param("count", "100").header("Authorization", "Bearer " + host))
-                .andExpect(jsonPath("$.length()").value(80))
+                        .param("count", "200").header("Authorization", "Bearer " + host))
+                .andExpect(jsonPath("$.length()").value(100))
                 .andExpect(jsonPath("$[0].difficulty").value("HARD"));
 
         // Host ตั้งห้องให้ใช้หมวดของตัวเอง แล้วเริ่มเกม → ทุกคนได้คำจากหมวดนั้น

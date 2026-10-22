@@ -56,8 +56,8 @@ class AdminApiTests {
 
         mvc.perform(get("/api/admin/stats").header("Authorization", "Bearer " + adminToken))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.categories").value(5))
-                .andExpect(jsonPath("$.activeWords").value(1267));
+                .andExpect(jsonPath("$.categories").value(8))
+                .andExpect(jsonPath("$.activeWords").value(1267 + 520 + 450));
         mvc.perform(get("/api/admin/users").param("q", "plain").header("Authorization", "Bearer " + adminToken))
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].username").value("plainuser"));

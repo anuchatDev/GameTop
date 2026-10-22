@@ -201,10 +201,10 @@ npm run web
 
 - ตั้ง Admin คนแรก: ใส่ชื่อผู้ใช้ใน env `ADMIN_USERNAMES` (dev: `$env:ADMIN_USERNAMES="ชื่อ"; .mvnw spring-boot:run`)
 - หน้า Admin (ปุ่ม 🛠️ ในหน้าแรก): ดูภาพรวม, ระงับ/ตั้งสิทธิ์ผู้ใช้, เพิ่ม/แก้/ลบ/ปิดใช้งานคำ
-- **หมวดมาตรฐาน 5 หมวด** แต่ละคำมีระดับ ง่าย/ปานกลาง/ยาก — Host เลือกหมวดและระดับได้ก่อนเริ่มแต่ละรอบ
+- **หมวดมาตรฐาน 8 หมวด** แต่ละคำมีระดับ ง่าย/ปานกลาง/ยาก — Host เลือกหมวดและระดับได้ก่อนเริ่มแต่ละรอบ
 - **แพ็กเสริม = หมวดใหม่:** Admin สร้างหมวดมาตรฐานใหม่ที่แท็บ "หมวด" แล้วเพิ่มคำที่แท็บ "คลังคำ" — ไม่ต้อง deploy ใหม่
 - **หมวดเฉพาะกิจ:** ผู้ใช้สร้างหมวดของตัวเองได้ที่ "📚 หมวดของฉัน" (เช่น ธีมปีใหม่, ธีมบริษัท)
-- ข้อมูลตั้งต้นนำเข้าอัตโนมัติทีละเวอร์ชัน (จำไว้ในตาราง `app_meta`): [base.json](backend/src/main/resources/words/base.json) 100 คำ และ [categories-v2.json](backend/src/main/resources/seed/categories-v2.json) หมวด 5 หมวด + คำเพิ่ม 109 คำ [words-v3.json](backend/src/main/resources/seed/words-v3.json) อีก 308 คำ และ [words-v4.json](backend/src/main/resources/seed/words-v4.json) อีก 750 คำ (รวม 1267 คำ) — คำที่ Admin ลบแล้วจะไม่กลับมา
+- ข้อมูลตั้งต้นนำเข้าอัตโนมัติทีละเวอร์ชัน (จำไว้ในตาราง `app_meta`): [base.json](backend/src/main/resources/words/base.json) 100 คำ และ [categories-v2.json](backend/src/main/resources/seed/categories-v2.json) หมวด 5 หมวด + คำเพิ่ม 109 คำ [words-v3.json](backend/src/main/resources/seed/words-v3.json) อีก 308 คำ [words-v4.json](backend/src/main/resources/seed/words-v4.json) อีก 750 คำ และ [words-v5.json](backend/src/main/resources/seed/words-v5.json) หมวดใหม่ 3 หมวด + อีก 520 คำ และ [words-v6.json](backend/src/main/resources/seed/words-v6.json) อีก 450 คำในหมวดใหม่ (รวม 2237 คำ) — คำที่ Admin ลบแล้วจะไม่กลับมา
 
 ## ข้อจำกัดของเวอร์ชัน MVP (ตาม BRD)
 

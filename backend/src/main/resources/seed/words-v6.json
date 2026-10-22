@@ -1,0 +1,2254 @@
+{
+  "words": [
+    {
+      "text": "นกกระจิบ",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไก่แจ้",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลูกหมา",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลูกแมว",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แมวดำ",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปลาทู",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปลานิล",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รัง",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ขน",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หาง",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปีก",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เขา",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "งา",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "จมูก",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กรงเล็บ",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดอกกุหลาบ",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดอกบัว",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดอกมะลิ",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดอกทานตะวัน",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ต้นกล้วย",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ต้นมะพร้าว",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไผ่",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ใบไม้",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กิ่งไม้",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ราก",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เมล็ด",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ผัก",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เห็ด",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดิน",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หิน",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "โคลน",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ควัน",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หมอก",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "น้ำค้าง",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ฟ้าร้อง",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "พระอาทิตย์",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ท้องฟ้า",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คลื่น",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "บึง",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ฤดูร้อน",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ฤดูฝน",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ฤดูหนาว",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลูกเจี๊ยบ",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลูกวัว",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไก่ตัวผู้",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แม่ไก่",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปลาวาฬ",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หมาจรจัด",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แมวส้ม",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ต้นมะม่วง",
+      "category": "animals",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "นกพิราบ",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นกเอี้ยง",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อีกา",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นกอินทรี",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เหยี่ยว",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นกกระสา",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นกนางนวล",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นกกระจอกเทศ",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลาทอง",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลาคาร์ฟ",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลาช่อน",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลาดุก",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลากัด",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลาหมอ",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลาวาฬเพชฌฆาต",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กุ้งมังกร",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หอยนางรม",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลาไหล",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ตะขาบ",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กิ้งกือ",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แมลงปอ",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ตั๊กแตน",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "จิ้งหรีด",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ด้วง",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เต่าทอง",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หนอน",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ดักแด้",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มดแดง",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลวก",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เห็บ",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หมัด",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เหา",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทาก",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระทิง",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กวาง",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เก้ง",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หมูป่า",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ชะมด",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "นาก",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หมีขาว",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หมีควาย",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สิงโตทะเล",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ต้นสัก",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ต้นยาง",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ต้นไทร",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ต้นโพธิ์",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระบองเพชร",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มอส",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ตะไคร่น้ำ",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สาหร่าย",
+      "category": "animals",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เต่ามะเฟือง",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เต่าตนุ",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปลากระเบน",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปลาฉลามวาฬ",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปลาฉลามหัวค้อน",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปลานกแก้ว",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปลาโลมาอิรวดี",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปลาบึก",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปลาตีน",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปูเสฉวน",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมึกยักษ์",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หอยมือเสือ",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ฟองน้ำทะเล",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ดอกไม้ทะเล",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซาลาแมนเดอร์",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "อิกัวนา",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กิ้งก่าคาเมเลียน",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โคโมโด",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "งูเห่า",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "งูจงอาง",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "งูหลาม",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "งูเหลือม",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตะกวด",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตัวเงินตัวทอง",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมีแพนด้าแดง",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ลีเมอร์",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทาร์เซียร์",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ลิงลม",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ชะนี",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ค่าง",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บีเวอร์",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เม่น",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตัวตุ่น",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "พอสซัม",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แบดเจอร์",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มูส",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไบซัน",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แอนทีโลป",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กวางเรนเดียร์",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ยูนิคอร์น",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นกแร้ง",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นกกาเหว่า",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นกขุนทอง",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นกกระเต็น",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นกหัวขวาน",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นกฮัมมิ่งเบิร์ด",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นกเพลิแกน",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นกอัลบาทรอส",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นกกาน้ำ",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "นกกระทุง",
+      "category": "animals",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไม้แบด",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไม้ปิงปอง",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลูกขนไก่",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ตาข่าย",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ประตูฟุตบอล",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สนาม",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "นักเตะ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "นกหวีด",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ใบเหลือง",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ใบแดง",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "จุดโทษ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลูกเตะมุม",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ล้ำหน้า",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ยิงประตู",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ชนะ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แพ้",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เสมอ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เหรียญทอง",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ถ้วยรางวัล",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แชมป์",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ทีมชาติ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซ้อม",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แข่ง",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "วอร์มอัพ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ยืดเส้น",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เหงื่อ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปวดขา",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หอบ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "วิ่งเร็ว",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กระโดด",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปีนต้นไม้",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ซ่อนแอบ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "วิ่งไล่จับ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เป่ากบ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ตี่จับ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เล่นทราย",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ว่าว",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ลูกแก้ว",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ยิงหนังสติ๊ก",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กระโดดยาง",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "มอญซ่อนผ้า",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดูบอล",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เชียร์",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้องคาราโอเกะ",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เล่นไพ่",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดูการ์ตูน",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "นอนกลางวัน",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กินเที่ยว",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แต่งตัว",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แต่งหน้า",
+      "category": "sports",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ฟุตซอล",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "วอลเลย์บอลชายหาด",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เซปักตะกร้อ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แฮนด์บอล",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เบสบอล",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ซอฟต์บอล",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อเมริกันฟุตบอล",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แบดมินตันคู่",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ว่ายน้ำท่ากบ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ว่ายน้ำท่าผีเสื้อ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระโดดน้ำ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โปโลน้ำ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เรือพาย",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เรือใบ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "วิ่งผลัด",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "วิ่งข้ามรั้ว",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระโดดสูง",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ทุ่มน้ำหนัก",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ขว้างจักร",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พุ่งแหลน",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ยกน้ำหนัก",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เพาะกาย",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "คาร์ดิโอ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พิลาทิส",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ซุมบ้า",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มวยสากล",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "คิกบ็อกซิ่ง",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กระบี่กระบอง",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไท้เก๊ก",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กังฟู",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เคนโด้",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แอโรบิกในน้ำ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "จักรยานเสือภูเขา",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "บีเอ็มเอ็กซ์",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สเก็ตน้ำแข็ง",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ตีกอล์ฟ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "มินิกอล์ฟ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "บิลเลียด",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปาลูกดอก",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ยิงปืน",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เกมกระดาน",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไพ่อูโน่",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เกมเศรษฐี",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หมากล้อม",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โอเทลโล่",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ซูโดกุ",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ครอสเวิร์ด",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ต่อโมเดล",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กันพลา",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เลี้ยงปลา",
+      "category": "sports",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ลาครอส",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แบดมินตันชายหาด",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สควอช",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แร็กเก็ตบอล",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปิกเกิลบอล",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เทเบิลฟุตบอล",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ฟลอร์บอล",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บาสเกตบอลวีลแชร์",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปัญจกีฬา",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เดคาธลอน",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไตรกีฬาไอรอนแมน",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "อัลตร้าเทรล",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "วิ่งข้ามประเทศ",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "จักรยานลู่",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไซโคลครอส",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มวยปล้ำแขน",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ศิลปะการต่อสู้ผสม",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คราฟมากา",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไอคิโด",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "จิวยิตสู",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กาโปเอรา",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มวยโบราณ",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กระบี่ไทย",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปันจักสีลัต",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ยิงเป้าบิน",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เรือแคนู",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สกีน้ำ",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เวคบอร์ด",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไคท์เซิร์ฟ",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สแตนด์อัพแพดเดิล",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ดำน้ำลึก",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สกูบา",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สเก็ตลีลา",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "บ็อบสเลด",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ลูช",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สกีกระโดด",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไบแอธลอน",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปีนน้ำแข็ง",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปาร์กัวร์",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ฟรีรันนิ่ง",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "วิงสูท",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โรยตัว",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เปตองชายหาด",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โครเก้",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ดาร์ตอิเล็กทรอนิกส์",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมากรุกไทย",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมากรุกจีน",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "หมากเก็บ",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปั้นโมเดลเรซิน",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ต่อจิ๊กซอว์สามมิติ",
+      "category": "sports",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ใช่เลย",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไม่เอา",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เอา",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ได้",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "อืม",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "โอ๊ย",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "อุ๊ย",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เฮ้ย",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ว้าย",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "อ้าว",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เอ๊ะ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หา",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ห๊ะ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "จ้า",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ค่ะ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "นะ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สิ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ละ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เถอะ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หน่อย",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "น้อย",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ดี",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไม่ดี",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เยอะ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "แพงจัง",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ถูกจัง",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หิวข้าว",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ง่วงนอน",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปวดหัว",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ปวดท้อง",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เมื่อย",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "คันจัง",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เจ็บ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หนาวจัง",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ร้อนจัง",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "อิ่ม",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หิวน้ำ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไปไหน",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "กินข้าวยัง",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ทำอะไรอยู่",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ว่างไหม",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เดี๋ยวมา",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "รอแป๊บ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "มาแล้ว",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไปก่อนนะ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "เจอกัน",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ยินดีด้วย",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "สุขสันต์วันเกิด",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "โชคดีนะ",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "หลับฝันดี",
+      "category": "phrases",
+      "difficulty": "EASY"
+    },
+    {
+      "text": "ไม่แน่ใจ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไม่รู้สิ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แล้วไง",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ยังไงก็ได้",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อะไรก็ได้",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ตายแล้ว",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "แย่จัง",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เศร้า",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เหงา",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ท้อ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ปลื้ม",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ภูมิใจ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อิจฉา",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หมั่นไส้",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "รำคาญ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หงุดหงิด",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เครียด",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "กังวล",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ตื่นเต้น",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ประหม่า",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "โล่งอก",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สบายใจ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "อบอุ่น",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "คิดมาก",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "น้อยใจ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "งอน",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ง้อ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ขอโทษนะ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ขอบใจ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไม่เป็นไรนะ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ใจเย็นๆ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ค่อยๆ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "สบายๆ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เต็มที่",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "จัดไป",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เอาจริง",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ล้อเล่น",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พูดเล่น",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไม่ไหวแล้ว",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "พอเถอะ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ไปกันเถอะ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ใครจ่าย",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หารกัน",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เลี้ยงหน่อย",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ขอยืม",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "คืนด้วย",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ลืมเอามา",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "หาไม่เจอ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เสร็จแล้ว",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "ยังไม่เสร็จ",
+      "category": "phrases",
+      "difficulty": "MEDIUM"
+    },
+    {
+      "text": "เบียว",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แคปไว้",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ส่องสตอรี่",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "อันฟอล",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทักแชท",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ซีนแล้วไม่ตอบ",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เฟค",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ดราม่า",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ทัวร์ลง",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แซะ",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เกรียน",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เนียน",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เบลอ",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มโน",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ฟิน",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "อึ้ง",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตาแตก",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตกใจหมด",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "กริบ",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "จึ้ง",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "จึ้งมาก",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ปัง",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สับ",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ฉ่ำ",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เริ่ด",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตะมุตะมิ",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตะลึง",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เลิศ",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ดีต่อใจ",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ใจบาง",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ใจฟู",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ใจละลาย",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ละมุน",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "แอบปลื้ม",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คลั่งรัก",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เลิฟ",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โสด",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "คนคุย",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เฟรนด์โซน",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "โดนเท",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ตบมุก",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "มุกแป้ก",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เล่นใหญ่",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ไฟลุก",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ของมันต้องมี",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ช้อปเพลิน",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เงินหมด",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "สายเปย์",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "เปย์หนัก",
+      "category": "phrases",
+      "difficulty": "HARD"
+    },
+    {
+      "text": "ติดลม",
+      "category": "phrases",
+      "difficulty": "HARD"
+    }
+  ]
+}

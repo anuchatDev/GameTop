@@ -32,6 +32,9 @@ import com.gametop.forbiddenwords.word.WordRepository;
  *       และย้ายคำเดิมเข้าหมวดใหม่</li>
  *   <li>v3 — คำเพิ่มอีกชุดในหมวดมาตรฐาน (resources/seed/words-v3.json)</li>
  *   <li>v4 — คำเพิ่มหมวดละ 50 คำต่อระดับ (resources/seed/words-v4.json)</li>
+ *   <li>v5 — หมวดใหม่ 3 หมวด (สัตว์ & ธรรมชาติ, กีฬา & งานอดิเรก, คำติดปาก & ความรู้สึก) + คำเพิ่มทุกหมวด
+ *       (resources/seed/words-v5.json)</li>
+ *   <li>v6 — คำเพิ่ม 3 หมวดใหม่จาก v5 ระดับละ 50 คำ (resources/seed/words-v6.json)</li>
  * </ul>
  */
 @Component
@@ -82,7 +85,13 @@ public class SeedRunner implements ApplicationRunner {
         if (current < 4) {
             seedWords("seed/words-v4.json", "v4");
         }
-        version.setValue("4");
+        if (current < 5) {
+            seedWords("seed/words-v5.json", "v5");
+        }
+        if (current < 6) {
+            seedWords("seed/words-v6.json", "v6");
+        }
+        version.setValue("6");
         meta.save(version);
     }
 
@@ -126,9 +135,16 @@ public class SeedRunner implements ApplicationRunner {
         log.info("Seed v2: {} standard categories, moved {} words, added {} words", bySlug.size(), moved, added);
     }
 
-    /** เพิ่มคำเข้าหมวดมาตรฐานตาม slug (ข้ามคำที่มีอยู่แล้ว และหมวดที่ Admin ลบไปแล้ว) */
+    /** สร้างหมวดมาตรฐานใหม่ (ถ้ามี) แล้วเพิ่มคำตาม slug (ข้ามคำที่มีอยู่แล้ว และหมวดที่ Admin ลบไปแล้ว) */
     private void seedWords(String path, String pack) {
         WordsSeed seed = read(path, WordsSeed.class);
+        if (seed.categories() != null) {
+            for (SeedV2.CategorySeed c : seed.categories()) {
+                if (categories.findBySlug(c.slug()).isEmpty()) {
+                    categories.save(Category.standard(c.name(), c.icon(), c.slug(), c.sortOrder(), clock.instant()));
+                }
+            }
+        }
         Map<String, Category> bySlug = new HashMap<>();
         int added = 0;
         for (SeedV2.WordSeed s : seed.words()) {
@@ -184,7 +200,8 @@ public class SeedRunner implements ApplicationRunner {
         }
     }
 
-    record WordsSeed(List<SeedV2.WordSeed> words) {
+    /** categories = หมวดมาตรฐานใหม่ในชุดนี้ (ไม่มีก็ได้) */
+    record WordsSeed(List<SeedV2.CategorySeed> categories, List<SeedV2.WordSeed> words) {
     }
 
     record SeedV2(List<CategorySeed> categories, List<WordSeed> words) {
