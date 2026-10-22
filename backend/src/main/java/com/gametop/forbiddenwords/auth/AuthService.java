@@ -1,5 +1,6 @@
 package com.gametop.forbiddenwords.auth;
 
+import java.security.SecureRandom;
 import java.time.Clock;
 
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,8 @@ public class AuthService {
     private final JwtService jwtService;
     private final AppProperties props;
     private final Clock clock;
+    private static final String GUEST_ALPHABET = "abcdefghijkmnpqrstuvwxyz23456789";
+    private final SecureRandom random = new SecureRandom();
 
     public AuthService(UserRepository users, PasswordEncoder passwordEncoder, JwtService jwtService,
                        AppProperties props, Clock clock) {
@@ -52,7 +55,7 @@ public class AuthService {
     public AuthResponse login(String login, String password) {
         String key = login.trim();
         UserAccount user = (key.contains("@") ? users.findByEmailIgnoreCase(key) : users.findByUsernameIgnoreCase(key))
-                .filter(u -> passwordEncoder.matches(password, u.getPasswordHash()))
+                .filter(u -> !u.isGuest() && passwordEncoder.matches(password, u.getPasswordHash()))
                 .orElseThrow(() -> new ApiException(HttpStatus.UNAUTHORIZED, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง"));
         if (user.isBanned()) {
             throw new ApiException(HttpStatus.UNAUTHORIZED, "บัญชีนี้ถูกระงับการใช้งาน");
@@ -60,11 +63,27 @@ public class AuthService {
         return toResponse(user);
     }
 
-    private AuthResponse toResponse(UserAccount user) {
-        return new AuthResponse(jwtService.issue(user.getId()),
-                new AuthUser(user.getId(), user.getUsername(), user.getRole()));
+    /** เล่นแบบไม่สมัคร: สร้างบัญชีชั่วคราวด้วยชื่อเล่น (ชื่อซ้ำกับคนอื่นได้) */
+    @Transactional
+    public AuthResponse guest(String nickname) {
+        String name = nickname.trim().replaceAll("\\s+", " ");
+        String username;
+        do {
+            StringBuilder sb = new StringBuilder("g_");
+            for (int i = 0; i < 10; i++) {
+                sb.append(GUEST_ALPHABET.charAt(random.nextInt(GUEST_ALPHABET.length())));
+            }
+            username = sb.toString();
+        } while (users.existsByUsernameIgnoreCase(username));
+        return toResponse(users.save(UserAccount.guest(username, name, clock.instant())));
     }
 
-    public record AuthResponse(String token, AuthUser user) {
+    private AuthResponse toResponse(UserAccount user) {
+        return new AuthResponse(jwtService.issue(user.getId()),
+                new AuthUser(user.getId(), user.getDisplayName(), user.getRole()), user.isGuest());
+    }
+
+    /** guest = ผู้เล่นชั่วคราว (หน้าบ้านชวนสมัครเพื่อเก็บคะแนน) */
+    public record AuthResponse(String token, AuthUser user, boolean guest) {
     }
 }

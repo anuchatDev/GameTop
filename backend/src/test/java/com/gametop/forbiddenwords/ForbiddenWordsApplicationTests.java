@@ -64,6 +64,29 @@ class ForbiddenWordsApplicationTests {
     }
 
     @Test
+    void guestJoinsRoomWithNicknameOnly() throws Exception {
+        String host = register("guesthost", "guesthost@example.com");
+        String code = body(mvc.perform(post("/api/spyfall/rooms").header("Authorization", "Bearer " + host))
+                .andExpect(status().isCreated())).get("code").asText();
+
+        // ชื่อเล่นซ้ำกับคนอื่นได้ (รวมถึงชื่อผู้ใช้จริง)
+        JsonNode guest = body(mvc.perform(post("/api/auth/guest").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"nickname\":\" guesthost \"}"))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.guest").value(true))
+                .andExpect(jsonPath("$.user.username").value("guesthost")));
+        String token = guest.get("token").asText();
+
+        mvc.perform(post("/api/spyfall/rooms/" + code + "/players").header("Authorization", "Bearer " + token))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.players.length()").value(2))
+                .andExpect(jsonPath("$.players[1].name").value("guesthost"));
+
+        mvc.perform(post("/api/auth/guest").contentType(MediaType.APPLICATION_JSON).content("{\"nickname\":\"  \"}"))
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void rejectsDuplicateUsernameWrongPasswordAndMissingToken() throws Exception {
         register("dupuser", "dup@example.com");
 

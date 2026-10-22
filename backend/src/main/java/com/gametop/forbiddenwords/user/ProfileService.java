@@ -51,7 +51,7 @@ public class ProfileService implements RoundFinishedListener {
                 .map(r -> new Profile.History(r.getRoomCode(), r.getRoundNumber(), r.getWord(), r.isSurvived(),
                         r.getKills(), r.getGuessCorrect(), r.getScore(), r.isWon(), r.getPlayedAt()))
                 .toList();
-        return new Profile(u.getId(), u.getUsername(), u.getEmail(), u.getRole(), u.getTotalScore(),
+        return new Profile(u.getId(), u.getDisplayName(), u.getEmail(), u.getRole(), u.getTotalScore(),
                 u.getRoundsPlayed(), u.getRoundsWon(), history);
     }
 

@@ -181,7 +181,7 @@ public class AdminService {
                               double totalScore, int roundsPlayed, int roundsWon, Instant createdAt) {
 
         static UserSummary of(UserAccount u) {
-            return new UserSummary(u.getId(), u.getUsername(), u.getEmail(), u.getRole(), u.isBanned(),
+            return new UserSummary(u.getId(), u.getDisplayName(), u.getEmail(), u.getRole(), u.isBanned(),
                     u.getTotalScore(), u.getRoundsPlayed(), u.getRoundsWon(), u.getCreatedAt());
         }
     }

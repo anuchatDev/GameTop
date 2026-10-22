@@ -7,7 +7,11 @@
 
 มีเกมที่ 3: **🍻 OHANA** — เกมไพ่ปาร์ตี้ ผลัดกันจั่วแล้วทำตามคำสั่งบนไพ่ ระบบหาคนโดน/ตาถัดไป/ผ้าพันคอ/บัดดี้ให้ (🔞 20+)
 
-- 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md) · หมวดหมู่และคลังคำ: [docs/BRD-categories.md](docs/BRD-categories.md) · Werewolf: [docs/BRD-werewolf.md](docs/BRD-werewolf.md) · Responsive: [docs/BRD-responsive.md](docs/BRD-responsive.md)
+มีเกมที่ 4: **🕵️ Insider (จอมบงการ)** — ถาม-ตอบทายคำปริศนาจากคลังคำ แล้วโหวตจับ Insider ที่แอบรู้คำตอบ (4-20 คน)
+
+มีเกมที่ 5: **🕶️ Spyfall** — ทุกคนอยู่สถานที่เดียวกันยกเว้นสปาย ถาม-ตอบส่งต่อกัน กล่าวหา / สปายเผยตัวทายสถานที่ (3-12 คน, 50 สถานที่)
+
+- 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md) · หมวดหมู่และคลังคำ: [docs/BRD-categories.md](docs/BRD-categories.md) · Werewolf: [docs/BRD-werewolf.md](docs/BRD-werewolf.md) · Insider: [docs/BRD-insider.md](docs/BRD-insider.md) · Spyfall: [docs/BRD-spyfall.md](docs/BRD-spyfall.md) · Responsive: [docs/BRD-responsive.md](docs/BRD-responsive.md)
 - 🚀 วิธี deploy ออนไลน์: [docs/DEPLOY.md](docs/DEPLOY.md)
 
 | ส่วน | เทคโนโลยี | โฟลเดอร์ |
@@ -59,6 +63,7 @@ npm run web
 |---|---|---|---|
 | POST | `/api/auth/register` | `{username, email, password}` | สมัคร → `{token, user}` |
 | POST | `/api/auth/login` | `{login, password}` | login = ชื่อผู้ใช้หรืออีเมล |
+| POST | `/api/auth/guest` | `{nickname}` | เล่นแบบไม่สมัคร → `{token, user, guest: true}` (ชื่อเล่นซ้ำกับคนอื่นได้, ล็อกอินซ้ำไม่ได้) |
 | GET | `/api/me` | – | โปรไฟล์ + คะแนนสะสม + ประวัติ 20 รอบล่าสุด |
 | POST | `/api/rooms` | – | สร้างห้อง (คนสร้างเป็น host) |
 | POST | `/api/rooms/{code}/players` | – | เข้าห้อง (ถ้าเคยอยู่แล้วจะได้ที่นั่งเดิม) |
@@ -118,6 +123,43 @@ npm run web
 | POST | `/{code}/skip` | – | host ข้ามตาคนที่ไม่อยู่ |
 | POST | `/{code}/guests` · `/{code}/guests/remove` | `{name}` · `{playerId}` | 📱 โหมดมือถือเครื่องเดียว: host เพิ่ม/ลบเพื่อนที่ไม่มีบัญชี (host จั่วแทนเมื่อถึงตา) |
 | POST | `/{code}/face-loser` | `{playerId}` | ไพ่ J (เครื่องเดียว): host แตะชื่อคนที่จับหน้าช้าสุด |
+
+**🕵️ Insider** (`/api/insider/rooms`) — คำปริศนาส่งให้เฉพาะ Master/Insider, ตัวตน Insider ซ่อนจนจบเกม
+
+| Method | Path | Body | คำอธิบาย |
+|---|---|---|---|
+| POST | `/api/insider/rooms` | – | สร้างห้อง |
+| POST | `/{code}/players` | – | เข้าห้อง (4-20 คน, เข้าระหว่างเล่นไม่ได้) |
+| GET | `/{code}` | – | สถานะห้อง |
+| POST | `/{code}/settings` | `{questionSeconds, categoryIds, difficulty}` | host ตั้งเวลาถาม-ตอบ (1-20 นาที) และหมวด/ระดับคำ |
+| POST | `/{code}/start` | – | host แจกบทบาท + สุ่มคำ → ดูบทบาท 20 วินาที |
+| POST | `/{code}/begin` | – | host/Master เริ่มจับเวลาถาม-ตอบทันที |
+| POST | `/{code}/ask` · `/{code}/guess` | `{text}` | ถาม Master / ทายคำ (ทายถูก → โหวต) |
+| POST | `/{code}/answer` | `{entryId, answer}` | Master ตอบ `YES` / `NO` / `IRRELEVANT` |
+| POST | `/{code}/correct` | `{playerId}` | Master บอกว่าใครทายถูก (ทายด้วยปาก) |
+| POST | `/{code}/vote` | `{playerId}` | โหวต Insider (ห้ามตัวเอง/Master) |
+| POST | `/{code}/end-vote` · `/{code}/again` | – | host ปิดโหวต / เล่นอีกตา |
+
+**🕶️ Spyfall** (`/api/spyfall/rooms`) — สปายไม่ได้รับชื่อสถานที่, ตัวสปายและบทบาทเปิดเผยตอนจบรอบ
+
+| Method | Path | Body | คำอธิบาย |
+|---|---|---|---|
+| POST | `/api/spyfall/rooms` | – | สร้างห้อง |
+| POST | `/{code}/players` | – | เข้าห้อง (3-12 คน, เข้าระหว่างเล่นไม่ได้) |
+| GET | `/{code}` | – | สถานะห้อง (+ รายชื่อสถานที่ทั้งหมด) |
+| POST | `/{code}/settings` | `{roundSeconds}` | host ตั้งเวลาต่อรอบ (1-20 นาที, เริ่มต้น 8 นาที) |
+| POST | `/{code}/start` | – | host แจกการ์ด (host ถามคนแรก) |
+| POST | `/{code}/ask` | `{playerId}` | คนที่ถึงตาเลือกคนที่จะถาม (ห้ามถามกลับ) |
+| POST | `/{code}/accuse` · `/{code}/accuse-vote` | `{playerId}` · `{agree}` | กล่าวหา (หยุดเวลา, คนละครั้งต่อรอบ) / โหวตเห็นด้วย-ไม่เห็นด้วย |
+| POST | `/{code}/spy-guess` | `{location}` | สปายเผยตัวทายสถานที่ |
+| POST | `/{code}/vote` · `/{code}/end-vote` | `{playerId}` · – | โหวตตอนหมดเวลา / host ปิดโหวต |
+| POST | `/{code}/again` | – | host เริ่มรอบใหม่ |
+
+**ทุกเกม**
+
+| Method | Path | Body | คำอธิบาย |
+|---|---|---|---|
+| GET | `/api/rooms/lookup/{code}` | – | หาว่ารหัสห้องเป็นของเกมไหน → `{code, games}` (หน้าแรกใช้ช่องกรอกรหัสช่องเดียว) |
 
 **หมวดหมู่** (ผู้ใช้ทุกคน)
 

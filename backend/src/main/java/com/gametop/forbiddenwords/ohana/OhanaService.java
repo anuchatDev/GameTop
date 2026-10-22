@@ -471,6 +471,11 @@ public class OhanaService {
         return p;
     }
 
+    /** มีห้องรหัสนี้ในเกมนี้ไหม (ใช้หาว่ารหัสเป็นของเกมไหน) */
+    public boolean exists(String code) {
+        return rooms.containsKey(code.trim().toUpperCase());
+    }
+
     private OhanaRoom getRoom(String code) {
         OhanaRoom room = rooms.get(code.toUpperCase());
         if (room == null) {

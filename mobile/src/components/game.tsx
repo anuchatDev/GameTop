@@ -4,7 +4,7 @@ import { Modal, Platform, Pressable, SafeAreaView, ScrollView, StyleSheet, Text,
 import { MIN_TOUCH, useResponsive } from '../responsive';
 import { colors, GameKey, games, playerColor, textOn } from '../theme';
 import { QrCode } from './QrCode';
-import { Button, Card, ErrorText, Input, Muted } from './ui';
+import { Button, Card, ErrorText, Muted } from './ui';
 
 /**
  * ส่วนประกอบที่ทุกเกมใช้ร่วมกัน — หน้าตาเหมือนกันทุกเกม ต่างกันแค่สีประจำเกม (theme.games)
@@ -12,35 +12,48 @@ import { Button, Card, ErrorText, Input, Muted } from './ui';
 
 // ---------------- หน้าแรก ----------------
 
-/** การ์ดเกมในหน้าแรก: สร้างห้อง / เข้าห้องด้วยรหัส / เปิดกติกา */
+/** การ์ดเกมในหน้าแรก: สร้างห้อง / เปิดกติกา / ปักหมุด (เข้าห้องด้วยรหัสใช้ช่องเดียวด้านบนของหน้าแรก) */
 export function GameCard({
   game,
   onCreate,
-  onJoin,
   onRules,
+  pinned,
+  onTogglePin,
+  badge,
 }: {
   game: GameKey;
   onCreate: () => Promise<void>;
-  onJoin: (code: string) => Promise<void>;
   onRules: () => void;
+  pinned?: boolean;
+  onTogglePin?: () => void;
+  /** ป้ายเล็กใต้ชื่อเกม เช่น "เล่นล่าสุด" */
+  badge?: string;
 }) {
   const g = games[game];
   const { isPhone } = useResponsive();
-  const [code, setCode] = useState('');
-  const [busy, setBusy] = useState<'create' | 'join' | null>(null);
+  const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  async function run(kind: 'create' | 'join', action: () => Promise<void>) {
-    setBusy(kind);
+  async function create() {
+    setBusy(true);
     setError(null);
     try {
-      await action();
+      await onCreate();
     } catch (e) {
       setError((e as Error).message);
     } finally {
-      setBusy(null);
+      setBusy(false);
     }
   }
+
+  const pin = onTogglePin && (
+    <Pill
+      label={pinned ? '⭐' : '☆'}
+      accessibilityLabel={pinned ? `เลิกปักหมุด ${g.name}` : `ปักหมุด ${g.name} ไว้ด้านบน`}
+      active={pinned}
+      onPress={onTogglePin}
+    />
+  );
 
   return (
     <Card style={[styles.gameCard, { borderLeftColor: g.color }]}>
@@ -48,10 +61,14 @@ export function GameCard({
         <GameIcon game={game} size={52} />
         <View style={{ flex: 1 }}>
           <Text style={[styles.gameName, { color: g.color }]}>{g.name}</Text>
-          <Muted style={{ fontSize: 13 }}>{g.players}</Muted>
+          <Muted style={{ fontSize: 13 }}>
+            👥 {g.players}
+            {badge ? `  ·  ${badge}` : ''}
+          </Muted>
         </View>
         {/* มือถือย้ายปุ่มกติกาลงบรรทัดถัดไป ให้ชื่อเกมมีที่พอ ไม่ขึ้นบรรทัดกลางคำ */}
         {!isPhone && <Pill label="📖 กติกา" onPress={onRules} />}
+        {pin}
       </View>
       <Text style={styles.tagline}>{g.tagline}</Text>
       {isPhone && (
@@ -59,30 +76,8 @@ export function GameCard({
           <Pill label="📖 กติกา" onPress={onRules} />
         </View>
       )}
-      <Button
-        title="สร้างห้องใหม่"
-        onPress={() => run('create', onCreate)}
-        loading={busy === 'create'}
-        disabled={busy !== null}
-        style={{ backgroundColor: g.color }}
-      />
-      <View style={styles.row}>
-        <Input
-          placeholder="รหัสห้อง"
-          value={code}
-          onChangeText={(t) => setCode(t.toUpperCase())}
-          autoCapitalize="characters"
-          maxLength={6}
-          style={[styles.codeInput, code ? styles.codeTyped : null]}
-        />
-        <Button
-          title="เข้าห้อง"
-          variant="ghost"
-          onPress={() => run('join', () => onJoin(code))}
-          loading={busy === 'join'}
-          disabled={busy !== null || code.trim().length < 4}
-        />
-      </View>
+      <View style={{ flex: 1 }} />
+      <Button title="สร้างห้องใหม่" onPress={create} loading={busy} style={{ backgroundColor: g.color }} />
       <ErrorText message={error} />
     </Card>
   );
@@ -181,6 +176,7 @@ export function joinLink(game: GameKey, code: string): string | null {
 /** การ์ดรหัสห้อง + QR Code (เหมือนกันทุกเกม) */
 export function RoomCodeCard({ game, code, hint }: { game: GameKey; code: string; hint?: string }) {
   const [showQr, setShowQr] = useState(false);
+  const [copied, setCopied] = useState(false);
   const { fs } = useResponsive();
   const link = joinLink(game, code);
   return (
@@ -200,11 +196,30 @@ export function RoomCodeCard({ game, code, hint }: { game: GameKey; code: string
               <Muted style={{ fontSize: 12, textAlign: 'center' }}>{link}</Muted>
             </>
           )}
-          <Pill label={showQr ? 'ซ่อน QR' : '📷 แสดง QR Code'} onPress={() => setShowQr((s) => !s)} />
+          <View style={[styles.wrap, { justifyContent: 'center' }]}>
+            <Pill label={showQr ? 'ซ่อน QR' : '📷 แสดง QR Code'} onPress={() => setShowQr((s) => !s)} />
+            <Pill label={copied ? '✅ คัดลอกแล้ว' : '🔗 แชร์ลิงก์'} onPress={() => shareLink(link)} />
+          </View>
         </>
       )}
     </Card>
   );
+
+  /** มือถือเปิดเมนูแชร์ของเครื่อง (ส่งเข้า LINE ได้เลย) — ถ้าไม่รองรับให้คัดลอกลิงก์แทน */
+  async function shareLink(url: string) {
+    const nav = (globalThis as any).navigator;
+    try {
+      if (nav?.share) {
+        await nav.share({ title: `${games[game].name} · ห้อง ${code}`, text: `มาเล่น ${games[game].name} กัน! ห้อง ${code}`, url });
+        return;
+      }
+      await nav?.clipboard?.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // ผู้ใช้กดยกเลิกเมนูแชร์
+    }
+  }
 }
 
 export interface ChipPlayer {
@@ -362,13 +377,10 @@ export const ruleStyles = StyleSheet.create({
 const styles = StyleSheet.create({
   row: { flexDirection: 'row', gap: 10, alignItems: 'center' },
   wrap: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
-  gameCard: { gap: 10, borderLeftWidth: 8 },
+  gameCard: { gap: 10, borderLeftWidth: 8, flex: 1 },
   gameHead: { flexDirection: 'row', alignItems: 'center', gap: 12 },
   gameName: { fontSize: 22, fontWeight: '900' },
   tagline: { fontSize: 15, color: colors.text, lineHeight: 22 },
-  codeInput: { flex: 1, fontWeight: '800' },
-  // เว้นระยะตัวอักษรเฉพาะตอนพิมพ์รหัสแล้ว (ถ้าใส่กับ placeholder ภาษาไทยจะดูแตก)
-  codeTyped: { letterSpacing: 4 },
   icon: { alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: colors.text },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 8 },
   headerLeft: { flexDirection: 'row', alignItems: 'center', gap: 10, flexShrink: 1 },

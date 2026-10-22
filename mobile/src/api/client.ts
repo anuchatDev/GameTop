@@ -13,7 +13,9 @@ import {
   SettingsInput,
   WordInput,
 } from '../types';
+import { InAnswer, InSettingsInput, InsiderView } from '../insider/types';
 import { OhanaView } from '../ohana/types';
+import { SpyfallView } from '../spyfall/types';
 import { WwRole, WwView } from '../werewolf/types';
 
 const BASE_URL = (process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:8080').replace(/\/$/, '');
@@ -63,8 +65,15 @@ function roomPath(code: string, suffix = '') {
 }
 
 export const api = {
+  /** หาว่ารหัสห้องเป็นของเกมไหน (ปกติได้เกมเดียว) */
+  lookupRoom: (auth: AuthSession, code: string) =>
+    request<{ code: string; games: string[] }>(`/api/rooms/lookup/${encodeURIComponent(code.trim().toUpperCase())}`, { auth }),
+
   register: (username: string, email: string, password: string) =>
     request<AuthSession>('/api/auth/register', { method: 'POST', body: { username, email, password } }),
+
+  /** เล่นแบบไม่สมัคร — กรอกแค่ชื่อเล่น */
+  guest: (nickname: string) => request<AuthSession>('/api/auth/guest', { method: 'POST', body: { nickname } }),
 
   login: (login: string, password: string) =>
     request<AuthSession>('/api/auth/login', { method: 'POST', body: { login, password } }),
@@ -227,4 +236,57 @@ export const ohanaApi = {
     request<OhanaView>(ohPath(code, '/guests'), { method: 'POST', auth, body: { name } }),
   removeGuest: (auth: AuthSession, code: string, playerId: string) =>
     request<OhanaView>(ohPath(code, '/guests/remove'), { method: 'POST', auth, body: { playerId } }),
+};
+
+function inPath(code: string, suffix = '') {
+  return `/api/insider/rooms/${encodeURIComponent(code.trim().toUpperCase())}${suffix}`;
+}
+
+/** เกม Insider (จอมบงการ) */
+export const insiderApi = {
+  create: (auth: AuthSession) => request<InsiderView>('/api/insider/rooms', { method: 'POST', auth }),
+  join: (auth: AuthSession, code: string) => request<InsiderView>(inPath(code, '/players'), { method: 'POST', auth }),
+  get: (auth: AuthSession, code: string) => request<InsiderView>(inPath(code), { auth }),
+  settings: (auth: AuthSession, code: string, body: InSettingsInput) =>
+    request<InsiderView>(inPath(code, '/settings'), { method: 'POST', auth, body }),
+  start: (auth: AuthSession, code: string) => request<InsiderView>(inPath(code, '/start'), { method: 'POST', auth }),
+  begin: (auth: AuthSession, code: string) => request<InsiderView>(inPath(code, '/begin'), { method: 'POST', auth }),
+  ask: (auth: AuthSession, code: string, text: string) =>
+    request<InsiderView>(inPath(code, '/ask'), { method: 'POST', auth, body: { text } }),
+  answer: (auth: AuthSession, code: string, entryId: number, answer: InAnswer) =>
+    request<InsiderView>(inPath(code, '/answer'), { method: 'POST', auth, body: { entryId, answer } }),
+  guess: (auth: AuthSession, code: string, text: string) =>
+    request<InsiderView>(inPath(code, '/guess'), { method: 'POST', auth, body: { text } }),
+  correct: (auth: AuthSession, code: string, playerId: string) =>
+    request<InsiderView>(inPath(code, '/correct'), { method: 'POST', auth, body: { playerId } }),
+  vote: (auth: AuthSession, code: string, playerId: string) =>
+    request<InsiderView>(inPath(code, '/vote'), { method: 'POST', auth, body: { playerId } }),
+  endVote: (auth: AuthSession, code: string) => request<InsiderView>(inPath(code, '/end-vote'), { method: 'POST', auth }),
+  again: (auth: AuthSession, code: string) => request<InsiderView>(inPath(code, '/again'), { method: 'POST', auth }),
+};
+
+function sfPath(code: string, suffix = '') {
+  return `/api/spyfall/rooms/${encodeURIComponent(code.trim().toUpperCase())}${suffix}`;
+}
+
+/** เกม Spyfall */
+export const spyfallApi = {
+  create: (auth: AuthSession) => request<SpyfallView>('/api/spyfall/rooms', { method: 'POST', auth }),
+  join: (auth: AuthSession, code: string) => request<SpyfallView>(sfPath(code, '/players'), { method: 'POST', auth }),
+  get: (auth: AuthSession, code: string) => request<SpyfallView>(sfPath(code), { auth }),
+  settings: (auth: AuthSession, code: string, body: { roundSeconds: number }) =>
+    request<SpyfallView>(sfPath(code, '/settings'), { method: 'POST', auth, body }),
+  start: (auth: AuthSession, code: string) => request<SpyfallView>(sfPath(code, '/start'), { method: 'POST', auth }),
+  ask: (auth: AuthSession, code: string, playerId: string) =>
+    request<SpyfallView>(sfPath(code, '/ask'), { method: 'POST', auth, body: { playerId } }),
+  accuse: (auth: AuthSession, code: string, playerId: string) =>
+    request<SpyfallView>(sfPath(code, '/accuse'), { method: 'POST', auth, body: { playerId } }),
+  accuseVote: (auth: AuthSession, code: string, agree: boolean) =>
+    request<SpyfallView>(sfPath(code, '/accuse-vote'), { method: 'POST', auth, body: { agree } }),
+  spyGuess: (auth: AuthSession, code: string, location: string) =>
+    request<SpyfallView>(sfPath(code, '/spy-guess'), { method: 'POST', auth, body: { location } }),
+  vote: (auth: AuthSession, code: string, playerId: string) =>
+    request<SpyfallView>(sfPath(code, '/vote'), { method: 'POST', auth, body: { playerId } }),
+  endVote: (auth: AuthSession, code: string) => request<SpyfallView>(sfPath(code, '/end-vote'), { method: 'POST', auth }),
+  again: (auth: AuthSession, code: string) => request<SpyfallView>(sfPath(code, '/again'), { method: 'POST', auth }),
 };

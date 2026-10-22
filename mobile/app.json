@@ -14,7 +14,7 @@
     "web": {
       "name": "GameTop — เกมปาร์ตี้ออนไลน์",
       "shortName": "GameTop",
-      "description": "เล่นเกมปาร์ตี้กับเพื่อนผ่านเว็บ: คำต้องห้าม, One Night Werewolf (มีบอทผู้ดำเนินเกมเสียงไทย) และเกมไพ่ OHANA — สร้างห้องแล้วชวนเพื่อนเข้าด้วยรหัสหรือ QR Code",
+      "description": "เล่นเกมปาร์ตี้กับเพื่อนผ่านเว็บ: คำต้องห้าม, One Night Werewolf (มีบอทผู้ดำเนินเกมเสียงไทย), เกมไพ่ OHANA, Insider และ Spyfall — สร้างห้องแล้วชวนเพื่อนเข้าด้วยรหัส ลิงก์ หรือ QR Code",
       "lang": "th",
       "themeColor": "#FFF4D6",
       "backgroundColor": "#FFF4D6",

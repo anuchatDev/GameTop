@@ -46,7 +46,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         if (account.isBanned()) {
             throw new ApiException(HttpStatus.UNAUTHORIZED, "บัญชีนี้ถูกระงับการใช้งาน");
         }
-        AuthUser user = new AuthUser(account.getId(), account.getUsername(), account.getRole());
+        AuthUser user = new AuthUser(account.getId(), account.getDisplayName(), account.getRole());
         if (request.getRequestURI().startsWith("/api/admin") && !user.isAdmin()) {
             throw ApiException.forbidden("เฉพาะผู้ดูแลระบบเท่านั้น");
         }

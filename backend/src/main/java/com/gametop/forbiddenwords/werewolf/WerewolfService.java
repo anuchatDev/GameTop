@@ -500,6 +500,11 @@ public class WerewolfService {
         return p;
     }
 
+    /** มีห้องรหัสนี้ในเกมนี้ไหม (ใช้หาว่ารหัสเป็นของเกมไหน) */
+    public boolean exists(String code) {
+        return rooms.containsKey(code.trim().toUpperCase());
+    }
+
     private WwRoom getRoom(String code) {
         WwRoom room = rooms.get(code.toUpperCase());
         if (room == null) {

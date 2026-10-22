@@ -16,7 +16,7 @@ export const colors = {
   disabledText: '#4A4A5A',
 };
 
-/** ข้อมูลประจำแต่ละเกม — ทุกเกมใช้หน้าตาเดียวกัน ต่างกันแค่สีประจำเกม */
+/** ข้อมูลประจำแต่ละเกม — ทุกเกมใช้หน้าตาเดียวกัน ต่างกันแค่สีประจำเกม · maxPlayers 0 = ไม่จำกัด */
 export const games = {
   forbidden: {
     name: 'คำต้องห้าม',
@@ -26,6 +26,8 @@ export const games = {
     tagline: 'หลอกล่อให้เพื่อนหลุดปากพูดคำบนหัวตัวเอง',
     players: '2 คนขึ้นไป',
     linkParam: 'fw',
+    minPlayers: 2,
+    maxPlayers: 0,
   },
   werewolf: {
     name: 'One Night Werewolf',
@@ -35,6 +37,8 @@ export const games = {
     tagline: 'ล่าหมาป่าในคืนเดียว มีบอทผู้ดำเนินเกมเสียงภาษาไทย',
     players: '3-10 คน',
     linkParam: 'ww',
+    minPlayers: 3,
+    maxPlayers: 10,
   },
   ohana: {
     name: 'OHANA',
@@ -44,6 +48,30 @@ export const games = {
     tagline: 'เกมไพ่ปาร์ตี้ ผลัดกันจั่วแล้วทำตามคำสั่งบนไพ่',
     players: '2 คนขึ้นไป · 🔞 20+',
     linkParam: 'oh',
+    minPlayers: 2,
+    maxPlayers: 0,
+  },
+  insider: {
+    name: 'Insider',
+    icon: '🕵️',
+    color: '#2D2A32',
+    tint: '#FDE7EA',
+    tagline: 'ถาม-ตอบทายคำปริศนา แล้วจับผู้บงการที่แฝงตัวอยู่',
+    players: '4-20 คน',
+    linkParam: 'in',
+    minPlayers: 4,
+    maxPlayers: 20,
+  },
+  spyfall: {
+    name: 'Spyfall',
+    icon: '🕶️',
+    color: '#00707A',
+    tint: '#E0F4F5',
+    tagline: 'ทุกคนอยู่ที่เดียวกัน ยกเว้นสปาย — ถามตอบจับผิดกันเอง',
+    players: '3-12 คน',
+    linkParam: 'sf',
+    minPlayers: 3,
+    maxPlayers: 12,
   },
 } as const;
 

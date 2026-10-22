@@ -34,6 +34,18 @@ public class AuthController {
         return authService.login(request.login(), request.password());
     }
 
+    /** เล่นแบบไม่สมัคร — กรอกแค่ชื่อเล่น */
+    @PostMapping("/guest")
+    @ResponseStatus(HttpStatus.CREATED)
+    public AuthService.AuthResponse guest(@Valid @RequestBody GuestRequest request) {
+        return authService.guest(request.nickname());
+    }
+
+    public record GuestRequest(
+            @NotBlank(message = "กรอกชื่อเล่นก่อนนะ") @Pattern(regexp = "^\\s*[\\p{L}\\p{M}\\p{N}_. -]{1,20}\\s*$",
+                    message = "ชื่อเล่นยาวได้ไม่เกิน 20 ตัว ใช้ตัวอักษร ตัวเลข เว้นวรรค _ . - ได้") String nickname) {
+    }
+
     public record RegisterRequest(
             @NotBlank @Pattern(regexp = "^[\\p{L}\\p{M}\\p{N}_.]{3,20}$",
                     message = "ชื่อผู้ใช้ 3-20 ตัว ใช้ได้เฉพาะตัวอักษร ตัวเลข _ และ .") String username,

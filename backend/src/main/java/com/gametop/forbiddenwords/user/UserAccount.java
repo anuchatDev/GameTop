@@ -47,6 +47,13 @@ public class UserAccount {
 
     private Boolean banned;
 
+    /** ผู้เล่นชั่วคราว (เข้าห้องจากลิงก์โดยไม่สมัคร) — null = บัญชีปกติ */
+    private Boolean guest;
+
+    /** ชื่อเล่นที่แสดงในเกมของผู้เล่นชั่วคราว (ชื่อซ้ำกับคนอื่นได้ เพราะ username สุ่มให้) */
+    @Column(length = 20)
+    private String displayName;
+
     protected UserAccount() {
     }
 
@@ -57,6 +64,14 @@ public class UserAccount {
         this.createdAt = createdAt;
         this.role = Role.PLAYER;
         this.banned = false;
+    }
+
+    /** ผู้เล่นชั่วคราว: username/อีเมลสุ่มให้ และไม่มีรหัสผ่าน (ล็อกอินซ้ำไม่ได้ ใช้ token อย่างเดียว) */
+    public static UserAccount guest(String username, String displayName, Instant createdAt) {
+        UserAccount u = new UserAccount(username, username + "@guest.gametop", "!", createdAt);
+        u.guest = true;
+        u.displayName = displayName;
+        return u;
     }
 
     void recordRound(double score, boolean won) {
@@ -105,6 +120,15 @@ public class UserAccount {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public boolean isGuest() {
+        return Boolean.TRUE.equals(guest);
+    }
+
+    /** ชื่อที่แสดงในเกม — ผู้เล่นชั่วคราวใช้ชื่อเล่น, บัญชีปกติใช้ชื่อผู้ใช้ */
+    public String getDisplayName() {
+        return displayName != null ? displayName : username;
     }
 
     public boolean isBanned() {

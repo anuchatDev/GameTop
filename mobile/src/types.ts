@@ -99,6 +99,8 @@ export interface AuthUser {
 export interface AuthSession {
   token: string;
   user: AuthUser;
+  /** ผู้เล่นชั่วคราว (เข้าจากลิงก์ห้องด้วยชื่อเล่น ไม่ได้สมัคร) */
+  guest?: boolean;
 }
 
 export interface RoundHistory {
