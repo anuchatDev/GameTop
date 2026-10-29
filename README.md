@@ -13,7 +13,9 @@
 
 มีเกมที่ 6: **⚔️ Avalon** — อัศวินโต๊ะกลมทำภารกิจ 5 รอบ จับคนทรยศ ปกป้องเมอร์ลินจากมือสังหาร (5-10 คน, เก็บสถิติอัตราชนะ)
 
-- 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md) · หมวดหมู่และคลังคำ: [docs/BRD-categories.md](docs/BRD-categories.md) · Werewolf: [docs/BRD-werewolf.md](docs/BRD-werewolf.md) · Insider: [docs/BRD-insider.md](docs/BRD-insider.md) · Spyfall: [docs/BRD-spyfall.md](docs/BRD-spyfall.md) · Avalon: [docs/BRD-avalon.md](docs/BRD-avalon.md) · Responsive: [docs/BRD-responsive.md](docs/BRD-responsive.md)
+มีเกมที่ 7: **💣 แมวระเบิด (Exploding Kittens)** — ผลัดกันจั่ว ใครเจอแมวระเบิดแล้วไม่มีกู้ระเบิดตกรอบ มีโจมตี / ข้าม / ไม่! / แมวคู่ ครบ (2-10 คน)
+
+- 📑 ความต้องการ: [docs/BRD-web-mvp.md](docs/BRD-web-mvp.md) · หมวดหมู่และคลังคำ: [docs/BRD-categories.md](docs/BRD-categories.md) · Werewolf: [docs/BRD-werewolf.md](docs/BRD-werewolf.md) · Insider: [docs/BRD-insider.md](docs/BRD-insider.md) · Spyfall: [docs/BRD-spyfall.md](docs/BRD-spyfall.md) · Avalon: [docs/BRD-avalon.md](docs/BRD-avalon.md) · แมวระเบิด: [docs/BRD-kittens.md](docs/BRD-kittens.md) · Responsive: [docs/BRD-responsive.md](docs/BRD-responsive.md)
 - 🚀 วิธี deploy ออนไลน์: [docs/DEPLOY.md](docs/DEPLOY.md)
 
 | ส่วน | เทคโนโลยี | โฟลเดอร์ |
@@ -175,6 +177,20 @@ npm run web
 | POST | `/rooms/{code}/assassinate` | `{playerId}` | มือสังหารชี้ตัวเมอร์ลิน |
 | POST | `/rooms/{code}/again` | – | host เล่นอีกตา |
 | GET | `/stats/me` | – | สถิติของฉัน: จำนวนเกม, อัตราชนะ, บทบาทที่ได้บ่อย |
+
+**💣 แมวระเบิด** (`/api/kittens/rooms`) — เห็นการ์ดในมือตัวเองเท่านั้น, การ์ดแอคชันรอ 4 วินาทีให้ "ไม่!"
+
+| Method | Path | Body | คำอธิบาย |
+|---|---|---|---|
+| POST | `/api/kittens/rooms` | – | สร้างห้อง |
+| POST | `/{code}/players` | – | เข้าห้อง (2-10 คน, เข้าระหว่างเล่นไม่ได้) |
+| GET | `/{code}` | – | สถานะห้อง |
+| POST | `/{code}/start` · `/{code}/again` | – | host แจกการ์ดเริ่มเกม / เล่นอีกตา |
+| POST | `/{code}/play` | `{cardIds, targetId?, named?}` | เล่นการ์ดแอคชัน 1 ใบ หรือแมวเหมือนกัน 2-3 ใบ |
+| POST | `/{code}/nope` | – | เล่น "ไม่!" ยกเลิกการกระทำล่าสุด (ทุกคน) |
+| POST | `/{code}/draw` | – | จั่ว 1 ใบ (จบตา) |
+| POST | `/{code}/place` | `{position}` | ใส่แมวระเบิดที่กู้แล้วกลับกอง (0 = บนสุด) |
+| POST | `/{code}/give` | `{cardId}` | ให้การ์ดตามที่ถูกขอ (ขอหน่อย) |
 
 **ทุกเกม**
 

@@ -15,6 +15,7 @@ import { TimerScreen } from './src/screens/TimerScreen';
 import { InsiderScreen } from './src/screens/insider/InsiderScreen';
 import { SpyfallScreen } from './src/screens/spyfall/SpyfallScreen';
 import { AvalonScreen } from './src/screens/avalon/AvalonScreen';
+import { KittensScreen } from './src/screens/kittens/KittensScreen';
 import { OhanaScreen } from './src/screens/ohana/OhanaScreen';
 import { WerewolfScreen } from './src/screens/werewolf/WerewolfScreen';
 import { prefs } from './src/gameRegistry';
@@ -31,6 +32,7 @@ const GAME_ROUTES = {
   insider: 'insider',
   spyfall: 'spyfall',
   avalon: 'avalon',
+  kittens: 'kittens',
 } as const satisfies Record<GameKey, string>;
 
 /** key ที่จำห้องล่าสุดของแต่ละเกมไว้ในเบราว์เซอร์ (รีเฟรชแล้วกลับเข้าห้องเดิม) */
@@ -41,6 +43,7 @@ const ROOM_KEYS: Record<GameKey, string> = {
   insider: 'fw.insider',
   spyfall: 'fw.spyfall',
   avalon: 'fw.avalon',
+  kittens: 'fw.kittens',
 };
 
 const GAME_KEYS = Object.keys(GAME_ROUTES) as GameKey[];
@@ -216,6 +219,7 @@ export default function App() {
       {auth && route.name === 'insider' && <InsiderScreen auth={auth} code={route.code} onLeave={goHome} />}
       {auth && route.name === 'spyfall' && <SpyfallScreen auth={auth} code={route.code} onLeave={goHome} />}
       {auth && route.name === 'avalon' && <AvalonScreen auth={auth} code={route.code} onLeave={goHome} />}
+      {auth && route.name === 'kittens' && <KittensScreen auth={auth} code={route.code} onLeave={goHome} />}
       {auth && route.name === 'profile' && <ProfileScreen auth={auth} onBack={goHome} />}
       {auth && route.name === 'admin' && <AdminScreen auth={auth} onBack={goHome} />}
       {auth && route.name === 'random' && <RandomWordScreen auth={auth} onBack={goHome} />}

@@ -15,6 +15,7 @@ import {
 } from '../types';
 import { AvalonView, AvSettings, AvStats } from '../avalon/types';
 import { InAnswer, InSettingsInput, InsiderView } from '../insider/types';
+import { EkCardType, KittensView } from '../kittens/types';
 import { OhanaView } from '../ohana/types';
 import { SpyfallView } from '../spyfall/types';
 import { WwRole, WwView } from '../werewolf/types';
@@ -329,4 +330,25 @@ export const avalonApi = {
   again: (auth: AuthSession, code: string) => request<AvalonView>(avPath(code, '/again'), { method: 'POST', auth }),
   /** สถิติของฉัน (อัตราชนะ, บทบาทที่ได้บ่อย) */
   myStats: (auth: AuthSession) => request<AvStats>('/api/avalon/stats/me', { auth }),
+};
+
+function ekPath(code: string, suffix = '') {
+  return `/api/kittens/rooms/${encodeURIComponent(code.trim().toUpperCase())}${suffix}`;
+}
+
+/** เกมแมวระเบิด */
+export const kittensApi = {
+  create: (auth: AuthSession) => request<KittensView>('/api/kittens/rooms', { method: 'POST', auth }),
+  join: (auth: AuthSession, code: string) => request<KittensView>(ekPath(code, '/players'), { method: 'POST', auth }),
+  get: (auth: AuthSession, code: string) => request<KittensView>(ekPath(code), { auth }),
+  start: (auth: AuthSession, code: string) => request<KittensView>(ekPath(code, '/start'), { method: 'POST', auth }),
+  play: (auth: AuthSession, code: string, cardIds: number[], targetId?: string | null, named?: EkCardType | null) =>
+    request<KittensView>(ekPath(code, '/play'), { method: 'POST', auth, body: { cardIds, targetId, named } }),
+  nope: (auth: AuthSession, code: string) => request<KittensView>(ekPath(code, '/nope'), { method: 'POST', auth }),
+  draw: (auth: AuthSession, code: string) => request<KittensView>(ekPath(code, '/draw'), { method: 'POST', auth }),
+  place: (auth: AuthSession, code: string, position: number) =>
+    request<KittensView>(ekPath(code, '/place'), { method: 'POST', auth, body: { position } }),
+  give: (auth: AuthSession, code: string, cardId: number) =>
+    request<KittensView>(ekPath(code, '/give'), { method: 'POST', auth, body: { cardId } }),
+  again: (auth: AuthSession, code: string) => request<KittensView>(ekPath(code, '/again'), { method: 'POST', auth }),
 };

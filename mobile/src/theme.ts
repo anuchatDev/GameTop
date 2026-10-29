@@ -84,6 +84,17 @@ export const games = {
     minPlayers: 5,
     maxPlayers: 10,
   },
+  kittens: {
+    name: 'แมวระเบิด',
+    icon: '💣',
+    color: '#B0175E',
+    tint: '#FCE4EF',
+    tagline: 'ผลัดกันจั่วการ์ด ใครเจอแมวระเบิดแล้วไม่มีกู้ระเบิด ตูม!',
+    players: '2-10 คน',
+    linkParam: 'ek',
+    minPlayers: 2,
+    maxPlayers: 10,
+  },
 } as const;
 
 export type GameKey = keyof typeof games;
